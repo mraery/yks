@@ -13,35 +13,117 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
-  test('Mock lessons feature paired concept card and test questions', () {
+  test('Mock lessons feature concept cards and test questions', () {
     final lesson = mockUnits[0].lessons[0];
     expect(lesson.questions.isNotEmpty, true);
     
-    // First question is a concept card
-    expect(lesson.questions[0].type, QuestionType.conceptCard);
-    expect(lesson.questions[0].conceptTitle, isNotNull);
-    expect(lesson.questions[0].rule, isNotEmpty);
-    expect(lesson.questions[0].examTip, isNotEmpty);
+    // Check that concept card exists
+    final conceptCard = lesson.questions.firstWhere((q) => q.type == QuestionType.conceptCard);
+    expect(conceptCard.conceptTitle, isNotNull);
+    expect(conceptCard.rule, isNotEmpty);
+    expect(conceptCard.examTip, isNotEmpty);
 
-    // Second question is the immediate test question
-    expect(lesson.questions[1].type, QuestionType.multipleChoice);
+    // Check that test questions exist
+    expect(lesson.questions.any((q) => q.type == QuestionType.multipleChoice), true);
   });
 
-  test('QuizNotifier advances concept card without losing hearts', () {
+  test('QuizNotifier advances concept card without losing hearts and without incrementing correctCount', () {
     final container = ProviderContainer();
-    final lesson = mockUnits[0].lessons[0];
-    final notifier = container.read(quizProvider(lesson).notifier);
+    final customLesson = Lesson(
+      id: 'test_card_adv',
+      title: 'Card Adv',
+      description: 'Test',
+      questions: [
+        Question(
+          id: 'card_1',
+          type: QuestionType.conceptCard,
+          conceptTitle: 'Taktik',
+          rule: 'Kural',
+          examTip: 'İpucu',
+        ),
+        Question(
+          id: 'q1',
+          type: QuestionType.multipleChoice,
+          prompt: 'Soru 1',
+          options: ['A', 'B'],
+          correctIndex: 0,
+        ),
+      ],
+    );
+    final notifier = container.read(quizProvider(customLesson).notifier);
 
     // Initial state
-    expect(container.read(quizProvider(lesson)).currentIndex, 0);
+    expect(container.read(quizProvider(customLesson)).currentIndex, 0);
+    expect(container.read(quizProvider(customLesson)).correctCount, 0);
     expect(container.read(userProfileProvider).hearts, 5);
 
     // Advance concept card
     notifier.advanceConceptCard();
 
-    // Now at question 1, hearts still 5
-    expect(container.read(quizProvider(lesson)).currentIndex, 1);
+    // Now at question 1, hearts still 5, correctCount still 0
+    expect(container.read(quizProvider(customLesson)).currentIndex, 1);
+    expect(container.read(quizProvider(customLesson)).correctCount, 0);
     expect(container.read(userProfileProvider).hearts, 5);
+  });
+
+  test('Concept cards do not award score, answering 0 questions correctly yields 0% and fails', () {
+    final container = ProviderContainer();
+    final customLesson = Lesson(
+      id: 'test_zero_score_lesson',
+      title: 'Zero Score Test',
+      description: 'Test',
+      questions: [
+        Question(
+          id: 'card_1',
+          type: QuestionType.conceptCard,
+          conceptTitle: 'Taktik',
+          rule: 'Kural',
+          examTip: 'İpucu',
+        ),
+        Question(
+          id: 'q1',
+          type: QuestionType.multipleChoice,
+          prompt: 'Soru 1',
+          options: ['A', 'B'],
+          correctIndex: 0,
+        ),
+        Question(
+          id: 'q2',
+          type: QuestionType.multipleChoice,
+          prompt: 'Soru 2',
+          options: ['A', 'B'],
+          correctIndex: 0,
+        ),
+      ],
+    );
+
+    final notifier = container.read(quizProvider(customLesson).notifier);
+
+    // Step 0: Concept Card
+    notifier.advanceConceptCard();
+    expect(container.read(quizProvider(customLesson)).correctCount, 0);
+
+    // Step 1: Wrong answer
+    notifier.selectOption(1);
+    notifier.checkAnswer();
+    notifier.nextQuestion();
+
+    // Step 2: Wrong answer
+    notifier.selectOption(1);
+    notifier.checkAnswer();
+    notifier.nextQuestion();
+
+    final state = container.read(quizProvider(customLesson));
+    expect(state.isQuizComplete, true);
+    expect(state.correctCount, 0);
+    expect(state.totalTestQuestions, 2);
+    expect(state.accuracy, 0.0);
+    expect(state.isPassed, false);
+
+    // Profile check
+    final profile = container.read(userProfileProvider);
+    expect(profile.completedLessonIds.contains('test_zero_score_lesson'), false);
+    expect(profile.lessonScores['test_zero_score_lesson'], 0.0);
   });
 
   test('Each unit contains a Unit Exam Trophy lesson', () {
@@ -121,12 +203,6 @@ void main() {
 
   test('Every lesson in every unit has between 7 and 12 questions/steps', () {
     for (final unit in mockUnits) {
-      print('Unit ${unit.unitNumber}: ${unit.title} (${unit.subject})');
-      for (final lesson in unit.lessons) {
-        print('  - ${lesson.title} (${lesson.id}): ${lesson.questions.length} questions');
-      }
-    }
-    for (final unit in mockUnits) {
       for (final lesson in unit.lessons) {
         expect(
           lesson.questions.length >= 7 && lesson.questions.length <= 12,
@@ -163,7 +239,7 @@ void main() {
     }
   });
 
-  test('Matching question allows arbitrary pairings and checks them on checkAnswer', () {
+  test('Matching question validates each pair in real-time: rejects wrong pairs and locks correct pairs', () {
     final matchingLesson = Lesson(
       id: 'test_matching_lesson',
       title: 'Test Matching',
@@ -184,23 +260,33 @@ void main() {
     final container = ProviderContainer();
     final notifier = container.read(quizProvider(matchingLesson).notifier);
 
-    // Pair incorrectly: A -> 2, B -> 1
+    // 1. Pair incorrectly: A -> 2
     notifier.selectLeft('A');
     notifier.selectRight('2');
-    notifier.selectLeft('B');
-    notifier.selectRight('1');
 
     var state = container.read(quizProvider(matchingLesson));
-    expect(state.matchedPairs['A'], '2');
-    expect(state.matchedPairs['B'], '1');
-    expect(state.isAnswerChecked, false);
+    // Should be rejected: not in matchedPairs, flagged as mismatched, lost 1 heart
+    expect(state.matchedPairs.containsKey('A'), false, reason: 'Wrong pair must not be accepted into matchedPairs');
+    expect(state.mismatchedLeft, 'A');
+    expect(state.mismatchedRight, '2');
+    expect(container.read(userProfileProvider).hearts, 4, reason: 'Wrong pair attempt must deduct 1 heart');
 
-    // Check answer - should detect wrong matches and lose heart
-    notifier.checkAnswer();
+    // 2. Pair correctly: A -> 1
+    notifier.selectLeft('A');
+    notifier.selectRight('1');
+
     state = container.read(quizProvider(matchingLesson));
-    expect(state.isAnswerChecked, true);
-    expect(state.isAnswerCorrect, false);
-    expect(container.read(userProfileProvider).hearts, 4);
+    expect(state.matchedPairs['A'], '1', reason: 'Correct pair must be locked into matchedPairs');
+    expect(state.isAnswerChecked, false, reason: 'Not all pairs matched yet');
+
+    // 3. Pair remaining correctly: B -> 2
+    notifier.selectLeft('B');
+    notifier.selectRight('2');
+
+    state = container.read(quizProvider(matchingLesson));
+    expect(state.matchedPairs['B'], '2');
+    expect(state.isAnswerChecked, true, reason: 'All pairs matched, question should be complete');
+    expect(state.isAnswerCorrect, true);
   });
 
   test('Lesson scores determine completion and locking condition', () {

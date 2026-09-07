@@ -6,6 +6,8 @@ class MatchingGameWidget extends StatefulWidget {
   final Map<String, String> matchedPairs;
   final String? selectedLeft;
   final String? selectedRight;
+  final String? mismatchedLeft;
+  final String? mismatchedRight;
   final bool isChecked;
   final ValueChanged<String> onSelectLeft;
   final ValueChanged<String> onSelectRight;
@@ -16,6 +18,8 @@ class MatchingGameWidget extends StatefulWidget {
     required this.matchedPairs,
     required this.selectedLeft,
     required this.selectedRight,
+    this.mismatchedLeft,
+    this.mismatchedRight,
     this.isChecked = false,
     required this.onSelectLeft,
     required this.onSelectRight,
@@ -28,21 +32,6 @@ class MatchingGameWidget extends StatefulWidget {
 class _MatchingGameWidgetState extends State<MatchingGameWidget> {
   late List<String> _shuffledLeft;
   late List<String> _shuffledRight;
-
-  // Çiftler için 4 farklı belirgin renk
-  static const List<Color> _pairColors = [
-    Color(0xFF1CB0F6), // Mavi
-    Color(0xFF8B5CF6), // Mor
-    Color(0xFFFF9600), // Turuncu
-    Color(0xFF00B4D8), // Turkuaz
-  ];
-
-  static const List<Color> _pairBgColors = [
-    Color(0xFFE0F2FE),
-    Color(0xFFEDE9FE),
-    Color(0xFFFEF3C7),
-    Color(0xFFE0F7FA),
-  ];
 
   @override
   void initState() {
@@ -64,32 +53,19 @@ class _MatchingGameWidgetState extends State<MatchingGameWidget> {
     _shuffledRight = pairs.map((p) => p.right).toList()..shuffle();
   }
 
-  int? _getPairNumber(String text, bool isLeft) {
-    int index = 0;
-    for (final entry in widget.matchedPairs.entries) {
-      if ((isLeft && entry.key == text) || (!isLeft && entry.value == text)) {
-        return index + 1;
-      }
-      index++;
+  bool _isMatched(String text, bool isLeft) {
+    if (isLeft) {
+      return widget.matchedPairs.containsKey(text);
+    } else {
+      return widget.matchedPairs.containsValue(text);
     }
-    return null;
   }
 
-  bool _isPairCorrect(String text, bool isLeft) {
-    final pairs = widget.question.matchingPairs ?? [];
+  bool _isMismatched(String text, bool isLeft) {
     if (isLeft) {
-      final right = widget.matchedPairs[text];
-      return pairs.any((p) => p.left == text && p.right == right);
+      return widget.mismatchedLeft == text;
     } else {
-      String? matchedLeft;
-      for (final entry in widget.matchedPairs.entries) {
-        if (entry.value == text) {
-          matchedLeft = entry.key;
-          break;
-        }
-      }
-      if (matchedLeft == null) return false;
-      return pairs.any((p) => p.left == matchedLeft && p.right == text);
+      return widget.mismatchedRight == text;
     }
   }
 
@@ -97,6 +73,7 @@ class _MatchingGameWidgetState extends State<MatchingGameWidget> {
   Widget build(BuildContext context) {
     final totalPairs = widget.question.matchingPairs?.length ?? 0;
     final matchedCount = widget.matchedPairs.length;
+    final isAllMatched = totalPairs > 0 && matchedCount == totalPairs;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -107,37 +84,41 @@ class _MatchingGameWidgetState extends State<MatchingGameWidget> {
             widget.question.prompt,
             style: const TextStyle(
               fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: Color(0xFF4B4B4B),
+              fontWeight: FontWeight.w800,
+              color: Color(0xFF1E293B),
             ),
           ),
           const SizedBox(height: 6),
           Row(
             children: [
-              Text(
-                'Eşleştirmek için iki taraftan birer karta dokunun.',
-                style: const TextStyle(fontSize: 13, color: Color(0xFFAFAFAF)),
+              const Expanded(
+                child: Text(
+                  'Kartları eşleştir. Doğruysa yeşil olur, yanlışsa kırmızı yanıp reddedilir.',
+                  style: TextStyle(fontSize: 12.5, color: Color(0xFF64748B), height: 1.25),
+                ),
               ),
-              const Spacer(),
+              const SizedBox(width: 8),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF7F7F7),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: const Color(0xFFE5E5E5)),
+                  color: isAllMatched ? const Color(0xFFDCFCE7) : const Color(0xFFF1F5F9),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: isAllMatched ? const Color(0xFF10B981) : const Color(0xFFCBD5E1),
+                  ),
                 ),
                 child: Text(
-                  '$matchedCount / $totalPairs Eşleşti',
+                  isAllMatched ? '🎉 Tamamlandı' : '$matchedCount / $totalPairs Eşleşti',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
-                    color: matchedCount == totalPairs ? const Color(0xFF58CC02) : const Color(0xFF777777),
+                    color: isAllMatched ? const Color(0xFF15803D) : const Color(0xFF475569),
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 18),
 
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,17 +127,15 @@ class _MatchingGameWidgetState extends State<MatchingGameWidget> {
               Expanded(
                 child: Column(
                   children: _shuffledLeft.map((leftText) {
-                    final pairNumber = _getPairNumber(leftText, true);
+                    final isMatched = _isMatched(leftText, true);
+                    final isMismatched = _isMismatched(leftText, true);
                     final isSelected = widget.selectedLeft == leftText;
-                    final isCorrect = widget.isChecked && pairNumber != null
-                        ? _isPairCorrect(leftText, true)
-                        : null;
 
                     return _buildCard(
                       text: leftText,
                       isSelected: isSelected,
-                      pairNumber: pairNumber,
-                      isCorrect: isCorrect,
+                      isMatched: isMatched,
+                      isMismatched: isMismatched,
                       onTap: () => widget.onSelectLeft(leftText),
                     );
                   }).toList(),
@@ -167,17 +146,15 @@ class _MatchingGameWidgetState extends State<MatchingGameWidget> {
               Expanded(
                 child: Column(
                   children: _shuffledRight.map((rightText) {
-                    final pairNumber = _getPairNumber(rightText, false);
+                    final isMatched = _isMatched(rightText, false);
+                    final isMismatched = _isMismatched(rightText, false);
                     final isSelected = widget.selectedRight == rightText;
-                    final isCorrect = widget.isChecked && pairNumber != null
-                        ? _isPairCorrect(rightText, false)
-                        : null;
 
                     return _buildCard(
                       text: rightText,
                       isSelected: isSelected,
-                      pairNumber: pairNumber,
-                      isCorrect: isCorrect,
+                      isMatched: isMatched,
+                      isMismatched: isMismatched,
                       onTap: () => widget.onSelectRight(rightText),
                     );
                   }).toList(),
@@ -193,60 +170,59 @@ class _MatchingGameWidgetState extends State<MatchingGameWidget> {
   Widget _buildCard({
     required String text,
     required bool isSelected,
-    required int? pairNumber,
-    required bool? isCorrect,
+    required bool isMatched,
+    required bool isMismatched,
     required VoidCallback onTap,
   }) {
-    Color borderColor = const Color(0xFFE5E5E5);
+    Color borderColor = const Color(0xFFE2E8F0);
     Color bgColor = Colors.white;
-    Color textColor = const Color(0xFF4B4B4B);
+    Color textColor = const Color(0xFF1E293B);
     Color? badgeColor;
     String? badgeText;
 
-    if (widget.isChecked && pairNumber != null) {
-      if (isCorrect == true) {
-        borderColor = const Color(0xFF58CC02);
-        bgColor = const Color(0xFFD7FFB8);
-        textColor = const Color(0xFF58A700);
-        badgeColor = const Color(0xFF58CC02);
-        badgeText = '✓';
-      } else {
-        borderColor = const Color(0xFFFF4B4B);
-        bgColor = const Color(0xFFFFDFE0);
-        textColor = const Color(0xFFEA2B2B);
-        badgeColor = const Color(0xFFFF4B4B);
-        badgeText = '✗';
-      }
-    } else if (pairNumber != null) {
-      final colorIdx = (pairNumber - 1) % _pairColors.length;
-      borderColor = _pairColors[colorIdx];
-      bgColor = _pairBgColors[colorIdx];
-      textColor = _pairColors[colorIdx];
-      badgeColor = _pairColors[colorIdx];
-      badgeText = '#$pairNumber';
+    if (isMismatched) {
+      // ❌ YANLIŞ: Kırmızı yanar ve reddedilir
+      borderColor = const Color(0xFFEF4444);
+      bgColor = const Color(0xFFFEE2E2);
+      textColor = const Color(0xFFB91C1C);
+      badgeColor = const Color(0xFFEF4444);
+      badgeText = '✗';
+    } else if (isMatched) {
+      // ✅ DOĞRU: Yeşil olur ve kilitlenir
+      borderColor = const Color(0xFF10B981);
+      bgColor = const Color(0xFFDCFCE7);
+      textColor = const Color(0xFF15803D);
+      badgeColor = const Color(0xFF10B981);
+      badgeText = '✓';
     } else if (isSelected) {
-      borderColor = const Color(0xFF84D8FF);
-      bgColor = const Color(0xFFDDF4FF);
-      textColor = const Color(0xFF1899D6);
+      // 🔵 SEÇİLİ: Mavi/İndigo parlar
+      borderColor = const Color(0xFF3B82F6);
+      bgColor = const Color(0xFFEFF6FF);
+      textColor = const Color(0xFF1D4ED8);
     }
+
+    final isClickable = !isMatched && !isMismatched && !widget.isChecked;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: InkWell(
-        onTap: widget.isChecked ? null : onTap,
+        onTap: isClickable ? onTap : null,
         borderRadius: BorderRadius.circular(16),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
+          duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
           constraints: const BoxConstraints(minHeight: 68),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: bgColor,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: borderColor, width: pairNumber != null || isSelected ? 2.5 : 2),
+            border: Border.all(
+              color: borderColor,
+              width: isMatched || isMismatched || isSelected ? 2.4 : 1.8,
+            ),
             boxShadow: [
               BoxShadow(
-                color: borderColor.withOpacity(0.35),
+                color: borderColor.withOpacity(0.28),
                 offset: const Offset(0, 3),
                 blurRadius: 0,
               ),
@@ -261,10 +237,17 @@ class _MatchingGameWidgetState extends State<MatchingGameWidget> {
                   top: -8,
                   right: -4,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1.5),
                     decoration: BoxDecoration(
                       color: badgeColor,
                       borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: badgeColor!.withOpacity(0.3),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
                     ),
                     child: Text(
                       badgeText,

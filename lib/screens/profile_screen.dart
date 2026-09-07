@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/game_provider.dart';
+import '../widgets/parrot_mascot_widget.dart';
 import '../widgets/promo_code_dialog.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -38,15 +39,22 @@ class ProfileScreen extends ConsumerWidget {
             Row(
               children: [
                 Container(
-                  width: 72,
-                  height: 72,
+                  width: 76,
+                  height: 76,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFDDF4FF),
+                    color: const Color(0xFFF0FDF4),
                     shape: BoxShape.circle,
-                    border: Border.all(color: const Color(0xFF1CB0F6), width: 3),
+                    border: Border.all(color: const Color(0xFF10B981), width: 2.5),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF10B981).withOpacity(0.25),
+                        blurRadius: 10,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
                   ),
                   child: const Center(
-                    child: Text('🦉', style: TextStyle(fontSize: 40)),
+                    child: ParrotMascotWidget(size: 64, mood: ParrotMood.happy),
                   ),
                 ),
                 const SizedBox(width: 16),

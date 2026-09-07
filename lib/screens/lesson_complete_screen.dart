@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../models/lesson_models.dart';
 import '../widgets/duo_button.dart';
+import '../widgets/parrot_mascot_widget.dart';
 
 class LessonCompleteScreen extends StatelessWidget {
   final Lesson lesson;
@@ -23,7 +24,7 @@ class LessonCompleteScreen extends StatelessWidget {
     final isPassed = isPassedOverride ?? (accuracy >= 50);
 
     final titleText = isPassed ? 'Ders Tamamlandı!' : 'Dersi Geçemedin!';
-    final titleColor = isPassed ? const Color(0xFF58CC02) : const Color(0xFFFF4B4B);
+    final titleColor = isPassed ? const Color(0xFF10B981) : const Color(0xFFEF4444);
     final subtitleText = isPassed
         ? 'Harika iş çıkardın! Bilgilerini pekiştirdin ve sonraki dersi açtın.'
         : 'Geçmek için en az %50 başarı sağlamalısın. (Başarın: %$accuracy)\nTekrar deneyerek bilginizi tazeleyin!';
@@ -38,26 +39,20 @@ class LessonCompleteScreen extends StatelessWidget {
             children: [
               const Spacer(),
 
-              // Zafer / Tekrar İkonu & Efekti
-              Container(
-                width: 140,
-                height: 140,
-                decoration: BoxDecoration(
-                  color: isPassed ? const Color(0xFFD7FFB8) : const Color(0xFFFFDFE0),
-                  shape: BoxShape.circle,
+              // Renkli Papağan Maskotu Kutlama / Teselli Alanı
+              Animate(
+                effects: [
+                  ScaleEffect(duration: 500.ms, curve: Curves.elasticOut),
+                  ShakeEffect(duration: 400.ms, delay: 500.ms),
+                ],
+                child: ParrotMascotWidget(
+                  size: 130,
+                  mood: isPassed ? ParrotMood.happy : ParrotMood.oops,
+                  speechText: isPassed
+                      ? 'Tebrikler! +${lesson.xpReward} XP kazandın! 🎉'
+                      : 'Pes etmek yok! Taktikleri hatırla, bir daha deneyelim! 🦜',
                 ),
-                child: Center(
-                  child: Icon(
-                    isPassed ? Icons.emoji_events_rounded : Icons.replay_rounded,
-                    color: isPassed ? const Color(0xFFFFC800) : const Color(0xFFFF4B4B),
-                    size: 84,
-                  ),
-                ),
-              )
-                  .animate()
-                  .scale(duration: 500.ms, curve: Curves.elasticOut)
-                  .then()
-                  .shake(duration: 400.ms),
+              ),
 
               const SizedBox(height: 24),
 

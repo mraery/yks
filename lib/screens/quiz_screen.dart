@@ -22,15 +22,17 @@ class QuizScreen extends ConsumerWidget {
     final quizNotifier = ref.read(quizProvider(lesson).notifier);
     final userProfile = ref.watch(userProfileProvider);
 
-    // Eğer sınav bittiyse tebrik ekranına geçiş
+    // Eğer sınav bittiyse veya can bittiyse sonuç ekranına geçiş
     ref.listen<QuizState>(quizProvider(lesson), (previous, next) {
-      if (next.isQuizComplete && !(previous?.isQuizComplete ?? false)) {
+      if ((next.isQuizComplete && !(previous?.isQuizComplete ?? false)) ||
+          (next.isGameOver && !(previous?.isGameOver ?? false))) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (_) => LessonCompleteScreen(
               lesson: lesson,
               correctCount: next.correctCount,
-              totalQuestions: lesson.questions.length,
+              totalQuestions: next.totalTestQuestions,
+              isPassedOverride: next.isGameOver ? false : null,
             ),
           ),
         );
@@ -154,6 +156,8 @@ class QuizScreen extends ConsumerWidget {
           matchedPairs: state.matchedPairs,
           selectedLeft: state.selectedLeft,
           selectedRight: state.selectedRight,
+          mismatchedLeft: state.mismatchedLeft,
+          mismatchedRight: state.mismatchedRight,
           isChecked: state.isAnswerChecked,
           onSelectLeft: notifier.selectLeft,
           onSelectRight: notifier.selectRight,

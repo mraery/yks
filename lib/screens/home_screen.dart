@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/mock_lessons.dart';
 import '../models/lesson_models.dart';
 import '../providers/game_provider.dart';
+import '../widgets/parrot_mascot_widget.dart';
 import '../widgets/stats_bar.dart';
 import '../widgets/unit_guidebook_sheet.dart';
 import 'quiz_screen.dart';
@@ -42,6 +43,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           // Branş Filtreleme Çubuğu (YKS Konu Seçici)
           _buildSubjectFilterBar(),
 
+          // Renkli Papağan Zeki Paşa Karşılama Kartı
+          _buildParrotGreeting(),
+
           // Üniteler ve Soru Yolu
           Expanded(
             child: ListView.builder(
@@ -51,6 +55,81 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 final unit = filteredUnits[unitIndex];
                 return _buildUnitSection(context, unitIndex, unit, userProfile);
               },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildParrotGreeting() {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 10, 16, 6),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFFFFF7ED), Color(0xFFEFF6FF)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFFED7AA), width: 1.5),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFF97316).withOpacity(0.08),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          const ParrotMascotWidget(size: 64, mood: ParrotMood.idle),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    const Text(
+                      'Zeki Paşa 🦜',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
+                        color: Color(0xFFC2410C),
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1.5),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFEA580C),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Text(
+                        'YKS Koçun',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 3),
+                const Text(
+                  'Her 3-4 soruda bir altın taktiği yakalamayı unutma! Bugün hedefin tam odaklanmak.',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF475569),
+                    height: 1.25,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

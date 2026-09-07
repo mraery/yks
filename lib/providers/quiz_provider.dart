@@ -13,6 +13,8 @@ class QuizState {
   final Map<String, String> matchedPairs; // Left -> Right matches
   final String? selectedLeft;
   final String? selectedRight;
+  final String? mismatchedLeft;
+  final String? mismatchedRight;
   final bool isAnswerChecked;
   final bool isAnswerCorrect;
   final int correctCount;
@@ -28,6 +30,8 @@ class QuizState {
     this.matchedPairs = const {},
     this.selectedLeft,
     this.selectedRight,
+    this.mismatchedLeft,
+    this.mismatchedRight,
     this.isAnswerChecked = false,
     this.isAnswerCorrect = false,
     this.correctCount = 0,
@@ -38,11 +42,18 @@ class QuizState {
   Question get currentQuestion => lesson.questions[currentIndex];
   double get progress => (currentIndex) / lesson.questions.length;
 
-  bool get isPassed {
-    final total = lesson.questions.length;
-    if (total == 0) return true;
-    return ((correctCount / total) * 100) >= 50.0;
+  int get totalTestQuestions {
+    final count = lesson.questions.where((q) => q.type != QuestionType.conceptCard).length;
+    return count > 0 ? count : lesson.questions.length;
   }
+
+  double get accuracy {
+    final total = totalTestQuestions;
+    if (total == 0) return 100.0;
+    return (correctCount / total) * 100.0;
+  }
+
+  bool get isPassed => accuracy >= 50.0;
 
   bool get canCheckAnswer {
     if (isAnswerChecked) return false;
@@ -71,6 +82,8 @@ class QuizState {
     Map<String, String>? matchedPairs,
     String? Function()? selectedLeft,
     String? Function()? selectedRight,
+    String? Function()? mismatchedLeft,
+    String? Function()? mismatchedRight,
     bool? isAnswerChecked,
     bool? isAnswerCorrect,
     int? correctCount,
@@ -93,6 +106,10 @@ class QuizState {
           selectedLeft != null ? selectedLeft() : this.selectedLeft,
       selectedRight:
           selectedRight != null ? selectedRight() : this.selectedRight,
+      mismatchedLeft:
+          mismatchedLeft != null ? mismatchedLeft() : this.mismatchedLeft,
+      mismatchedRight:
+          mismatchedRight != null ? mismatchedRight() : this.mismatchedRight,
       isAnswerChecked: isAnswerChecked ?? this.isAnswerChecked,
       isAnswerCorrect: isAnswerCorrect ?? this.isAnswerCorrect,
       correctCount: correctCount ?? this.correctCount,
@@ -131,23 +148,20 @@ class QuizNotifier extends StateNotifier<QuizState> {
 
   void selectLeft(String left) {
     if (state.isAnswerChecked) return;
+    if (state.matchedPairs.containsKey(left)) return; // Zaten doğru eşleşmişse dokunulamaz
 
-    // Eğer sol kart zaten eşleştirilmişse, dokunulduğunda eşleşmeyi kaldır (unpair)
-    if (state.matchedPairs.containsKey(left)) {
-      final newMatched = Map<String, String>.from(state.matchedPairs)..remove(left);
-      state = state.copyWith(
-        matchedPairs: newMatched,
-        selectedLeft: () => null,
-      );
-      HapticFeedback.selectionClick();
-      return;
-    }
+    // Eğer önceki hatalı denemeden kalan kırmızı uyarı varsa hemen temizle
+    final hadMismatch = state.mismatchedLeft != null || state.mismatchedRight != null;
+    final activeRight = hadMismatch ? null : state.selectedRight;
 
-    if (state.selectedRight != null) {
-      _pair(left, state.selectedRight!);
+    if (activeRight != null) {
+      _evaluatePair(left, activeRight);
     } else {
       state = state.copyWith(
-        selectedLeft: () => left == state.selectedLeft ? null : left,
+        selectedLeft: () => left == state.selectedLeft && !hadMismatch ? null : left,
+        selectedRight: hadMismatch ? () => null : null,
+        mismatchedLeft: () => null,
+        mismatchedRight: () => null,
       );
       HapticFeedback.selectionClick();
     }
@@ -155,62 +169,104 @@ class QuizNotifier extends StateNotifier<QuizState> {
 
   void selectRight(String right) {
     if (state.isAnswerChecked) return;
+    if (state.matchedPairs.containsValue(right)) return; // Zaten doğru eşleşmişse dokunulamaz
 
-    // Eğer sağ kart zaten eşleştirilmişse, dokunulduğunda eşleşmeyi kaldır (unpair)
-    if (state.matchedPairs.containsValue(right)) {
-      final newMatched = Map<String, String>.from(state.matchedPairs);
-      newMatched.removeWhere((k, v) => v == right);
-      state = state.copyWith(
-        matchedPairs: newMatched,
-        selectedRight: () => null,
-      );
-      HapticFeedback.selectionClick();
-      return;
-    }
+    // Eğer önceki hatalı denemeden kalan kırmızı uyarı varsa hemen temizle
+    final hadMismatch = state.mismatchedLeft != null || state.mismatchedRight != null;
+    final activeLeft = hadMismatch ? null : state.selectedLeft;
 
-    if (state.selectedLeft != null) {
-      _pair(state.selectedLeft!, right);
+    if (activeLeft != null) {
+      _evaluatePair(activeLeft, right);
     } else {
       state = state.copyWith(
-        selectedRight: () => right == state.selectedRight ? null : right,
+        selectedRight: () => right == state.selectedRight && !hadMismatch ? null : right,
+        selectedLeft: hadMismatch ? () => null : null,
+        mismatchedLeft: () => null,
+        mismatchedRight: () => null,
       );
       HapticFeedback.selectionClick();
     }
   }
 
-  void _pair(String left, String right) {
-    final newMatched = Map<String, String>.from(state.matchedPairs);
-    newMatched.remove(left);
-    newMatched.removeWhere((k, v) => v == right);
-    newMatched[left] = right;
-    HapticFeedback.lightImpact();
-    state = state.copyWith(
-      matchedPairs: newMatched,
-      selectedLeft: () => null,
-      selectedRight: () => null,
-    );
+  void _evaluatePair(String left, String right) {
+    final pairs = state.currentQuestion.matchingPairs ?? [];
+    final isMatch = pairs.any((p) => p.left == left && p.right == right);
+
+    if (isMatch) {
+      // ✅ DOĞRU EŞLEŞME: Yeşil olsun ve kilitlensin
+      final newMatched = Map<String, String>.from(state.matchedPairs);
+      newMatched[left] = right;
+      HapticFeedback.mediumImpact();
+
+      final totalPairs = pairs.length;
+      final isAllDone = totalPairs > 0 && newMatched.length == totalPairs;
+
+      state = state.copyWith(
+        matchedPairs: newMatched,
+        selectedLeft: () => null,
+        selectedRight: () => null,
+        mismatchedLeft: () => null,
+        mismatchedRight: () => null,
+        isAnswerChecked: isAllDone,
+        isAnswerCorrect: isAllDone,
+        correctCount: isAllDone ? state.correctCount + 1 : state.correctCount,
+      );
+    } else {
+      // ❌ YANLIŞ EŞLEŞME: Kırmızı olsun, kabul etmesin, can kaybet
+      HapticFeedback.vibrate();
+      _ref.read(userProfileProvider.notifier).loseHeart();
+
+      final remainingHearts = _ref.read(userProfileProvider).hearts;
+      if (remainingHearts <= 0) {
+        final accuracy = state.accuracy;
+        _ref.read(userProfileProvider.notifier).recordLessonAttempt(state.lesson, accuracy);
+        state = state.copyWith(
+          mismatchedLeft: () => left,
+          mismatchedRight: () => right,
+          isAnswerChecked: true,
+          isAnswerCorrect: false,
+          isGameOver: true,
+        );
+        return;
+      }
+
+      state = state.copyWith(
+        mismatchedLeft: () => left,
+        mismatchedRight: () => right,
+      );
+
+      // 650ms sonra kırmızıyı ve seçimi temizle ("kabul etmesin")
+      Future.delayed(const Duration(milliseconds: 650), () {
+        state = state.copyWith(
+          mismatchedLeft: () => null,
+          mismatchedRight: () => null,
+          selectedLeft: () => null,
+          selectedRight: () => null,
+        );
+      });
+    }
   }
 
   void advanceConceptCard() {
     HapticFeedback.lightImpact();
     if (state.currentIndex + 1 >= state.lesson.questions.length) {
-      final finalCorrect = state.correctCount + 1;
-      final accuracy = (finalCorrect / state.lesson.questions.length) * 100;
+      final accuracy = state.accuracy;
       _ref.read(userProfileProvider.notifier).recordLessonAttempt(state.lesson, accuracy);
       state = state.copyWith(
         isQuizComplete: true,
-        correctCount: finalCorrect,
       );
     } else {
       state = state.copyWith(
         currentIndex: state.currentIndex + 1,
-        correctCount: state.correctCount + 1,
+        // DİKKAT: Concept card okunduğunda correctCount artmaz! Sadece gerçek sorular sayılır.
         selectedOptionIndex: () => null,
         selectedBool: () => null,
         selectedBlankAnswer: () => null,
         matchedPairs: {},
         selectedLeft: () => null,
         selectedRight: () => null,
+        mismatchedLeft: () => null,
+        mismatchedRight: () => null,
         isAnswerChecked: false,
         isAnswerCorrect: false,
       );
@@ -250,6 +306,8 @@ class QuizNotifier extends StateNotifier<QuizState> {
       _ref.read(userProfileProvider.notifier).loseHeart();
       final currentHearts = _ref.read(userProfileProvider).hearts;
       if (currentHearts <= 0) {
+        final accuracy = state.accuracy;
+        _ref.read(userProfileProvider.notifier).recordLessonAttempt(state.lesson, accuracy);
         state = state.copyWith(
           isAnswerChecked: true,
           isAnswerCorrect: false,
@@ -270,8 +328,8 @@ class QuizNotifier extends StateNotifier<QuizState> {
 
   void nextQuestion() {
     if (state.currentIndex + 1 >= state.lesson.questions.length) {
-      // Sınav tamamlandı - Skor ve en az %50 başarı kontrolü
-      final accuracy = (state.correctCount / state.lesson.questions.length) * 100;
+      // Sınav tamamlandı - Gerçek soru başarı oranı ile kaydet
+      final accuracy = state.accuracy;
       _ref.read(userProfileProvider.notifier).recordLessonAttempt(state.lesson, accuracy);
       state = state.copyWith(isQuizComplete: true);
     } else {
@@ -283,6 +341,8 @@ class QuizNotifier extends StateNotifier<QuizState> {
         matchedPairs: {},
         selectedLeft: () => null,
         selectedRight: () => null,
+        mismatchedLeft: () => null,
+        mismatchedRight: () => null,
         isAnswerChecked: false,
         isAnswerCorrect: false,
       );
