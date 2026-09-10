@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import '../models/lesson_models.dart';
+import '../services/sound_service.dart';
 import 'game_provider.dart';
 
 class QuizState {
@@ -212,23 +213,10 @@ class QuizNotifier extends StateNotifier<QuizState> {
         correctCount: isAllDone ? state.correctCount + 1 : state.correctCount,
       );
     } else {
-      // ❌ YANLIŞ EŞLEŞME: Kırmızı olsun, kabul etmesin, can kaybet
+      // ❌ YANLIŞ EŞLEŞME: Kırmızı olsun, kabul etmesin, can kaybet, ses çal
       HapticFeedback.vibrate();
       _ref.read(userProfileProvider.notifier).loseHeart();
-
-      final remainingHearts = _ref.read(userProfileProvider).hearts;
-      if (remainingHearts <= 0) {
-        final accuracy = state.accuracy;
-        _ref.read(userProfileProvider.notifier).recordLessonAttempt(state.lesson, accuracy);
-        state = state.copyWith(
-          mismatchedLeft: () => left,
-          mismatchedRight: () => right,
-          isAnswerChecked: true,
-          isAnswerCorrect: false,
-          isGameOver: true,
-        );
-        return;
-      }
+      SoundService.playIncorrect();
 
       state = state.copyWith(
         mismatchedLeft: () => left,
@@ -304,19 +292,10 @@ class QuizNotifier extends StateNotifier<QuizState> {
     if (!isCorrect) {
       HapticFeedback.vibrate();
       _ref.read(userProfileProvider.notifier).loseHeart();
-      final currentHearts = _ref.read(userProfileProvider).hearts;
-      if (currentHearts <= 0) {
-        final accuracy = state.accuracy;
-        _ref.read(userProfileProvider.notifier).recordLessonAttempt(state.lesson, accuracy);
-        state = state.copyWith(
-          isAnswerChecked: true,
-          isAnswerCorrect: false,
-          isGameOver: true,
-        );
-        return;
-      }
+      SoundService.playIncorrect();
     } else {
       HapticFeedback.lightImpact();
+      SoundService.playCorrect();
     }
 
     state = state.copyWith(
@@ -346,6 +325,57 @@ class QuizNotifier extends StateNotifier<QuizState> {
         isAnswerChecked: false,
         isAnswerCorrect: false,
       );
+    }
+  }
+
+  /// ⚡ HİLE FONKSİYONU: kagan123 kodu ile açılır.
+  /// Kullanıcı hiçbir seçeneğe dokunmasa bile mevcut soruyu %100 doğru işaretler ve onaylar.
+  /// Eğer soru zaten doğru onaylanmışsa, sonraki soruya geçer!
+  void autoSolveCurrentQuestion() {
+    final q = state.currentQuestion;
+
+    if (q.type == QuestionType.conceptCard) {
+      advanceConceptCard();
+      return;
+    }
+
+    // Eğer soru zaten onaylanmışsa, sonraki soruya geç (hızlı test için)
+    if (state.isAnswerChecked) {
+      nextQuestion();
+      return;
+    }
+
+    HapticFeedback.mediumImpact();
+
+    switch (q.type) {
+      case QuestionType.conceptCard:
+        advanceConceptCard();
+        return;
+      case QuestionType.multipleChoice:
+        state = state.copyWith(selectedOptionIndex: () => q.correctIndex);
+        checkAnswer();
+      case QuestionType.trueFalse:
+        state = state.copyWith(selectedBool: () => q.isTrue);
+        checkAnswer();
+      case QuestionType.fillInTheBlank:
+        state = state.copyWith(selectedBlankAnswer: () => q.correctBlankAnswer);
+        checkAnswer();
+      case QuestionType.matching:
+        final pairs = q.matchingPairs ?? [];
+        final completeMap = <String, String>{};
+        for (final p in pairs) {
+          completeMap[p.left] = p.right;
+        }
+        state = state.copyWith(
+          matchedPairs: completeMap,
+          isAnswerChecked: true,
+          isAnswerCorrect: true,
+          correctCount: state.correctCount + 1,
+          selectedLeft: () => null,
+          selectedRight: () => null,
+          mismatchedLeft: () => null,
+          mismatchedRight: () => null,
+        );
     }
   }
 }

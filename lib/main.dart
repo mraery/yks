@@ -18,20 +18,20 @@ void main() async {
   );
   runApp(
     const ProviderScope(
-      child: YksLingoApp(),
+      child: YksPatikaApp(),
     ),
   );
 }
 
-class YksLingoApp extends StatelessWidget {
-  const YksLingoApp({super.key});
+class YksPatikaApp extends StatelessWidget {
+  const YksPatikaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     final baseTextTheme = Theme.of(context).textTheme;
 
     return MaterialApp(
-      title: 'YKSLingo - YKS Hazırlık',
+      title: 'YKS Patika - TYT & AYT Hazırlık',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -53,3 +53,7 @@ class YksLingoApp extends StatelessWidget {
     );
   }
 }
+
+typedef YksPatikaAppAlias = YksPatikaApp;
+typedef YksCepteApp = YksPatikaApp;
+typedef YksLingoApp = YksPatikaApp;

@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 enum ParrotMood {
@@ -14,6 +13,7 @@ class ParrotMascotWidget extends StatelessWidget {
   final ParrotMood mood;
   final String? speechText;
   final bool animate;
+  final bool hasCrown;
 
   const ParrotMascotWidget({
     super.key,
@@ -21,13 +21,34 @@ class ParrotMascotWidget extends StatelessWidget {
     this.mood = ParrotMood.idle,
     this.speechText,
     this.animate = true,
+    this.hasCrown = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    Widget mascot = CustomPaint(
-      size: Size(size, size),
-      painter: _ParrotPainter(mood: mood),
+    Widget mascot = Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFEA580C).withOpacity(0.20),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: ClipOval(
+        child: Image.asset(
+          'assets/images/mascot_parrot.jpg',
+          fit: BoxFit.cover,
+          errorBuilder: (ctx, err, stack) => CustomPaint(
+            size: Size(size, size),
+            painter: _ParrotPainter(mood: mood, hasCrown: hasCrown),
+          ),
+        ),
+      ),
     );
 
     if (speechText != null && speechText!.isNotEmpty) {
@@ -75,8 +96,9 @@ class ParrotMascotWidget extends StatelessWidget {
 
 class _ParrotPainter extends CustomPainter {
   final ParrotMood mood;
+  final bool hasCrown;
 
-  _ParrotPainter({required this.mood});
+  _ParrotPainter({required this.mood, this.hasCrown = false});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -180,6 +202,42 @@ class _ParrotPainter extends CustomPainter {
     crestPath2.quadraticBezierTo(cx + w * 0.14, cy - h * 0.38, cx + w * 0.12, cy - h * 0.34);
     crestPath2.close();
     canvas.drawPath(crestPath2, cyanPaint);
+
+    // 7.5 Altın Taç (Premium Üyeler için Zeki Paşa'nın Tacı 👑)
+    if (hasCrown) {
+      final crownGold = Paint()..color = const Color(0xFFFBBF24);
+      final crownGoldDark = Paint()..color = const Color(0xFFD97706);
+      final rubyPaint = Paint()..color = const Color(0xFFE11D48);
+
+      final crownPath = Path();
+      final baseLeft = cx - w * 0.16;
+      final baseRight = cx + w * 0.16;
+      final baseY = cy - h * 0.36;
+      final topY = cy - h * 0.49;
+      final midY = cy - h * 0.42;
+
+      crownPath.moveTo(baseLeft, baseY);
+      crownPath.lineTo(baseLeft - w * 0.02, topY);
+      crownPath.lineTo(cx - w * 0.07, midY);
+      crownPath.lineTo(cx, topY - h * 0.04);
+      crownPath.lineTo(cx + w * 0.07, midY);
+      crownPath.lineTo(baseRight + w * 0.02, topY);
+      crownPath.lineTo(baseRight, baseY);
+      crownPath.close();
+
+      canvas.drawPath(crownPath, crownGold);
+
+      final baseRect = RRect.fromRectAndRadius(
+        Rect.fromCenter(center: Offset(cx, baseY), width: w * 0.32, height: h * 0.035),
+        const Radius.circular(2),
+      );
+      canvas.drawRRect(baseRect, crownGoldDark);
+
+      // 3 Yakut Mücevher (Tepelerin ucunda)
+      canvas.drawCircle(Offset(baseLeft - w * 0.02, topY), w * 0.022, rubyPaint);
+      canvas.drawCircle(Offset(cx, topY - h * 0.04), w * 0.026, rubyPaint);
+      canvas.drawCircle(Offset(baseRight + w * 0.02, topY), w * 0.022, rubyPaint);
+    }
 
     // 8. Sol / Sağ Kanatlar (Katmanlı Renkler: Mavi -> Yeşil -> Sarı)
     if (mood == ParrotMood.happy) {
@@ -320,5 +378,6 @@ class _ParrotPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _ParrotPainter oldDelegate) => oldDelegate.mood != mood;
+  bool shouldRepaint(covariant _ParrotPainter oldDelegate) =>
+      oldDelegate.mood != mood || oldDelegate.hasCrown != hasCrown;
 }

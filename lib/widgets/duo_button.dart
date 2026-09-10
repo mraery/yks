@@ -6,6 +6,7 @@ enum DuoButtonColor {
   red,
   gray,
   white,
+  purple,
 }
 
 class DuoButton extends StatefulWidget {
@@ -33,122 +34,129 @@ class DuoButton extends StatefulWidget {
 class _DuoButtonState extends State<DuoButton> {
   bool _isPressed = false;
 
-  (Color surface, Color shadow, Color textColor) _getColors() {
-    if (widget.onPressed == null) {
-      return (
-        const Color(0xFFE5E5E5),
-        const Color(0xFFCECECE),
-        const Color(0xFFAFAFAF)
-      );
-    }
-    switch (widget.color) {
-      case DuoButtonColor.green:
-        return (
-          const Color(0xFF58CC02),
-          const Color(0xFF46A302),
-          Colors.white,
-        );
-      case DuoButtonColor.blue:
-        return (
-          const Color(0xFF1CB0F6),
-          const Color(0xFF1899D6),
-          Colors.white,
-        );
-      case DuoButtonColor.red:
-        return (
-          const Color(0xFFFF4B4B),
-          const Color(0xFFD32F2F),
-          Colors.white,
-        );
-      case DuoButtonColor.white:
-        return (
-          Colors.white,
-          const Color(0xFFE5E5E5),
-          const Color(0xFF4B4B4B),
-        );
-      case DuoButtonColor.gray:
-        return (
-          const Color(0xFFF7F7F7),
-          const Color(0xFFE5E5E5),
-          const Color(0xFF4B4B4B),
-        );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final (surfaceColor, shadowColor, textColor) = _getColors();
-    const shadowDepth = 4.0;
+    final isEnabled = widget.onPressed != null;
+
+    // Modern YKS Renk Paleti ve Degradeler
+    LinearGradient? gradient;
+    Color solidColor;
+    Color textColor;
+    Color glowColor;
+
+    if (!isEnabled) {
+      solidColor = const Color(0xFFE2E8F0);
+      textColor = const Color(0xFF94A3B8);
+      glowColor = Colors.transparent;
+    } else {
+      switch (widget.color) {
+        case DuoButtonColor.green:
+          gradient = const LinearGradient(
+            colors: [Color(0xFF059669), Color(0xFF10B981)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          );
+          solidColor = const Color(0xFF10B981);
+          textColor = Colors.white;
+          glowColor = const Color(0xFF10B981).withOpacity(0.35);
+        case DuoButtonColor.blue:
+          gradient = const LinearGradient(
+            colors: [Color(0xFF0284C7), Color(0xFF38BDF8)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          );
+          solidColor = const Color(0xFF0284C7);
+          textColor = Colors.white;
+          glowColor = const Color(0xFF0284C7).withOpacity(0.35);
+        case DuoButtonColor.red:
+          gradient = const LinearGradient(
+            colors: [Color(0xFFDC2626), Color(0xFFEF4444)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          );
+          solidColor = const Color(0xFFEF4444);
+          textColor = Colors.white;
+          glowColor = const Color(0xFFEF4444).withOpacity(0.35);
+        case DuoButtonColor.purple:
+          gradient = const LinearGradient(
+            colors: [Color(0xFF6D28D9), Color(0xFF8B5CF6)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          );
+          solidColor = const Color(0xFF7C3AED);
+          textColor = Colors.white;
+          glowColor = const Color(0xFF7C3AED).withOpacity(0.35);
+        case DuoButtonColor.white:
+          solidColor = Colors.white;
+          textColor = const Color(0xFF1E293B);
+          glowColor = Colors.black.withOpacity(0.04);
+        case DuoButtonColor.gray:
+          solidColor = const Color(0xFFF1F5F9);
+          textColor = const Color(0xFF334155);
+          glowColor = Colors.transparent;
+      }
+    }
 
     return GestureDetector(
-      onTapDown: widget.onPressed == null
-          ? null
-          : (_) => setState(() => _isPressed = true),
-      onTapUp: widget.onPressed == null
-          ? null
-          : (_) {
+      onTapDown: isEnabled ? (_) => setState(() => _isPressed = true) : null,
+      onTapUp: isEnabled
+          ? (_) {
               setState(() => _isPressed = false);
               widget.onPressed?.call();
-            },
+            }
+          : null,
       onTapCancel: () => setState(() => _isPressed = false),
-      child: SizedBox(
-        width: widget.width ?? double.infinity,
-        height: widget.height,
-        child: Stack(
-          children: [
-            // Shadow / Base Layer
-            Positioned(
-              top: shadowDepth,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: shadowColor,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-            ),
-            // Top Pushable Surface
-            AnimatedPositioned(
-              duration: const Duration(milliseconds: 60),
-              top: _isPressed ? shadowDepth : 0,
-              bottom: _isPressed ? 0 : shadowDepth,
-              left: 0,
-              right: 0,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: surfaceColor,
-                  borderRadius: BorderRadius.circular(16),
-                  border: widget.color == DuoButtonColor.white ||
-                          widget.color == DuoButtonColor.gray
-                      ? Border.all(color: const Color(0xFFE5E5E5), width: 2)
-                      : null,
-                ),
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (widget.icon != null) ...[
-                      Icon(widget.icon, color: textColor, size: 20),
-                      const SizedBox(width: 8),
-                    ],
-                    Text(
-                      widget.text.toUpperCase(),
-                      style: TextStyle(
-                        color: textColor,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                        letterSpacing: 0.8,
-                      ),
+      child: AnimatedScale(
+        scale: _isPressed ? 0.96 : 1.0,
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.easeOutCubic,
+        child: Container(
+          width: widget.width ?? double.infinity,
+          height: widget.height,
+          decoration: BoxDecoration(
+            color: solidColor,
+            gradient: gradient,
+            borderRadius: BorderRadius.circular(18),
+            border: widget.color == DuoButtonColor.white
+                ? Border.all(color: const Color(0xFFE2E8F0), width: 1.5)
+                : (widget.color == DuoButtonColor.gray
+                    ? Border.all(color: const Color(0xFFCBD5E1), width: 1.5)
+                    : null),
+            boxShadow: isEnabled
+                ? [
+                    BoxShadow(
+                      color: glowColor,
+                      blurRadius: _isPressed ? 4 : 12,
+                      offset: Offset(0, _isPressed ? 2 : 4),
                     ),
-                  ],
+                  ]
+                : null,
+          ),
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (widget.icon != null) ...[
+                Icon(widget.icon, color: textColor, size: 20),
+                const SizedBox(width: 8),
+              ],
+              Text(
+                widget.text.toUpperCase(),
+                style: TextStyle(
+                  color: textColor,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 15.5,
+                  letterSpacing: 0.6,
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+typedef YksButton = DuoButton;
+typedef YksButtonColor = DuoButtonColor;

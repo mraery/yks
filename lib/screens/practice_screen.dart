@@ -4,6 +4,8 @@ import '../data/mock_lessons.dart';
 import '../models/lesson_models.dart';
 import '../providers/game_provider.dart';
 import '../widgets/duo_button.dart';
+import '../widgets/out_of_hearts_dialog.dart';
+import 'flashcards_screen.dart';
 import 'quiz_screen.dart';
 
 class PracticeScreen extends ConsumerWidget {
@@ -92,6 +94,11 @@ class PracticeScreen extends ConsumerWidget {
                 allQuizQuestions.shuffle();
                 final practiceQuestions = allQuizQuestions.take(3).toList();
 
+                if (profile.hearts <= 0 && !profile.isPremium) {
+                  OutOfHeartsDialog.show(context, ref);
+                  return;
+                }
+
                 // Karışık pratik dersi oluştur
                 final practiceLesson = Lesson(
                   id: 'practice_mixed_${DateTime.now().millisecondsSinceEpoch}',
@@ -115,6 +122,26 @@ class PracticeScreen extends ConsumerWidget {
 
             const SizedBox(height: 16),
 
+            // Kartlarla Pekiştir Modu (Flaş Kartlar)
+            _buildActionCard(
+              context: context,
+              title: 'Kartlarla Pekiştir 🎴',
+              subtitle: 'Kavram kartını çevir, anlamını öğren. Sağa atarak öğrendim de, sola atarak tekrar listene ekle!',
+              icon: Icons.style_rounded,
+              iconColor: const Color(0xFF7C3AED),
+              buttonText: 'KARTLARI ÇEVİR',
+              buttonColor: DuoButtonColor.purple,
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const FlashcardsScreen(),
+                  ),
+                );
+              },
+            ),
+
+            const SizedBox(height: 16),
+
             // Hata Defteri Modu
             _buildActionCard(
               context: context,
@@ -125,6 +152,11 @@ class PracticeScreen extends ConsumerWidget {
               buttonText: 'HATALARI TEKRAR ET',
               buttonColor: DuoButtonColor.blue,
               onTap: () {
+                if (profile.hearts <= 0 && !profile.isPremium) {
+                  OutOfHeartsDialog.show(context, ref);
+                  return;
+                }
+
                 final allQuestions = mockUnits
                     .expand((u) => u.lessons)
                     .expand((l) => l.questions)

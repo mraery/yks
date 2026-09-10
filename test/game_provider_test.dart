@@ -42,4 +42,53 @@ void main() {
     expect(profile.streak, equals(1));
     expect(profile.completedLessonIds.contains('test_lesson'), isTrue);
   });
+
+  test('Heart depletion, 50-gem refill, and unlimited hearts with Premium', () async {
+    final container = ProviderContainer();
+    addTearDown(container.dispose);
+
+    final notifier = container.read(userProfileProvider.notifier);
+    var profile = container.read(userProfileProvider);
+    expect(profile.hearts, equals(5));
+    expect(profile.gems, equals(100));
+    expect(profile.isPremium, isFalse);
+
+    // Yanlış cevaplar ile 5 canın tamamının kaybedilmesi
+    for (int i = 0; i < 5; i++) {
+      notifier.loseHeart();
+    }
+    profile = container.read(userProfileProvider);
+    expect(profile.hearts, equals(0), reason: '5 yanlış cevap sonrası can 0 olmalı');
+
+    // Can 0 iken daha fazla düşmemeli
+    notifier.loseHeart();
+    profile = container.read(userProfileProvider);
+    expect(profile.hearts, equals(0));
+
+    // 50 Elmas ile canları tamamen yenileme (5 Can)
+    final refillSuccess = notifier.refillHearts(withGems: true);
+    expect(refillSuccess, isTrue);
+    profile = container.read(userProfileProvider);
+    expect(profile.hearts, equals(5), reason: 'Canlar 50 elmas ile 5/5 olmalı');
+    expect(profile.gems, equals(50), reason: '100 elmastan 50 düşülmeli');
+
+    // Tekrar 5 can kaybetme
+    for (int i = 0; i < 5; i++) {
+      notifier.loseHeart();
+    }
+    profile = container.read(userProfileProvider);
+    expect(profile.hearts, equals(0));
+
+    // Premium Satın Alma / Aktif Etme
+    notifier.activatePremium();
+    profile = container.read(userProfileProvider);
+    expect(profile.isPremium, isTrue);
+    expect(profile.hearts, equals(5));
+
+    // Premium iken yanlış cevap verilse bile can eksilmemeli (Sınırsız Can)
+    notifier.loseHeart();
+    notifier.loseHeart();
+    profile = container.read(userProfileProvider);
+    expect(profile.hearts, equals(5), reason: 'Premium üyede sınırsız can olmalı');
+  });
 }

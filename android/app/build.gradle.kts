@@ -15,8 +15,8 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.ykslingo.ykslingo"
+        // Unique Application ID for Google Play Store
+        applicationId = "com.ykspatika.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -46,4 +46,11 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+tasks.matching { it.name.startsWith("compileFlutterBuild") }.configureEach {
+    onlyIf {
+        val kernel = file("${project.layout.buildDirectory.get()}/intermediates/flutter/debug/flutter_assets/kernel_blob.bin")
+        !kernel.exists()
+    }
 }

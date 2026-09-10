@@ -108,6 +108,9 @@ class UserProfile {
   final int gems;
   final Set<String> completedLessonIds;
   final Map<String, double> lessonScores;
+  final bool isCheatUnlocked;
+  final bool isPremium;
+  final int questionsAnsweredCount;
 
   const UserProfile({
     this.hearts = 5,
@@ -118,6 +121,9 @@ class UserProfile {
     this.gems = 100,
     this.completedLessonIds = const {},
     this.lessonScores = const {},
+    this.isCheatUnlocked = false,
+    this.isPremium = false,
+    this.questionsAnsweredCount = 0,
   });
 
   UserProfile copyWith({
@@ -129,6 +135,9 @@ class UserProfile {
     int? gems,
     Set<String>? completedLessonIds,
     Map<String, double>? lessonScores,
+    bool? isCheatUnlocked,
+    bool? isPremium,
+    int? questionsAnsweredCount,
   }) {
     return UserProfile(
       hearts: hearts ?? this.hearts,
@@ -139,6 +148,31 @@ class UserProfile {
       gems: gems ?? this.gems,
       completedLessonIds: completedLessonIds ?? this.completedLessonIds,
       lessonScores: lessonScores ?? this.lessonScores,
+      isCheatUnlocked: isCheatUnlocked ?? this.isCheatUnlocked,
+      isPremium: isPremium ?? this.isPremium,
+      questionsAnsweredCount:
+          questionsAnsweredCount ?? this.questionsAnsweredCount,
     );
   }
 }
+
+class Flashcard {
+  final String id;
+  final String term;
+  final String meaning;
+  final String subject;
+  final String? category;
+  final String? example;
+  final String? examTip;
+
+  const Flashcard({
+    required this.id,
+    required this.term,
+    required this.meaning,
+    required this.subject,
+    this.category,
+    this.example,
+    this.examTip,
+  });
+}
+

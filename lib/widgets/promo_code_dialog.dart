@@ -127,7 +127,7 @@ class _PromoCodeDialogState extends ConsumerState<PromoCodeDialog> {
                     letterSpacing: 1.1,
                   ),
                   decoration: InputDecoration(
-                    hintText: 'Örn: YKS2026 veya INDIRIM50',
+                    hintText: 'Örn: YKS2026, KAGAN123 veya KAPAT',
                     hintStyle: TextStyle(
                       color: Colors.grey.shade400,
                       fontWeight: FontWeight.normal,
@@ -154,7 +154,7 @@ class _PromoCodeDialogState extends ConsumerState<PromoCodeDialog> {
 
               // Hızlı Kod Butonları (Örnek Kodlar)
               const Text(
-                'Örnek Kodlar:',
+                'Hızlı Kodlar:',
                 style: TextStyle(
                   fontSize: 11.5,
                   fontWeight: FontWeight.w800,
@@ -169,13 +169,18 @@ class _PromoCodeDialogState extends ConsumerState<PromoCodeDialog> {
                 children: [
                   _buildCodeChip(
                     code: 'YKS2026',
-                    label: '🎁 YKS2026 (+150 💎 & Can Yenile)',
+                    label: '🎁 YKS2026 (+150 💎)',
                     badgeColor: const Color(0xFF1CB0F6),
                   ),
                   _buildCodeChip(
-                    code: 'TAMPUAN',
-                    label: '🏆 TAMPUAN (+200 💎 & XP)',
-                    badgeColor: const Color(0xFF58CC02),
+                    code: 'KAGAN123',
+                    label: '🔥 KAGAN123 (Hile Aç/Kapat)',
+                    badgeColor: const Color(0xFFEA580C),
+                  ),
+                  _buildCodeChip(
+                    code: 'KAPAT',
+                    label: '🔒 KAPAT (Canlı Moda Dön)',
+                    badgeColor: const Color(0xFFE11D48),
                   ),
                 ],
               ),

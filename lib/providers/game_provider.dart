@@ -20,6 +20,9 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
   static const String _keyCompletedLessons = 'user_completed_lessons';
   static const String _keyLessonScores = 'user_lesson_scores';
   static const String _keyLastDate = 'user_last_date';
+  static const String _keyCheatUnlocked = 'user_cheat_unlocked';
+  static const String _keyPremium = 'user_is_premium';
+  static const String _keyQuestionsAnswered = 'user_questions_answered';
 
   Future<void> _loadFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
@@ -30,6 +33,9 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
     final gems = prefs.getInt(_keyGems) ?? 100;
     final completed = prefs.getStringList(_keyCompletedLessons)?.toSet() ?? {};
     final lastDate = prefs.getString(_keyLastDate) ?? '';
+    final isCheatUnlocked = prefs.getBool(_keyCheatUnlocked) ?? false;
+    final isPremium = prefs.getBool(_keyPremium) ?? false;
+    final questionsAnswered = prefs.getInt(_keyQuestionsAnswered) ?? 0;
 
     Map<String, double> scores = {};
     final scoresJson = prefs.getString(_keyLessonScores);
@@ -66,6 +72,9 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
       completedLessonIds: completed,
       lessonScores: scores,
       lastActiveDate: lastDate,
+      isCheatUnlocked: isCheatUnlocked,
+      isPremium: isPremium,
+      questionsAnsweredCount: questionsAnswered,
     );
   }
 
@@ -84,11 +93,47 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
     await prefs.setStringList(_keyCompletedLessons, current.completedLessonIds.toList());
     await prefs.setString(_keyLessonScores, jsonEncode(current.lessonScores));
     await prefs.setString(_keyLastDate, current.lastActiveDate);
+    await prefs.setBool(_keyCheatUnlocked, current.isCheatUnlocked);
+    await prefs.setBool(_keyPremium, current.isPremium);
+    await prefs.setInt(_keyQuestionsAnswered, current.questionsAnsweredCount);
+  }
+
+  bool incrementQuestionsAnswered() {
+    final nextCount = state.questionsAnsweredCount + 1;
+    state = state.copyWith(questionsAnsweredCount: nextCount);
+    _saveToPrefs();
+    // Her 10 soruda bir reklam molası (Premium kullanıcılar hariç)
+    return !state.isPremium && (nextCount % 10 == 0);
   }
 
   void loseHeart() {
+    if (state.isPremium) return; // Premium: Sınırsız Can!
     if (state.hearts > 0) {
       state = state.copyWith(hearts: state.hearts - 1);
+      _saveToPrefs();
+    }
+  }
+
+  void activatePremium() {
+    state = state.copyWith(
+      isPremium: true,
+      hearts: state.maxHearts,
+    );
+    _saveToPrefs();
+  }
+
+  void deactivatePremium() {
+    state = state.copyWith(
+      isPremium: false,
+      isCheatUnlocked: false,
+      hearts: state.maxHearts,
+    );
+    _saveToPrefs();
+  }
+
+  void addGems(int amount) {
+    if (amount > 0) {
+      state = state.copyWith(gems: state.gems + amount);
       _saveToPrefs();
     }
   }
@@ -98,6 +143,25 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
       state = state.copyWith(hearts: state.hearts + 1);
       _saveToPrefs();
     }
+  }
+
+  bool buyOneHeartWithGems() {
+    if (state.gems >= 50) {
+      state = state.copyWith(
+        hearts: (state.hearts + 1).clamp(0, state.maxHearts),
+        gems: state.gems - 50,
+      );
+      _saveToPrefs();
+      return true;
+    }
+    return false;
+  }
+
+  void addHeartFromAd() {
+    state = state.copyWith(
+      hearts: (state.hearts + 1).clamp(0, state.maxHearts),
+    );
+    _saveToPrefs();
   }
 
   bool refillHearts({bool withGems = false}) {
@@ -174,22 +238,58 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
       );
     }
 
-    // 🚀 KULLANICININ ÖZEL HİLE KODU: kagan123
-    // Canı maksimuma (5/5), elması 300 yapar!
+    // 🚀 KULLANICININ ÖZEL HİLE & PREMİUM KODU: kagan123
+    // Tekrar yazınca hile modu ve Premium kapanır, canlı moda döner!
     if (code == 'kagan123') {
+      if (state.isCheatUnlocked || state.isPremium) {
+        state = state.copyWith(
+          isCheatUnlocked: false,
+          isPremium: false,
+          hearts: state.maxHearts,
+        );
+        _saveToPrefs();
+        return const PromoResult(
+          success: true,
+          isCheat: false,
+          message: '🛡️ Kagan Hile & Premium Kapatıldı!\n'
+              '❤️ Tekrardan 5 can ile normal canlı moda döndün.\n'
+              '⚡ Sınırsız can ve otomatik işaretleme kapatıldı.',
+        );
+      } else {
+        state = state.copyWith(
+          hearts: state.maxHearts,
+          gems: 300,
+          isCheatUnlocked: true,
+        );
+        _saveToPrefs();
+        return PromoResult(
+          success: true,
+          isCheat: true,
+          hearts: state.maxHearts,
+          gems: 300,
+          message: '🔥 Kagan Özel Hile Kodu Devreye Girdi!\n'
+              '❤️ Canların maksimuma (${state.maxHearts}/${state.maxHearts}) çıkarıldı!\n'
+              '💎 Elmasın tam 300 yapıldı!\n'
+              '⚡ Otomatik Doğru İşaretleme Hilesi Aktif Edildi!\n'
+              '(Kapatmak için tekrar kagan123 veya "kapat" yazabilirsin)',
+        );
+      }
+    }
+
+    // 🔒 KAPAT KODU: "kapat"
+    if (code == 'kapat' || code == 'premium kapat' || code == 'kagan kapat' || code == 'premiumkapat' || code == 'hilekapat') {
       state = state.copyWith(
+        isPremium: false,
+        isCheatUnlocked: false,
         hearts: state.maxHearts,
-        gems: 300,
       );
       _saveToPrefs();
-      return PromoResult(
+      return const PromoResult(
         success: true,
-        isCheat: true,
-        hearts: state.maxHearts,
-        gems: 300,
-        message: '🔥 Kagan Özel Hile Kodu Devreye Girdi!\n'
-            '❤️ Canların maksimuma (${state.maxHearts}/${state.maxHearts}) çıkarıldı!\n'
-            '💎 Elmasın tam 300 yapıldı!',
+        isCheat: false,
+        message: '🔒 Premium ve Hile Kapatıldı!\n'
+            '❤️ Tekrardan 5 can ile normal canlı moda döndün.\n'
+            'Artık yanlış cevaplarda canın azalacak.',
       );
     }
 

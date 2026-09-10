@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/lesson_models.dart';
+import '../providers/game_provider.dart';
+import '../services/sound_service.dart';
 import '../widgets/duo_button.dart';
 import '../widgets/parrot_mascot_widget.dart';
+import '../widgets/peanut_ad_break_dialog.dart';
 
-class LessonCompleteScreen extends StatelessWidget {
+class LessonCompleteScreen extends ConsumerStatefulWidget {
   final Lesson lesson;
   final int correctCount;
   final int totalQuestions;
@@ -19,15 +23,38 @@ class LessonCompleteScreen extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final accuracy = totalQuestions > 0 ? ((correctCount / totalQuestions) * 100).round() : 0;
-    final isPassed = isPassedOverride ?? (accuracy >= 50);
+  ConsumerState<LessonCompleteScreen> createState() => _LessonCompleteScreenState();
+}
 
-    final titleText = isPassed ? 'Ders Tamamlandı!' : 'Dersi Geçemedin!';
+class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final accuracy = widget.totalQuestions > 0
+          ? ((widget.correctCount / widget.totalQuestions) * 100).round()
+          : 0;
+      final isPassed = widget.isPassedOverride ?? (accuracy >= 50);
+      if (isPassed) {
+        SoundService.playLessonPass();
+      } else {
+        SoundService.playLessonFail();
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final accuracy = widget.totalQuestions > 0
+        ? ((widget.correctCount / widget.totalQuestions) * 100).round()
+        : 0;
+    final isPassed = widget.isPassedOverride ?? (accuracy >= 50);
+
+    final titleText = isPassed ? 'Dersi Geçtin! 🎉' : 'Dersi Geçemedin! 💔';
     final titleColor = isPassed ? const Color(0xFF10B981) : const Color(0xFFEF4444);
     final subtitleText = isPassed
         ? 'Harika iş çıkardın! Bilgilerini pekiştirdin ve sonraki dersi açtın.'
-        : 'Geçmek için en az %50 başarı sağlamalısın. (Başarın: %$accuracy)\nTekrar deneyerek bilginizi tazeleyin!';
+        : 'Geçmek için en az %50 başarı sağlamalısın. (Başarın: %$accuracy)\nTekrar deneyerek bilgini tazele!';
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -49,7 +76,7 @@ class LessonCompleteScreen extends StatelessWidget {
                   size: 130,
                   mood: isPassed ? ParrotMood.happy : ParrotMood.oops,
                   speechText: isPassed
-                      ? 'Tebrikler! +${lesson.xpReward} XP kazandın! 🎉'
+                      ? 'Tebrikler! +${widget.lesson.xpReward} XP kazandın! 🎉'
                       : 'Pes etmek yok! Taktikleri hatırla, bir daha deneyelim! 🦜',
                 ),
               ),
@@ -87,7 +114,7 @@ class LessonCompleteScreen extends StatelessWidget {
                   Expanded(
                     child: _RewardCard(
                       title: 'KAZANILAN XP',
-                      value: isPassed ? '+${lesson.xpReward}' : '+0 XP',
+                      value: isPassed ? '+${widget.lesson.xpReward}' : '+0 XP',
                       color: isPassed ? const Color(0xFFFF9600) : const Color(0xFFAFAFAF),
                       icon: Icons.bolt_rounded,
                     ),
@@ -107,7 +134,7 @@ class LessonCompleteScreen extends StatelessWidget {
                   Expanded(
                     child: _RewardCard(
                       title: isPassed ? 'ELMAS' : 'DURUM',
-                      value: isPassed ? '+${lesson.gemReward} 💎' : 'YETERSİZ',
+                      value: isPassed ? '+${widget.lesson.gemReward} 💎' : 'YETERSİZ',
                       color: isPassed ? const Color(0xFF1CB0F6) : const Color(0xFFFF4B4B),
                       icon: isPassed ? Icons.diamond_rounded : Icons.cancel_rounded,
                     ),
@@ -122,8 +149,16 @@ class LessonCompleteScreen extends StatelessWidget {
                 text: isPassed ? 'DEVAM ET' : 'TEKRAR DENE 🔄',
                 color: isPassed ? DuoButtonColor.green : DuoButtonColor.red,
                 height: 54,
-                onPressed: () {
-                  Navigator.of(context).pop();
+                onPressed: () async {
+                  if (isPassed) {
+                    final profile = ref.read(userProfileProvider);
+                    if (!profile.isPremium && profile.completedLessonIds.length % 3 == 0) {
+                      await PeanutAdBreakDialog.showIfEligible(context, ref);
+                    }
+                  }
+                  if (context.mounted) {
+                    Navigator.of(context).pop();
+                  }
                 },
               ),
             ],

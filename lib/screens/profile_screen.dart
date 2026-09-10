@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../models/lesson_models.dart';
 import '../providers/game_provider.dart';
 import '../widgets/parrot_mascot_widget.dart';
+import '../widgets/premium_purchase_sheet.dart';
 import '../widgets/promo_code_dialog.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -53,8 +55,12 @@ class ProfileScreen extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  child: const Center(
-                    child: ParrotMascotWidget(size: 64, mood: ParrotMood.happy),
+                  child: Center(
+                    child: ParrotMascotWidget(
+                      size: 64,
+                      mood: ParrotMood.happy,
+                      hasCrown: profile.isPremium,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -142,7 +148,12 @@ class ProfileScreen extends ConsumerWidget {
               ],
             ),
 
-            const SizedBox(height: 24),
+            const SizedBox(height: 18),
+
+            // 👑 Super Premium Kartı
+            _buildPremiumCard(context, ref, profile),
+
+            const SizedBox(height: 16),
 
             // 🎁 Promosyon Kodu & İndirim Kartı
             Container(
@@ -287,9 +298,230 @@ class ProfileScreen extends ConsumerWidget {
               isCompleted: profile.xp >= 100,
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
+
+            // Alpha Sürüm 0.0.1 Kartı
+            Center(
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF1F5F9),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: const Color(0xFFE2E8F0)),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          width: 8,
+                          height: 8,
+                          decoration: const BoxDecoration(
+                            color: Color(0xFF10B981),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        const Text(
+                          'Alpha Sürüm 0.0.1',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF475569),
+                            letterSpacing: 0.4,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'YKS Patika • 2026 YKS Hazırlık & Başarı Platformu 🎓',
+                    style: TextStyle(
+                      fontSize: 11.5,
+                      color: Color(0xFF94A3B8),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildPremiumCard(BuildContext context, WidgetRef ref, UserProfile profile) {
+    final isPremium = profile.isPremium;
+
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        gradient: isPremium
+            ? const LinearGradient(
+                colors: [Color(0xFF7C3AED), Color(0xFF4F46E5)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              )
+            : const LinearGradient(
+                colors: [Color(0xFF7C3AED), Color(0xFF6D28D9)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+        borderRadius: BorderRadius.circular(20),
+        border: isPremium ? Border.all(color: const Color(0xFFFBBF24), width: 1.5) : null,
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF7C3AED).withOpacity(0.3),
+            offset: const Offset(0, 4),
+            blurRadius: 10,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: isPremium ? const Color(0xFFFBBF24) : Colors.white.withOpacity(0.2),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.workspace_premium_rounded,
+                  color: isPremium ? const Color(0xFF4C1D95) : Colors.white,
+                  size: 26,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isPremium ? 'YKS Lingo Super Premium 👑' : 'Super Premium\'a Geç 👑',
+                      style: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      isPremium
+                          ? 'Sınırsız can aktif! Canın asla bitmeyecek.'
+                          : 'Sınırsız can ile canın bitmeden kesintisiz YKS çalış!',
+                      style: const TextStyle(
+                        fontSize: 12.5,
+                        color: Colors.white70,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          if (!isPremium) ...[
+            const SizedBox(height: 14),
+            InkWell(
+              onTap: () => PremiumPurchaseSheet.show(context, ref),
+              borderRadius: BorderRadius.circular(14),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0x1A000000),
+                      offset: Offset(0, 2),
+                      blurRadius: 4,
+                    ),
+                  ],
+                ),
+                child: const Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.workspace_premium_rounded, color: Color(0xFF7C3AED), size: 18),
+                      SizedBox(width: 8),
+                      Text(
+                        'PREMIUM\'U AKTİF ET (SINIRSIZ CAN)',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w900,
+                          color: Color(0xFF7C3AED),
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ] else ...[
+            const SizedBox(height: 14),
+            InkWell(
+              onTap: () {
+                ref.read(userProfileProvider.notifier).deactivatePremium();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Row(
+                      children: [
+                        Icon(Icons.favorite_rounded, color: Colors.white),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            '❤️ Premium kapatıldı, normal 5 canlı moda dönüldü.',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                    backgroundColor: const Color(0xFFE11D48),
+                    behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  ),
+                );
+              },
+              borderRadius: BorderRadius.circular(14),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: Colors.white70, width: 1.2),
+                ),
+                child: const Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.power_settings_new_rounded, color: Colors.white, size: 18),
+                      SizedBox(width: 8),
+                      Text(
+                        'PREMİUM\'U KAPAT (CANLI MODA DÖN)',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }
