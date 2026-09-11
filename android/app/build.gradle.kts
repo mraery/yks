@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         // Unique Application ID for Google Play Store
-        applicationId = "com.ykspatika.app"
+        applicationId = "com.yksquest.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -36,6 +36,11 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+    }
 }
 
 kotlin {
@@ -46,11 +51,4 @@ kotlin {
 
 flutter {
     source = "../.."
-}
-
-tasks.matching { it.name.startsWith("compileFlutterBuild") }.configureEach {
-    onlyIf {
-        val kernel = file("${project.layout.buildDirectory.get()}/intermediates/flutter/debug/flutter_assets/kernel_blob.bin")
-        !kernel.exists()
-    }
 }

@@ -1,10 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ykslingo/models/exam_config.dart';
-import 'package:ykslingo/models/lesson_models.dart';
 import 'package:ykslingo/data/mock_lessons.dart';
-import 'package:ykslingo/data/dgs_units.dart';
-import 'package:ykslingo/data/lgs_units.dart';
-import 'package:ykslingo/data/kpss_units.dart';
 
 void main() {
   group('Quest Franchise Ecosystem Tests', () {
