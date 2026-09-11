@@ -1,11 +1,11 @@
 {
-    "name": "YKSify - TYT & AYT Hazırlık",
-    "short_name": "YKSify",
+    "name": "YKS Quest - Sınav Macerası",
+    "short_name": "YKS Quest",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "YKSify - Oyunla TYT ve AYT Hazırlık Platformu",
+    "background_color": "#58CC02",
+    "theme_color": "#58CC02",
+    "description": "YKS Quest - Oyunla TYT, AYT, DGS, LGS ve KPSS Hazırlık Platformu",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

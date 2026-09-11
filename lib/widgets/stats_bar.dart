@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/game_provider.dart';
+import '../providers/exam_provider.dart';
 import 'out_of_hearts_dialog.dart';
 import 'premium_purchase_sheet.dart';
 import 'promo_code_dialog.dart';
+import 'exam_picker_sheet.dart';
 
 class StatsBar extends ConsumerWidget implements PreferredSizeWidget {
   const StatsBar({super.key});
@@ -14,6 +16,7 @@ class StatsBar extends ConsumerWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profile = ref.watch(userProfileProvider);
+    final activeExam = ref.watch(examConfigProvider);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
@@ -35,6 +38,39 @@ class StatsBar extends ConsumerWidget implements PreferredSizeWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // Sınav Seçici (YKS / DGS / LGS / KPSS)
+            InkWell(
+              onTap: () => ExamPickerSheet.show(context),
+              borderRadius: BorderRadius.circular(16),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                decoration: BoxDecoration(
+                  color: activeExam.primaryColor.withOpacity(0.12),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: activeExam.primaryColor.withOpacity(0.3), width: 1.2),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      activeExam.badgeText.split(' ').last,
+                      style: const TextStyle(fontSize: 13),
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      activeExam.shortTitle,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w900,
+                        color: activeExam.primaryColor,
+                      ),
+                    ),
+                    const SizedBox(width: 2),
+                    Icon(Icons.keyboard_arrow_down_rounded, size: 16, color: activeExam.primaryColor),
+                  ],
+                ),
+              ),
+            ),
             // Streak
             _ModernStatChip(
               icon: Icons.local_fire_department_rounded,

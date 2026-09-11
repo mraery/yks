@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'providers/exam_provider.dart';
 import 'screens/main_navigation_screen.dart';
 
 void main() async {
@@ -18,28 +19,29 @@ void main() async {
   );
   runApp(
     const ProviderScope(
-      child: YksifyApp(),
+      child: YksQuestApp(),
     ),
   );
 }
 
-class YksifyApp extends StatelessWidget {
-  const YksifyApp({super.key});
+class YksQuestApp extends ConsumerWidget {
+  const YksQuestApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final baseTextTheme = Theme.of(context).textTheme;
+    final activeExam = ref.watch(examConfigProvider);
 
     return MaterialApp(
-      title: 'YKSify - TYT & AYT Hazırlık',
+      title: '${activeExam.title} - ${activeExam.description}',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF58CC02),
-          primary: const Color(0xFF58CC02),
-          secondary: const Color(0xFF1CB0F6),
+          seedColor: activeExam.primaryColor,
+          primary: activeExam.primaryColor,
+          secondary: activeExam.secondaryColor,
           error: const Color(0xFFFF4B4B),
         ),
         textTheme: GoogleFonts.nunitoTextTheme(baseTextTheme),
@@ -54,7 +56,8 @@ class YksifyApp extends StatelessWidget {
   }
 }
 
-typedef YksPatikaApp = YksifyApp;
-typedef YksPatikaAppAlias = YksifyApp;
-typedef YksCepteApp = YksifyApp;
-typedef YksLingoApp = YksifyApp;
+typedef YksifyApp = YksQuestApp;
+typedef YksPatikaApp = YksQuestApp;
+typedef YksPatikaAppAlias = YksQuestApp;
+typedef YksCepteApp = YksQuestApp;
+typedef YksLingoApp = YksQuestApp;

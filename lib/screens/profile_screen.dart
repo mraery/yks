@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/lesson_models.dart';
 import '../providers/game_provider.dart';
+import '../providers/exam_provider.dart';
 import '../widgets/parrot_mascot_widget.dart';
 import '../widgets/premium_purchase_sheet.dart';
 import '../widgets/promo_code_dialog.dart';
+import '../widgets/exam_picker_sheet.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -49,6 +51,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final profile = ref.watch(userProfileProvider);
+    final activeExam = ref.watch(examConfigProvider);
     final achievements = ref.watch(achievementsProvider);
     final unlockedCount = achievements.where((a) => a.isUnlocked).length;
     final filteredAchievements = _selectedCategory == null
@@ -106,21 +109,21 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   ),
                 ),
                 const SizedBox(width: 16),
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'YKS Şampiyonu',
-                      style: TextStyle(
+                      '${activeExam.shortTitle} Şampiyonu',
+                      style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w900,
                         color: Color(0xFF4B4B4B),
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
-                      'Hedef: İlk 10.000 • 2026 Tayfa',
-                      style: TextStyle(
+                      activeExam.targetExamDateText,
+                      style: const TextStyle(
                         fontSize: 14,
                         color: Color(0xFF777777),
                         fontWeight: FontWeight.w600,
@@ -387,45 +390,51 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
             const SizedBox(height: 24),
 
-            // Alpha Sürüm 0.0.1 Kartı
+            // Quest Sınav Değiştirici & Versiyon Kartı
             Center(
               child: Column(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF1F5F9),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: const Color(0xFFE2E8F0)),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 8,
-                          height: 8,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFF10B981),
-                            shape: BoxShape.circle,
+                  InkWell(
+                    onTap: () => ExamPickerSheet.show(context),
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: activeExam.primaryColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: activeExam.primaryColor.withOpacity(0.35), width: 1.5),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: activeExam.primaryColor,
+                              shape: BoxShape.circle,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 8),
-                        const Text(
-                          'YKSify • Alpha Sürüm 0.1.0',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w800,
-                            color: Color(0xFF475569),
-                            letterSpacing: 0.4,
+                          const SizedBox(width: 8),
+                          Text(
+                            '${activeExam.title} • Alpha v0.1.0',
+                            style: TextStyle(
+                              fontSize: 12.5,
+                              fontWeight: FontWeight.w800,
+                              color: activeExam.primaryColor,
+                              letterSpacing: 0.4,
+                            ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(width: 6),
+                          Icon(Icons.swap_horiz_rounded, size: 16, color: activeExam.primaryColor),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
-                    'YKSify • 2026 YKS Hazırlık & Başarı Platformu 🎓',
-                    style: TextStyle(
+                  Text(
+                    '${activeExam.title} • ${activeExam.description} 🎓',
+                    style: const TextStyle(
                       fontSize: 11.5,
                       color: Color(0xFF94A3B8),
                       fontWeight: FontWeight.w600,

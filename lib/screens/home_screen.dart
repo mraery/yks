@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../data/mock_lessons.dart';
 import '../models/lesson_models.dart';
+import '../models/exam_config.dart';
 import '../providers/game_provider.dart';
+import '../providers/exam_provider.dart';
 import '../widgets/parrot_mascot_widget.dart';
 import '../widgets/parrot_seed_node.dart';
 import '../widgets/stats_bar.dart';
@@ -19,40 +20,34 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  String _selectedExam = 'TYT'; // 'TYT' veya 'AYT'
+  String? _selectedExam; // 'TYT', 'AYT', 'Sayısal', 'Sözel', 'Genel Yetenek' vs.
   String _selectedSubject = 'Tümü';
-
-  final List<Map<String, String>> _tytSubjects = const [
-    {'name': 'Tümü', 'icon': '🌟'},
-    {'name': 'TYT Türkçe', 'icon': '📚'},
-    {'name': 'TYT Matematik', 'icon': '📐'},
-    {'name': 'TYT Fizik', 'icon': '⚡'},
-    {'name': 'TYT Kimya', 'icon': '🧪'},
-    {'name': 'TYT Biyoloji', 'icon': '🧬'},
-    {'name': 'TYT Tarih', 'icon': '🏛️'},
-    {'name': 'TYT Coğrafya', 'icon': '🌍'},
-    {'name': 'TYT Felsefe', 'icon': '💭'},
-    {'name': 'TYT Din Kültürü', 'icon': '📖'},
-  ];
-
-  final List<Map<String, String>> _aytSubjects = const [
-    {'name': 'Tümü', 'icon': '🌟'},
-    {'name': 'AYT Matematik', 'icon': '📐'},
-    {'name': 'AYT Edebiyat', 'icon': '📜'},
-    {'name': 'AYT Fizik', 'icon': '⚡'},
-    {'name': 'AYT Kimya', 'icon': '🧪'},
-    {'name': 'AYT Biyoloji', 'icon': '🧬'},
-  ];
 
   @override
   Widget build(BuildContext context) {
     final userProfile = ref.watch(userProfileProvider);
+    final activeExam = ref.watch(examConfigProvider);
+    final allUnits = ref.watch(currentUnitsProvider);
 
-    final examUnits = mockUnits.where((u) {
-      if (_selectedExam == 'TYT') {
-        return !u.subject.startsWith('AYT');
+    final currentSection = (_selectedExam != null && activeExam.sections.contains(_selectedExam))
+        ? _selectedExam!
+        : activeExam.sections.first;
+
+    final examUnits = allUnits.where((u) {
+      if (activeExam.franchise == ExamFranchise.yks) {
+        return currentSection == 'TYT' ? !u.subject.startsWith('AYT') : u.subject.startsWith('AYT');
+      } else if (activeExam.franchise == ExamFranchise.dgs) {
+        return currentSection == 'Sayısal'
+            ? (u.subject.contains('Matematik') || u.subject.contains('Problem') || u.subject.contains('Geometri'))
+            : (u.subject.contains('Sözel') || u.subject.contains('Paragraf') || u.subject.contains('Mantık'));
+      } else if (activeExam.franchise == ExamFranchise.lgs) {
+        return currentSection == 'Sayısal'
+            ? (u.subject.contains('Matematik') || u.subject.contains('Fen'))
+            : (u.subject.contains('Türkçe') || u.subject.contains('İnkılap') || u.subject.contains('Din') || u.subject.contains('İngilizce'));
       } else {
-        return u.subject.startsWith('AYT');
+        return currentSection == 'Genel Yetenek'
+            ? (u.subject.contains('Türkçe') || u.subject.contains('Matematik'))
+            : (u.subject.contains('Tarih') || u.subject.contains('Coğrafya') || u.subject.contains('Vatandaşlık') || u.subject.contains('Güncel'));
       }
     }).toList();
 
@@ -67,14 +62,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         children: [
           Column(
             children: [
-              // TYT | AYT Sınav Seçim Segmenti
-              _buildExamSwitcher(),
+              // Sınav Bölümü Seçim Segmenti (TYT/AYT, Sayısal/Sözel vb.)
+              _buildExamSwitcher(activeExam, allUnits, currentSection),
 
               // Branş Filtreleme Çubuğu (Tatlı Kapsüller)
-              _buildSubjectFilterBar(),
+              _buildSubjectFilterBar(activeExam),
 
               // Zeki Paşa'nın Yemlik & Koçluk Kartı
-              _buildParrotCoachCard(userProfile),
+              _buildParrotCoachCard(userProfile, activeExam),
 
               // Sevimli Tohum Yolu Haritası
               Expanded(
@@ -89,7 +84,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ],
           ),
-          // Sağ Alt: Alpha Sürüm 0.0.1 Rozeti
+          // Sağ Alt: Quest Sürüm Rozeti
           Positioned(
             bottom: 12,
             right: 12,
@@ -123,9 +118,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ),
                     ),
                     const SizedBox(width: 6),
-                    const Text(
-                      'YKSify • Alpha v0.1.0',
-                      style: TextStyle(
+                    Text(
+                      '${activeExam.title} • Alpha v0.1.0',
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 10.5,
                         fontWeight: FontWeight.w800,
@@ -142,7 +137,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Widget _buildExamSwitcher() {
+  Widget _buildExamSwitcher(ExamConfig activeExam, List<LearningUnit> allUnits, String currentSection) {
     return Container(
       margin: const EdgeInsets.fromLTRB(16, 10, 16, 4),
       padding: const EdgeInsets.all(4),
@@ -152,27 +147,38 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         border: Border.all(color: const Color(0xFFE2DBD0), width: 1),
       ),
       child: Row(
-        children: [
-          Expanded(
+        children: activeExam.sections.map((sec) {
+          final count = allUnits.where((u) {
+            if (activeExam.franchise == ExamFranchise.yks) {
+              return sec == 'TYT' ? !u.subject.startsWith('AYT') : u.subject.startsWith('AYT');
+            } else if (activeExam.franchise == ExamFranchise.dgs) {
+              return sec == 'Sayısal'
+                  ? (u.subject.contains('Matematik') || u.subject.contains('Problem') || u.subject.contains('Geometri'))
+                  : (u.subject.contains('Sözel') || u.subject.contains('Paragraf') || u.subject.contains('Mantık'));
+            } else if (activeExam.franchise == ExamFranchise.lgs) {
+              return sec == 'Sayısal'
+                  ? (u.subject.contains('Matematik') || u.subject.contains('Fen'))
+                  : (u.subject.contains('Türkçe') || u.subject.contains('İnkılap') || u.subject.contains('Din') || u.subject.contains('İngilizce'));
+            } else {
+              return sec == 'Genel Yetenek'
+                  ? (u.subject.contains('Türkçe') || u.subject.contains('Matematik'))
+                  : (u.subject.contains('Tarih') || u.subject.contains('Coğrafya') || u.subject.contains('Vatandaşlık') || u.subject.contains('Güncel'));
+            }
+          }).length;
+
+          final isSelected = currentSection == sec;
+
+          return Expanded(
             child: _buildExamTabButton(
-              title: 'TYT',
-              subTitle: '61 Ünite',
-              exam: 'TYT',
-              icon: '🎯',
-              activeColor: const Color(0xFFEA580C),
+              title: sec,
+              subTitle: '$count Ünite',
+              exam: sec,
+              icon: (sec.contains('Sayısal') || sec == 'TYT' || sec == 'Genel Yetenek') ? '🎯' : '🚀',
+              activeColor: (sec.contains('Sayısal') || sec == 'TYT' || sec == 'Genel Yetenek') ? activeExam.primaryColor : activeExam.secondaryColor,
+              isSelected: isSelected,
             ),
-          ),
-          const SizedBox(width: 4),
-          Expanded(
-            child: _buildExamTabButton(
-              title: 'AYT',
-              subTitle: '18 Ünite',
-              exam: 'AYT',
-              icon: '🚀',
-              activeColor: const Color(0xFF7C3AED),
-            ),
-          ),
-        ],
+          );
+        }).toList(),
       ),
     );
   }
@@ -183,9 +189,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     required String exam,
     required String icon,
     required Color activeColor,
+    required bool isSelected,
   }) {
-    final isSelected = _selectedExam == exam;
-
     return InkWell(
       onTap: () {
         if (_selectedExam != exam) {
@@ -250,8 +255,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Widget _buildSubjectFilterBar() {
-    final currentSubjects = _selectedExam == 'TYT' ? _tytSubjects : _aytSubjects;
+  Widget _buildSubjectFilterBar(ExamConfig activeExam) {
+    final currentSubjects = activeExam.subjects;
 
     return Container(
       height: 52,
@@ -271,21 +276,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           final icon = item['icon']!;
           final isSelected = _selectedSubject == name;
 
-          final activeGradient = _selectedExam == 'TYT'
-              ? const LinearGradient(
-                  colors: [Color(0xFFF59E0B), Color(0xFFEA580C)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                )
-              : const LinearGradient(
-                  colors: [Color(0xFF8B5CF6), Color(0xFF6D28D9)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                );
-
-          final activeBorderColor = _selectedExam == 'TYT'
-              ? const Color(0xFFEA580C)
-              : const Color(0xFF7C3AED);
+          final activeColor = activeExam.primaryColor;
 
           return InkWell(
             onTap: () {
@@ -298,20 +289,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               duration: const Duration(milliseconds: 180),
               padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
               decoration: BoxDecoration(
-                gradient: isSelected ? activeGradient : null,
-                color: isSelected ? null : const Color(0xFFFBF8F3),
+                color: isSelected ? activeColor : const Color(0xFFFBF8F3),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: isSelected
                     ? [
                         BoxShadow(
-                          color: activeBorderColor.withOpacity(0.26),
+                          color: activeColor.withOpacity(0.26),
                           blurRadius: 6,
                           offset: const Offset(0, 2),
                         ),
                       ]
                     : null,
                 border: Border.all(
-                  color: isSelected ? activeBorderColor : const Color(0xFFEADBCE),
+                  color: isSelected ? activeColor : const Color(0xFFEADBCE),
                   width: 1.2,
                 ),
               ),
@@ -337,7 +327,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Widget _buildParrotCoachCard(UserProfile profile) {
+  Widget _buildParrotCoachCard(UserProfile profile, ExamConfig activeExam) {
     final completedCount = profile.completedLessonIds.length;
 
     return Container(
@@ -386,13 +376,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             ? const LinearGradient(
                                 colors: [Color(0xFF7C3AED), Color(0xFF4F46E5)],
                               )
-                            : const LinearGradient(
-                                colors: [Color(0xFFF59E0B), Color(0xFFEA580C)],
+                            : LinearGradient(
+                                colors: [activeExam.primaryColor, activeExam.secondaryColor],
                               ),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
-                        profile.isPremium ? 'SUPER PREMİUM 👑' : 'YKS KOÇU 🎓',
+                        profile.isPremium ? 'SUPER PREMİUM 👑' : '${activeExam.shortTitle} KOÇU 🎓',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 9.5,
@@ -407,7 +397,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 Text(
                   profile.isPremium
                       ? 'Sınırsız canınla çalışıyorsun! Yanlış yapmaktan korkma, hedefe odaklan. 👑'
-                      : 'Dersleri tamamla, altın taktikleri kap! Her konu sınavda +1 net demek.',
+                      : activeExam.mascotGreeting,
                   style: const TextStyle(
                     fontSize: 11.5,
                     fontWeight: FontWeight.w600,
