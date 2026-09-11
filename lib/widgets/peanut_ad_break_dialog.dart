@@ -128,7 +128,7 @@ class PeanutAdBreakDialog extends StatelessWidget {
                       border: Border.all(color: const Color(0xFFE2E8F0)),
                     ),
                     child: const Text(
-                      'Üzgünüm ama reklam koymam lazım... 💛\n\nReklamları sevmediğini biliyorum ama YKS Patika\'yı ücretsiz ve kaliteli tutabilmek için reklamlara ihtiyacımız var.\n\nİstersen Premium\'a geçerek reklamlardan tamamen kurtulabilir ve sınırsız canla ders çalışabilirsin!',
+                      'Üzgünüm ama reklam koymam lazım... 💛\n\nReklamları sevmediğini biliyorum ama YKSify\'ı ücretsiz ve kaliteli tutabilmek için reklamlara ihtiyacımız var.\n\nİstersen Premium\'a geçerek reklamlardan tamamen kurtulabilir ve sınırsız canla ders çalışabilirsin!',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 13.5,

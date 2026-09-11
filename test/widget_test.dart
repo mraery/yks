@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ykslingo/main.dart';
 
 void main() {
-  testWidgets('YKS Patika smoke test - renders units and stats', (WidgetTester tester) async {
+  testWidgets('YKSify smoke test - renders units and stats', (WidgetTester tester) async {
     await tester.pumpWidget(
       const ProviderScope(
         child: YksLingoApp(),

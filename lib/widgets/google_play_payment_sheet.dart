@@ -138,7 +138,7 @@ class _GooglePlayPaymentSheetState extends State<GooglePlayPaymentSheet> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'YKS Patika ${widget.planName} icin ${widget.priceText} tutarinda odeme yapilacaktir.',
+              'YKSify ${widget.planName} icin ${widget.priceText} tutarinda odeme yapilacaktir.',
               style: const TextStyle(fontSize: 13, color: Color(0xFF475569)),
             ),
             const SizedBox(height: 12),
@@ -310,7 +310,7 @@ class _GooglePlayPaymentSheetState extends State<GooglePlayPaymentSheet> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'YKS Patika ${widget.planName}',
+                              'YKSify ${widget.planName}',
                               style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 15),
                             ),
                             const Text(

@@ -411,7 +411,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         ),
                         const SizedBox(width: 8),
                         const Text(
-                          'Alpha Sürüm 0.0.1',
+                          'YKSify • Alpha Sürüm 0.1.0',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w800,
@@ -424,7 +424,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'YKS Patika • 2026 YKS Hazırlık & Başarı Platformu 🎓',
+                    'YKSify • 2026 YKS Hazırlık & Başarı Platformu 🎓',
                     style: TextStyle(
                       fontSize: 11.5,
                       color: Color(0xFF94A3B8),

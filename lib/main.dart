@@ -18,20 +18,20 @@ void main() async {
   );
   runApp(
     const ProviderScope(
-      child: YksPatikaApp(),
+      child: YksifyApp(),
     ),
   );
 }
 
-class YksPatikaApp extends StatelessWidget {
-  const YksPatikaApp({super.key});
+class YksifyApp extends StatelessWidget {
+  const YksifyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     final baseTextTheme = Theme.of(context).textTheme;
 
     return MaterialApp(
-      title: 'YKS Patika - TYT & AYT Hazırlık',
+      title: 'YKSify - TYT & AYT Hazırlık',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -54,6 +54,7 @@ class YksPatikaApp extends StatelessWidget {
   }
 }
 
-typedef YksPatikaAppAlias = YksPatikaApp;
-typedef YksCepteApp = YksPatikaApp;
-typedef YksLingoApp = YksPatikaApp;
+typedef YksPatikaApp = YksifyApp;
+typedef YksPatikaAppAlias = YksifyApp;
+typedef YksCepteApp = YksifyApp;
+typedef YksLingoApp = YksifyApp;

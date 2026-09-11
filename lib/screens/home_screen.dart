@@ -124,7 +124,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ),
                     const SizedBox(width: 6),
                     const Text(
-                      'Alpha Sürüm 0.0.1',
+                      'YKSify • Alpha v0.1.0',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 10.5,

@@ -415,7 +415,7 @@ final achievementsProvider = Provider<List<Achievement>>((ref) {
     Achievement(
       id: 'streak_30',
       title: 'Durdurulamaz Maraton',
-      desc: 'Tam 30 gün boyunca her gün YKS Patika ile çalış',
+      desc: 'Tam 30 gün boyunca her gün YKSify ile çalış',
       iconEmoji: '🌋',
       category: AchievementCategory.streak,
       currentProgress: user.streak.clamp(0, 30),
