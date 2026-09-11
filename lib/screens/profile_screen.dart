@@ -247,7 +247,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             ),
                             SizedBox(height: 2),
                             Text(
-                              'İndirim, hediye veya hile kodunu gir!',
+                              'İndirim veya hediye kodunu gir!',
                               style: TextStyle(
                                 fontSize: 12.5,
                                 color: Colors.white70,

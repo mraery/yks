@@ -299,8 +299,8 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
       );
     }
 
-    // 🎁 STANDART İNDİRİM & PROMOSYON KODLARI
-    if (code == 'yks2026' || code == 'indirim' || code == 'indirim50') {
+    // 🎁 STANDART İNDİRİM & PROMOSYON KODLARI (%50 İndirim)
+    if (code == 'yks2026' || code == '%50' || code == '50' || code == 'indirim' || code == 'indirim50' || code == '%50indirim' || code == 'yks50') {
       state = state.copyWith(
         hearts: state.maxHearts,
         gems: state.gems + 150,

@@ -301,7 +301,7 @@ class StatsBar extends ConsumerWidget implements PreferredSizeWidget {
                       Icon(Icons.card_giftcard_rounded, color: Color(0xFF1CB0F6), size: 18),
                       SizedBox(width: 8),
                       Text(
-                        'Promosyon / Hile Kodu Gir 🎁',
+                        'Promosyon Kodu Gir 🎁',
                         style: TextStyle(
                           fontSize: 12.5,
                           color: Color(0xFF1CB0F6),

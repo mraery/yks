@@ -127,7 +127,7 @@ class _PromoCodeDialogState extends ConsumerState<PromoCodeDialog> {
                     letterSpacing: 1.1,
                   ),
                   decoration: InputDecoration(
-                    hintText: 'Örn: YKS2026, KAGAN123 veya KAPAT',
+                    hintText: 'Örn: YKS2026 veya %50',
                     hintStyle: TextStyle(
                       color: Colors.grey.shade400,
                       fontWeight: FontWeight.normal,
@@ -152,9 +152,9 @@ class _PromoCodeDialogState extends ConsumerState<PromoCodeDialog> {
 
               const SizedBox(height: 12),
 
-              // Hızlı Kod Butonları (Örnek Kodlar)
+              // Aktif İndirim Kodu
               const Text(
-                'Hızlı Kodlar:',
+                'Aktif İndirim Kampanyası:',
                 style: TextStyle(
                   fontSize: 11.5,
                   fontWeight: FontWeight.w800,
@@ -169,18 +169,8 @@ class _PromoCodeDialogState extends ConsumerState<PromoCodeDialog> {
                 children: [
                   _buildCodeChip(
                     code: 'YKS2026',
-                    label: '🎁 YKS2026 (+150 💎)',
+                    label: '🎁 YKS2026 (%50 İndirim & +150 💎)',
                     badgeColor: const Color(0xFF1CB0F6),
-                  ),
-                  _buildCodeChip(
-                    code: 'KAGAN123',
-                    label: '🔥 KAGAN123 (Hile Aç/Kapat)',
-                    badgeColor: const Color(0xFFEA580C),
-                  ),
-                  _buildCodeChip(
-                    code: 'KAPAT',
-                    label: '🔒 KAPAT (Canlı Moda Dön)',
-                    badgeColor: const Color(0xFFE11D48),
                   ),
                 ],
               ),
