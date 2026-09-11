@@ -99,6 +99,48 @@ class LearningUnit {
   });
 }
 
+enum AchievementCategory {
+  streak,
+  lessons,
+  trophies,
+  mastery,
+  gems,
+  special,
+}
+
+class Achievement {
+  final String id;
+  final String title;
+  final String desc;
+  final String iconEmoji;
+  final AchievementCategory category;
+  final int currentProgress;
+  final int maxProgress;
+  final int tier; // 1, 2, 3
+  final int gemReward;
+  final int xpReward;
+  final bool isUnlocked;
+  final bool isClaimed;
+
+  const Achievement({
+    required this.id,
+    required this.title,
+    required this.desc,
+    required this.iconEmoji,
+    required this.category,
+    required this.currentProgress,
+    required this.maxProgress,
+    this.tier = 1,
+    this.gemReward = 20,
+    this.xpReward = 50,
+    required this.isUnlocked,
+    this.isClaimed = false,
+  });
+
+  double get progressRatio =>
+      maxProgress > 0 ? (currentProgress / maxProgress).clamp(0.0, 1.0) : 0.0;
+}
+
 class UserProfile {
   final int hearts;
   final int maxHearts;
@@ -111,6 +153,7 @@ class UserProfile {
   final bool isCheatUnlocked;
   final bool isPremium;
   final int questionsAnsweredCount;
+  final Set<String> claimedAchievementIds;
 
   const UserProfile({
     this.hearts = 5,
@@ -124,6 +167,7 @@ class UserProfile {
     this.isCheatUnlocked = false,
     this.isPremium = false,
     this.questionsAnsweredCount = 0,
+    this.claimedAchievementIds = const {},
   });
 
   UserProfile copyWith({
@@ -138,6 +182,7 @@ class UserProfile {
     bool? isCheatUnlocked,
     bool? isPremium,
     int? questionsAnsweredCount,
+    Set<String>? claimedAchievementIds,
   }) {
     return UserProfile(
       hearts: hearts ?? this.hearts,
@@ -152,6 +197,8 @@ class UserProfile {
       isPremium: isPremium ?? this.isPremium,
       questionsAnsweredCount:
           questionsAnsweredCount ?? this.questionsAnsweredCount,
+      claimedAchievementIds:
+          claimedAchievementIds ?? this.claimedAchievementIds,
     );
   }
 }

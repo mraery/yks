@@ -6,12 +6,54 @@ import '../widgets/parrot_mascot_widget.dart';
 import '../widgets/premium_purchase_sheet.dart';
 import '../widgets/promo_code_dialog.dart';
 
-class ProfileScreen extends ConsumerWidget {
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends ConsumerState<ProfileScreen> {
+  AchievementCategory? _selectedCategory;
+
+  Widget _buildCategoryChip(String label, AchievementCategory? category) {
+    final isSelected = _selectedCategory == category;
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: FilterChip(
+        label: Text(label),
+        selected: isSelected,
+        onSelected: (_) {
+          setState(() {
+            _selectedCategory = category;
+          });
+        },
+        selectedColor: const Color(0xFF10B981).withOpacity(0.15),
+        checkmarkColor: const Color(0xFF059669),
+        labelStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: isSelected ? FontWeight.w900 : FontWeight.w700,
+          color: isSelected ? const Color(0xFF059669) : const Color(0xFF475569),
+        ),
+        backgroundColor: const Color(0xFFF1F5F9),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(
+            color: isSelected ? const Color(0xFF10B981) : const Color(0xFFE2E8F0),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final profile = ref.watch(userProfileProvider);
+    final achievements = ref.watch(achievementsProvider);
+    final unlockedCount = achievements.where((a) => a.isUnlocked).length;
+    final filteredAchievements = _selectedCategory == null
+        ? achievements
+        : achievements.where((a) => a.category == _selectedCategory).toList();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -261,42 +303,87 @@ class ProfileScreen extends ConsumerWidget {
 
             const SizedBox(height: 28),
 
-            // Başarılar (Rozetler)
-            const Text(
-              'BAŞARILAR & ROZETLER',
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 14,
-                letterSpacing: 0.8,
-                color: Color(0xFF777777),
+            // Başarılar & Rozetler Başlık ve İlerleme
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'BAŞARILAR & ROZETLER',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 14,
+                    letterSpacing: 0.8,
+                    color: Color(0xFF777777),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF1F5F9),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: const Color(0xFFCBD5E1)),
+                  ),
+                  child: Text(
+                    '🏆 $unlockedCount / ${achievements.length} Açıldı',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 12,
+                      color: Color(0xFF475569),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+
+            // Kategori Filtreleri
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  _buildCategoryChip('Hepsi', null),
+                  _buildCategoryChip('Seri 🔥', AchievementCategory.streak),
+                  _buildCategoryChip('Konular 📚', AchievementCategory.lessons),
+                  _buildCategoryChip('Kupalar 🏆', AchievementCategory.trophies),
+                  _buildCategoryChip('Ustalık 💯', AchievementCategory.mastery),
+                  _buildCategoryChip('Hazine 💎', AchievementCategory.gems),
+                  _buildCategoryChip('Özel ✨', AchievementCategory.special),
+                ],
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 14),
 
-            _AchievementTile(
-              emoji: '🎯',
-              title: 'İlk Adım',
-              desc: 'İlk YKS dersini başarıyla tamamla',
-              isCompleted: profile.completedLessonIds.isNotEmpty,
-            ),
-            _AchievementTile(
-              emoji: '🔥',
-              title: 'Seri Başlatıcı',
-              desc: 'En az 3 gün üst üste soru çöz',
-              isCompleted: profile.streak >= 3,
-            ),
-            _AchievementTile(
-              emoji: '📚',
-              title: 'Konu Canavarı',
-              desc: 'Toplam 3 farklı dersi bitir',
-              isCompleted: profile.completedLessonIds.length >= 3,
-            ),
-            _AchievementTile(
-              emoji: '⚡',
-              title: '100 XP Barajı',
-              desc: '100 XP toplayarak ligde üst sıralara tırman',
-              isCompleted: profile.xp >= 100,
-            ),
+            ...filteredAchievements.map((ach) => _AchievementTile(
+              achievement: ach,
+              onClaim: () {
+                final success = ref.read(userProfileProvider.notifier).claimAchievement(
+                  ach.id,
+                  ach.gemReward,
+                  ach.xpReward,
+                );
+                if (success) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Row(
+                        children: [
+                          Text(ach.iconEmoji, style: const TextStyle(fontSize: 20)),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              'Tebrikler! "${ach.title}" ödülü alındı: +${ach.gemReward} 💎 +${ach.xpReward} XP',
+                              style: const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      backgroundColor: const Color(0xFF10B981),
+                      behavior: SnackBarBehavior.floating,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                  );
+                }
+              },
+            )),
 
             const SizedBox(height: 24),
 
@@ -604,64 +691,227 @@ class _StatCard extends StatelessWidget {
 }
 
 class _AchievementTile extends StatelessWidget {
-  final String emoji;
-  final String title;
-  final String desc;
-  final bool isCompleted;
+  final Achievement achievement;
+  final VoidCallback onClaim;
 
   const _AchievementTile({
-    required this.emoji,
-    required this.title,
-    required this.desc,
-    required this.isCompleted,
+    required this.achievement,
+    required this.onClaim,
   });
 
   @override
   Widget build(BuildContext context) {
+    final ach = achievement;
+    final isDone = ach.isUnlocked;
+
     return Container(
-      margin: const EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: isCompleted ? const Color(0xFFF7FFF0) : const Color(0xFFFBFBFB),
-        borderRadius: BorderRadius.circular(18),
+        color: isDone
+            ? (ach.isClaimed ? const Color(0xFFF8FAFC) : const Color(0xFFF0FDF4))
+            : const Color(0xFFFAFAFA),
+        borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: isCompleted ? const Color(0xFF58CC02) : const Color(0xFFE5E5E5),
-          width: 2,
+          color: isDone
+              ? (ach.isClaimed ? const Color(0xFFCBD5E1) : const Color(0xFF10B981))
+              : const Color(0xFFE2E8F0),
+          width: isDone && !ach.isClaimed ? 2.2 : 1.5,
         ),
+        boxShadow: isDone && !ach.isClaimed
+            ? [
+                BoxShadow(
+                  color: const Color(0xFF10B981).withOpacity(0.12),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ]
+            : null,
       ),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 32)),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w900,
-                    color: isCompleted
-                        ? const Color(0xFF58A700)
-                        : const Color(0xFF4B4B4B),
+          Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: isDone
+                      ? const Color(0xFFDCFCE7)
+                      : const Color(0xFFF1F5F9),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: isDone
+                        ? const Color(0xFF86EFAC)
+                        : const Color(0xFFE2E8F0),
                   ),
                 ),
-                const SizedBox(height: 2),
-                Text(
-                  desc,
-                  style: const TextStyle(fontSize: 12, color: Color(0xFF777777)),
+                alignment: Alignment.center,
+                child: Text(ach.iconEmoji, style: const TextStyle(fontSize: 26)),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            ach.title,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w900,
+                              color: isDone
+                                  ? const Color(0xFF0F172A)
+                                  : const Color(0xFF64748B),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: isDone
+                                ? const Color(0xFFFEF3C7)
+                                : const Color(0xFFF1F5F9),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(
+                            '★ Aşama ${ach.tier}',
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w800,
+                              color: isDone
+                                  ? const Color(0xFFB45309)
+                                  : const Color(0xFF94A3B8),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      ach.desc,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF64748B),
+                        height: 1.3,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
+              const SizedBox(width: 8),
+              if (isDone && !ach.isClaimed)
+                ElevatedButton(
+                  onPressed: onClaim,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF10B981),
+                    foregroundColor: Colors.white,
+                    elevation: 2,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
+                  child: const Text(
+                    'ÖDÜLÜ AL',
+                    style:
+                        TextStyle(fontWeight: FontWeight.w900, fontSize: 11),
+                  ),
+                )
+              else if (ach.isClaimed)
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFE2E8F0),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.check_rounded,
+                          size: 14, color: Color(0xFF475569)),
+                      SizedBox(width: 3),
+                      Text(
+                        'Alındı',
+                        style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF475569)),
+                      ),
+                    ],
+                  ),
+                )
+              else
+                const Icon(
+                  Icons.lock_outline_rounded,
+                  color: Color(0xFF94A3B8),
+                  size: 22,
+                ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          // Progress bar
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: LinearProgressIndicator(
+              value: ach.progressRatio,
+              minHeight: 7,
+              backgroundColor: const Color(0xFFE2E8F0),
+              valueColor: AlwaysStoppedAnimation<Color>(
+                isDone ? const Color(0xFF10B981) : const Color(0xFF3B82F6),
+              ),
             ),
           ),
-          Icon(
-            isCompleted ? Icons.check_circle_rounded : Icons.lock_outline_rounded,
-            color: isCompleted ? const Color(0xFF58CC02) : const Color(0xFFAFAFAF),
-            size: 24,
+          const SizedBox(height: 6),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'İlerleme: ${ach.currentProgress} / ${ach.maxProgress}',
+                style: const TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF64748B),
+                ),
+              ),
+              Row(
+                children: [
+                  const Icon(Icons.diamond_rounded,
+                      size: 13, color: Color(0xFF0284C7)),
+                  const SizedBox(width: 2),
+                  Text(
+                    '+${ach.gemReward}',
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w800,
+                      color: Color(0xFF0284C7),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  const Icon(Icons.bolt_rounded,
+                      size: 13, color: Color(0xFFEAB308)),
+                  const SizedBox(width: 2),
+                  Text(
+                    '+${ach.xpReward} XP',
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w800,
+                      color: Color(0xFFD97706),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
     );
   }
 }
+

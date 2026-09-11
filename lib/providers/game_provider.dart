@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/lesson_models.dart';
@@ -23,6 +24,7 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
   static const String _keyCheatUnlocked = 'user_cheat_unlocked';
   static const String _keyPremium = 'user_is_premium';
   static const String _keyQuestionsAnswered = 'user_questions_answered';
+  static const String _keyClaimedAchievements = 'user_claimed_achievements';
 
   Future<void> _loadFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
@@ -36,6 +38,8 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
     final isCheatUnlocked = prefs.getBool(_keyCheatUnlocked) ?? false;
     final isPremium = prefs.getBool(_keyPremium) ?? false;
     final questionsAnswered = prefs.getInt(_keyQuestionsAnswered) ?? 0;
+    final claimedAchievements =
+        prefs.getStringList(_keyClaimedAchievements)?.toSet() ?? {};
 
     Map<String, double> scores = {};
     final scoresJson = prefs.getString(_keyLessonScores);
@@ -75,6 +79,7 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
       isCheatUnlocked: isCheatUnlocked,
       isPremium: isPremium,
       questionsAnsweredCount: questionsAnswered,
+      claimedAchievementIds: claimedAchievements,
     );
   }
 
@@ -91,6 +96,7 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
     await prefs.setInt(_keyXp, current.xp);
     await prefs.setInt(_keyGems, current.gems);
     await prefs.setStringList(_keyCompletedLessons, current.completedLessonIds.toList());
+    await prefs.setStringList(_keyClaimedAchievements, current.claimedAchievementIds.toList());
     await prefs.setString(_keyLessonScores, jsonEncode(current.lessonScores));
     await prefs.setString(_keyLastDate, current.lastActiveDate);
     await prefs.setBool(_keyCheatUnlocked, current.isCheatUnlocked);
@@ -332,6 +338,19 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
       message: 'Geçersiz veya süresi dolmuş promosyon kodu.',
     );
   }
+
+  /// Başarım ödülünü toplar (Elmas ve XP ekler)
+  bool claimAchievement(String id, int gemReward, int xpReward) {
+    if (state.claimedAchievementIds.contains(id)) return false;
+    final updatedClaimed = Set<String>.from(state.claimedAchievementIds)..add(id);
+    state = state.copyWith(
+      claimedAchievementIds: updatedClaimed,
+      gems: state.gems + gemReward,
+      xp: state.xp + xpReward,
+    );
+    _saveToPrefs();
+    return true;
+  }
 }
 
 class PromoResult {
@@ -349,4 +368,313 @@ class PromoResult {
     this.gems,
   });
 }
+
+/// Kullanıcının anlık verilerine göre dinamik hesaplanan 18 zengin başarım ve rozet listesi
+final achievementsProvider = Provider<List<Achievement>>((ref) {
+  final user = ref.watch(userProfileProvider);
+  final completedCount = user.completedLessonIds.length;
+  final trophiesCount = user.completedLessonIds
+      .where((id) => id.contains('trophy') || id.contains('kupa'))
+      .length;
+  final perfectCount =
+      user.lessonScores.values.where((score) => score >= 99.9).length;
+  final currentHour = DateTime.now().hour;
+  final isNight = currentHour >= 22 || currentHour < 5;
+  final isMorning = currentHour >= 5 && currentHour < 9;
+
+  return [
+    // 1. Seri Başarımları
+    Achievement(
+      id: 'streak_3',
+      title: 'Seri Başlatıcı',
+      desc: '3 gün üst üste soru çözerek çalışma alışkanlığı kazan',
+      iconEmoji: '🔥',
+      category: AchievementCategory.streak,
+      currentProgress: user.streak.clamp(0, 3),
+      maxProgress: 3,
+      tier: 1,
+      gemReward: 20,
+      xpReward: 50,
+      isUnlocked: user.streak >= 3,
+      isClaimed: user.claimedAchievementIds.contains('streak_3'),
+    ),
+    Achievement(
+      id: 'streak_7',
+      title: 'Alev Topu',
+      desc: '7 gün kesintisiz çalışma serisi yakala',
+      iconEmoji: '⚡',
+      category: AchievementCategory.streak,
+      currentProgress: user.streak.clamp(0, 7),
+      maxProgress: 7,
+      tier: 2,
+      gemReward: 50,
+      xpReward: 100,
+      isUnlocked: user.streak >= 7,
+      isClaimed: user.claimedAchievementIds.contains('streak_7'),
+    ),
+    Achievement(
+      id: 'streak_30',
+      title: 'Durdurulamaz Maraton',
+      desc: 'Tam 30 gün boyunca her gün YKS Patika ile çalış',
+      iconEmoji: '🌋',
+      category: AchievementCategory.streak,
+      currentProgress: user.streak.clamp(0, 30),
+      maxProgress: 30,
+      tier: 3,
+      gemReward: 200,
+      xpReward: 300,
+      isUnlocked: user.streak >= 30,
+      isClaimed: user.claimedAchievementIds.contains('streak_30'),
+    ),
+
+    // 2. Ders & Konu Başarımları
+    Achievement(
+      id: 'lessons_1',
+      title: 'İlk Adım',
+      desc: 'İlk YKS dersini başarıyla tamamla',
+      iconEmoji: '🎯',
+      category: AchievementCategory.lessons,
+      currentProgress: completedCount > 0 ? 1 : 0,
+      maxProgress: 1,
+      tier: 1,
+      gemReward: 15,
+      xpReward: 30,
+      isUnlocked: completedCount >= 1,
+      isClaimed: user.claimedAchievementIds.contains('lessons_1'),
+    ),
+    Achievement(
+      id: 'lessons_5',
+      title: 'Konu Çaylağı',
+      desc: 'Toplam 5 farklı konuyu başarıyla bitir',
+      iconEmoji: '📖',
+      category: AchievementCategory.lessons,
+      currentProgress: completedCount.clamp(0, 5),
+      maxProgress: 5,
+      tier: 1,
+      gemReward: 25,
+      xpReward: 60,
+      isUnlocked: completedCount >= 5,
+      isClaimed: user.claimedAchievementIds.contains('lessons_5'),
+    ),
+    Achievement(
+      id: 'lessons_15',
+      title: 'Konu Avcısı',
+      desc: 'Toplam 15 farklı konuyu geride bırak',
+      iconEmoji: '📚',
+      category: AchievementCategory.lessons,
+      currentProgress: completedCount.clamp(0, 15),
+      maxProgress: 15,
+      tier: 2,
+      gemReward: 60,
+      xpReward: 150,
+      isUnlocked: completedCount >= 15,
+      isClaimed: user.claimedAchievementIds.contains('lessons_15'),
+    ),
+    Achievement(
+      id: 'lessons_35',
+      title: 'YKS Bilgesi',
+      desc: '35 farklı dersi tamamlayarak dev bir bilgi birikimi yap',
+      iconEmoji: '🎓',
+      category: AchievementCategory.lessons,
+      currentProgress: completedCount.clamp(0, 35),
+      maxProgress: 35,
+      tier: 3,
+      gemReward: 120,
+      xpReward: 250,
+      isUnlocked: completedCount >= 35,
+      isClaimed: user.claimedAchievementIds.contains('lessons_35'),
+    ),
+    Achievement(
+      id: 'lessons_70',
+      title: 'Derece Adayı',
+      desc: '70 farklı dersi bitirerek zirveye oyna',
+      iconEmoji: '🏛️',
+      category: AchievementCategory.lessons,
+      currentProgress: completedCount.clamp(0, 70),
+      maxProgress: 70,
+      tier: 3,
+      gemReward: 300,
+      xpReward: 500,
+      isUnlocked: completedCount >= 70,
+      isClaimed: user.claimedAchievementIds.contains('lessons_70'),
+    ),
+
+    // 3. Kupa & Ünite Sınavı Başarımları
+    Achievement(
+      id: 'trophy_1',
+      title: 'İlk Şampiyonluk',
+      desc: 'İlk ünite sonu kupa sınavını başarıyla geç',
+      iconEmoji: '🏆',
+      category: AchievementCategory.trophies,
+      currentProgress: trophiesCount > 0 ? 1 : 0,
+      maxProgress: 1,
+      tier: 1,
+      gemReward: 30,
+      xpReward: 80,
+      isUnlocked: trophiesCount >= 1,
+      isClaimed: user.claimedAchievementIds.contains('trophy_1'),
+    ),
+    Achievement(
+      id: 'trophy_5',
+      title: 'Kupa Koleksiyoncusu',
+      desc: '5 farklı ünite şampiyonluk kupası kazan',
+      iconEmoji: '👑',
+      category: AchievementCategory.trophies,
+      currentProgress: trophiesCount.clamp(0, 5),
+      maxProgress: 5,
+      tier: 2,
+      gemReward: 80,
+      xpReward: 200,
+      isUnlocked: trophiesCount >= 5,
+      isClaimed: user.claimedAchievementIds.contains('trophy_5'),
+    ),
+    Achievement(
+      id: 'trophy_15',
+      title: 'Kupa Şampiyonu',
+      desc: '15 farklı ünitede altın kupayı havaya kaldır',
+      iconEmoji: '⭐',
+      category: AchievementCategory.trophies,
+      currentProgress: trophiesCount.clamp(0, 15),
+      maxProgress: 15,
+      tier: 3,
+      gemReward: 200,
+      xpReward: 400,
+      isUnlocked: trophiesCount >= 15,
+      isClaimed: user.claimedAchievementIds.contains('trophy_15'),
+    ),
+
+    // 4. Ustalık & Doğruluk
+    Achievement(
+      id: 'perfect_1',
+      title: 'Kusursuz Net',
+      desc: 'Bir dersi %100 tam doğrulukla sıfır hatayla bitir',
+      iconEmoji: '💯',
+      category: AchievementCategory.mastery,
+      currentProgress: perfectCount > 0 ? 1 : 0,
+      maxProgress: 1,
+      tier: 1,
+      gemReward: 25,
+      xpReward: 50,
+      isUnlocked: perfectCount >= 1,
+      isClaimed: user.claimedAchievementIds.contains('perfect_1'),
+    ),
+    Achievement(
+      id: 'perfect_5',
+      title: 'Keskin Nişancı',
+      desc: '5 farklı derste %100 tam puan al',
+      iconEmoji: '🎯',
+      category: AchievementCategory.mastery,
+      currentProgress: perfectCount.clamp(0, 5),
+      maxProgress: 5,
+      tier: 2,
+      gemReward: 75,
+      xpReward: 150,
+      isUnlocked: perfectCount >= 5,
+      isClaimed: user.claimedAchievementIds.contains('perfect_5'),
+    ),
+    Achievement(
+      id: 'steel_heart',
+      title: 'Çelik Can',
+      desc: '5 tam canını hiç kaybetmeden bir dersi tamamla',
+      iconEmoji: '🛡️',
+      category: AchievementCategory.mastery,
+      currentProgress: (user.hearts >= 5 && completedCount > 0) ? 1 : 0,
+      maxProgress: 1,
+      tier: 1,
+      gemReward: 30,
+      xpReward: 60,
+      isUnlocked: user.hearts >= 5 && completedCount > 0,
+      isClaimed: user.claimedAchievementIds.contains('steel_heart'),
+    ),
+
+    // 5. Elmas & Hazine
+    Achievement(
+      id: 'gems_200',
+      title: 'Elmas Zengini',
+      desc: 'Toplam 200 Elmas biriktir',
+      iconEmoji: '💎',
+      category: AchievementCategory.gems,
+      currentProgress: user.gems.clamp(0, 200),
+      maxProgress: 200,
+      tier: 1,
+      gemReward: 40,
+      xpReward: 80,
+      isUnlocked: user.gems >= 200,
+      isClaimed: user.claimedAchievementIds.contains('gems_200'),
+    ),
+    Achievement(
+      id: 'gems_500',
+      title: 'Hazine Avcısı',
+      desc: 'Toplam 500 Elmas biriktir',
+      iconEmoji: '💰',
+      category: AchievementCategory.gems,
+      currentProgress: user.gems.clamp(0, 500),
+      maxProgress: 500,
+      tier: 2,
+      gemReward: 100,
+      xpReward: 200,
+      isUnlocked: user.gems >= 500,
+      isClaimed: user.claimedAchievementIds.contains('gems_500'),
+    ),
+    Achievement(
+      id: 'xp_500',
+      title: '500 XP Kulübü',
+      desc: '500 XP toplayarak liglerde öne geç',
+      iconEmoji: '⚡',
+      category: AchievementCategory.gems,
+      currentProgress: user.xp.clamp(0, 500),
+      maxProgress: 500,
+      tier: 2,
+      gemReward: 50,
+      xpReward: 100,
+      isUnlocked: user.xp >= 500,
+      isClaimed: user.claimedAchievementIds.contains('xp_500'),
+    ),
+
+    // 6. Özel & Çalışma Rutini
+    Achievement(
+      id: 'night_owl',
+      title: 'Gece Kuşu',
+      desc: 'Saat 22:00\'den sonra gece etüdü yaparak ders çöz',
+      iconEmoji: '🦉',
+      category: AchievementCategory.special,
+      currentProgress: (isNight && completedCount > 0) ? 1 : 0,
+      maxProgress: 1,
+      tier: 1,
+      gemReward: 35,
+      xpReward: 70,
+      isUnlocked: isNight && completedCount > 0,
+      isClaimed: user.claimedAchievementIds.contains('night_owl'),
+    ),
+    Achievement(
+      id: 'early_bird',
+      title: 'Erken Kalkan',
+      desc: 'Sabah 08:00\'den önce erken saatte ders çöz',
+      iconEmoji: '🌅',
+      category: AchievementCategory.special,
+      currentProgress: (isMorning && completedCount > 0) ? 1 : 0,
+      maxProgress: 1,
+      tier: 1,
+      gemReward: 35,
+      xpReward: 70,
+      isUnlocked: isMorning && completedCount > 0,
+      isClaimed: user.claimedAchievementIds.contains('early_bird'),
+    ),
+    Achievement(
+      id: 'questions_100',
+      title: 'Soru Canavarı',
+      desc: 'Toplam 100 soru çözerek pratikliğini kanıtla',
+      iconEmoji: '🎯',
+      category: AchievementCategory.special,
+      currentProgress: user.questionsAnsweredCount.clamp(0, 100),
+      maxProgress: 100,
+      tier: 2,
+      gemReward: 70,
+      xpReward: 150,
+      isUnlocked: user.questionsAnsweredCount >= 100,
+      isClaimed: user.claimedAchievementIds.contains('questions_100'),
+    ),
+  ];
+});
+
 
