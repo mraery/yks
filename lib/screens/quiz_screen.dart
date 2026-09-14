@@ -21,7 +21,7 @@ class QuizScreen extends ConsumerWidget {
   const QuizScreen({super.key, required this.lesson});
 
   static const _correctQuotes = [
-    'Helal olsun! YKS\'de +1 net cepte! 🎯',
+    'Helal olsun! KPSS\'de +1 net cepte! 🎯',
     'Tebrikler şampiyon! Aynen böyle devam! 🦜🔥',
     'Harikasın! Bu soru tam sınav tarzıydı! 💡',
     'Müthiş odaklanma! Zeki Paşa gurur duyuyor! 🌟',

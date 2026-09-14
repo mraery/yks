@@ -12,6 +12,6 @@ void main() {
     await tester.pump(const Duration(milliseconds: 500));
 
     // Verify stats and title render
-    expect(find.text('Sözcük ve Cümlede Anlam'), findsOneWidget);
+    expect(find.text('KPSS Dil Bilgisi ve Sözel Mantık'), findsOneWidget);
   });
 }
