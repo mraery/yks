@@ -225,6 +225,7 @@ class QuizNotifier extends StateNotifier<QuizState> {
 
       // 650ms sonra kırmızıyı ve seçimi temizle ("kabul etmesin")
       Future.delayed(const Duration(milliseconds: 650), () {
+        if (!mounted) return;
         state = state.copyWith(
           mismatchedLeft: () => null,
           mismatchedRight: () => null,

@@ -1614,7 +1614,7 @@ Lesson(
             id: 'q_ayt_edb_5_2_add1',
             type: QuestionType.multipleChoice,
             prompt: 'Servetifünun edebiyatının şiirdeki en büyük ismi ve "Sis", "Tarih-i Kadim", "Balıkçılar" şiirlerinin yazarı kimdir?',
-            options: const ['Tevfik Fikret', 'Cenap Şahabettin', 'Halit Ziya Uşaklıgil', 'Cenap Şahabettin'],
+            options: const ['Tevfik Fikret', 'Cenap Şahabettin', 'Halit Ziya Uşaklıgil', 'Mehmet Rauf'],
             correctIndex: 0,
             explanation: 'Tevfik Fikret parnasizm akımını şiirimize sokmuş ve aruz veznini Türkçeye başarıyla uygulamıştır.',
           ),

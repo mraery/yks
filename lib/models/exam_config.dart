@@ -19,6 +19,10 @@ class ExamConfig {
   final String mascotGreeting;
   final List<String> sections; // Örn: ['TYT', 'AYT'] veya ['Sayısal', 'Sözel']
   final List<Map<String, String>> subjects; // List of {'name': ..., 'icon': ...}
+  final String officialBody; // 'MEB' veya 'ÖSYM'
+  final int penaltyRatio; // LGS için 3 (3 yanlış 1 doğru), YKS/DGS/KPSS için 4 (4 yanlış 1 doğru)
+  final String penaltyRuleText; // 'MEB Kuralı: 3 Yanlış 1 Doğruyu Götürür' vs.
+  final String officialExamDetails;
 
   const ExamConfig({
     required this.franchise,
@@ -32,7 +36,21 @@ class ExamConfig {
     required this.mascotGreeting,
     required this.sections,
     required this.subjects,
+    required this.officialBody,
+    required this.penaltyRatio,
+    required this.penaltyRuleText,
+    required this.officialExamDetails,
   });
+
+  /// MEB ve ÖSYM resmi kurallarına göre Net hesaplama fonksiyonu
+  /// LGS (MEB): Net = Doğru - (Yanlış / 3)
+  /// YKS / DGS / KPSS (ÖSYM): Net = Doğru - (Yanlış / 4)
+  double calculateNet(int correct, int wrong) {
+    if (correct <= 0 && wrong <= 0) return 0.0;
+    final double net = correct - (wrong / penaltyRatio);
+    final clamped = net < 0 ? 0.0 : net;
+    return double.parse(clamped.toStringAsFixed(2));
+  }
 
   static const ExamConfig yks = ExamConfig(
     franchise: ExamFranchise.yks,
@@ -45,6 +63,10 @@ class ExamConfig {
     secondaryColor: Color(0xFF1CB0F6),
     mascotGreeting: 'Selam Şampiyon! Bugün YKS Quest ile hangi dersi fethediyoruz?',
     sections: ['TYT', 'AYT'],
+    officialBody: 'ÖSYM',
+    penaltyRatio: 4,
+    penaltyRuleText: 'ÖSYM Kuralı: 4 Yanlış 1 Doğruyu Götürür',
+    officialExamDetails: 'Yükseköğretim Kurumları Sınavı (TYT & AYT)',
     subjects: [
       {'name': 'Tümü', 'icon': '🌟'},
       {'name': 'TYT Türkçe', 'icon': '📚'},
@@ -75,6 +97,10 @@ class ExamConfig {
     secondaryColor: Color(0xFF06B6D4),
     mascotGreeting: 'Paşam DGS Quest seni bekliyor! Sayısal ve Sözel Mantık netlerini uçurmaya hazır mısın?',
     sections: ['Sayısal', 'Sözel'],
+    officialBody: 'ÖSYM',
+    penaltyRatio: 4,
+    penaltyRuleText: 'ÖSYM Kuralı: 4 Yanlış 1 Doğruyu Götürür',
+    officialExamDetails: 'Dikey Geçiş Sınavı (Sayısal & Sözel Yetenek)',
     subjects: [
       {'name': 'Tümü', 'icon': '🌟'},
       {'name': 'DGS Temel Matematik', 'icon': '📐'},
@@ -98,6 +124,10 @@ class ExamConfig {
     secondaryColor: Color(0xFF3B82F6),
     mascotGreeting: 'Genç Dostum LGS Quest seni bekliyor! Fen lisesi yolunda bugün Zeki Paşa ile uçalım!',
     sections: ['Sayısal', 'Sözel'],
+    officialBody: 'MEB',
+    penaltyRatio: 3,
+    penaltyRuleText: 'MEB Kuralı: 3 Yanlış 1 Doğruyu Götürür',
+    officialExamDetails: 'Liselere Geçiş Sistemi (8. Sınıf MEB Müfredatı)',
     subjects: [
       {'name': 'Tümü', 'icon': '🌟'},
       {'name': 'LGS Matematik', 'icon': '📐'},
@@ -120,6 +150,10 @@ class ExamConfig {
     secondaryColor: Color(0xFF10B981),
     mascotGreeting: 'Memur Adayım hoş geldin! KPSS Quest ile Tarih, Coğrafya ve Vatandaşlık cebinde!',
     sections: ['Genel Yetenek', 'Genel Kültür'],
+    officialBody: 'ÖSYM',
+    penaltyRatio: 4,
+    penaltyRuleText: 'ÖSYM Kuralı: 4 Yanlış 1 Doğruyu Götürür',
+    officialExamDetails: 'Kamu Personel Seçme Sınavı (Genel Yetenek & Genel Kültür)',
     subjects: [
       {'name': 'Tümü', 'icon': '🌟'},
       {'name': 'KPSS Türkçe & Mantık', 'icon': '📚'},

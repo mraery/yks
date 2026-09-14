@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/lesson_models.dart';
+import '../providers/exam_provider.dart';
 import '../providers/game_provider.dart';
 import '../services/sound_service.dart';
 import '../widgets/duo_button.dart';
@@ -45,10 +46,15 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final examConfig = ref.watch(examConfigProvider);
     final accuracy = widget.totalQuestions > 0
         ? ((widget.correctCount / widget.totalQuestions) * 100).round()
         : 0;
     final isPassed = widget.isPassedOverride ?? (accuracy >= 50);
+    final wrongCount = widget.totalQuestions > widget.correctCount
+        ? widget.totalQuestions - widget.correctCount
+        : 0;
+    final netScore = examConfig.calculateNet(widget.correctCount, wrongCount);
 
     final titleText = isPassed ? 'Dersi Geçtin! 🎉' : 'Dersi Geçemedin! 💔';
     final titleColor = isPassed ? const Color(0xFF10B981) : const Color(0xFFEF4444);
@@ -105,7 +111,73 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                 ),
               ).animate().fadeIn(delay: 300.ms),
 
-              const SizedBox(height: 36),
+              const SizedBox(height: 24),
+
+              // MEB / ÖSYM Resmi Net Hesaplama Kartı
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                decoration: BoxDecoration(
+                  color: examConfig.primaryColor.withOpacity(0.08),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: examConfig.primaryColor.withOpacity(0.35), width: 1.5),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: examConfig.primaryColor.withOpacity(0.15),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(Icons.calculate_rounded, color: examConfig.primaryColor, size: 24),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${examConfig.officialBody} RESMİ NETİ',
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w800,
+                              color: examConfig.primaryColor,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            '${netScore.toStringAsFixed(2)} Net (${widget.correctCount} Doğru, $wrongCount Yanlış)',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w900,
+                              color: examConfig.primaryColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: examConfig.primaryColor.withOpacity(0.25)),
+                      ),
+                      child: Text(
+                        '${examConfig.penaltyRatio}Y = -1D',
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w800,
+                          color: examConfig.primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ).animate().fadeIn(delay: 350.ms).slideY(begin: 0.1, end: 0),
+
+              const SizedBox(height: 16),
 
               // Ödül / Durum Kartları
               Row(
