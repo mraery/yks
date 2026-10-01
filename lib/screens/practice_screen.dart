@@ -4,10 +4,11 @@ import '../data/mock_lessons.dart';
 import '../models/lesson_models.dart';
 import '../providers/game_provider.dart';
 import '../widgets/duo_button.dart';
-import '../widgets/out_of_hearts_dialog.dart';
 import 'flashcards_screen.dart';
 import 'fast_reflex_screen.dart';
 import 'quiz_screen.dart';
+import 'fast_reflex_screen.dart';
+import 'splash_mascot_screen.dart';
 
 class PracticeScreen extends ConsumerWidget {
   const PracticeScreen({super.key});
@@ -101,7 +102,7 @@ class PracticeScreen extends ConsumerWidget {
             _buildActionCard(
               context: context,
               title: 'Hızlı Soru Pratiği',
-              subtitle: 'TYT Türkçe ve Tarih karışık mini soru seti çöz, hem XP hem de +1 Can kazan.',
+              subtitle: 'TYT & AYT karışık mini soru seti çöz, hem XP hem de +1 Can kazan.',
               icon: Icons.flash_on_rounded,
               iconColor: const Color(0xFFFF9600),
               buttonText: 'PRATİĞE BAŞLA',
@@ -114,11 +115,6 @@ class PracticeScreen extends ConsumerWidget {
                     .toList();
                 allQuizQuestions.shuffle();
                 final practiceQuestions = allQuizQuestions.take(3).toList();
-
-                if (profile.hearts <= 0 && !profile.isPremium) {
-                  OutOfHeartsDialog.show(context, ref);
-                  return;
-                }
 
                 // Karışık pratik dersi oluştur
                 final practiceLesson = Lesson(
@@ -173,11 +169,6 @@ class PracticeScreen extends ConsumerWidget {
               buttonText: 'HATALARI TEKRAR ET',
               buttonColor: DuoButtonColor.blue,
               onTap: () {
-                if (profile.hearts <= 0 && !profile.isPremium) {
-                  OutOfHeartsDialog.show(context, ref);
-                  return;
-                }
-
                 final allQuestions = mockUnits
                     .expand((u) => u.lessons)
                     .expand((l) => l.questions)
@@ -203,9 +194,9 @@ class PracticeScreen extends ConsumerWidget {
 
             const SizedBox(height: 24),
 
-            // Günün YKS Hap Bilgisi
+            // Günün KPSS Hap Bilgisi
             const Text(
-              'GÜNÜN YKS HAP BİLGİSİ 💡',
+              'GÜNÜN KPSS HAP BİLGİSİ 💡',
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 14,

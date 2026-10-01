@@ -1,0 +1,3352 @@
+[
+  {
+    "id": "unit_ayt_biyoloji_1",
+    "unitNumber": 1,
+    "title": "İnsan Fizyolojisi ve Sistemler (Sinir, Dolaşım, Boşaltım)",
+    "subject": "AYT Biyoloji",
+    "colorHex": 4279673674,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_biyo_1_1",
+        "title": "Sinir Sistemi, Nöronlar ve Endokrin Sistem",
+        "description": "Nöron yapısı, polarizasyon-depolarizasyon, sinapslar, beyin kısımları ve hormonların hedef organları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_biyo_1_2",
+        "title": "Dolaşım ve Bağışıklık Sistemi",
+        "description": "Kalbin yapısı, Starling hipotezi, büyük/küçük kan dolaşımı, lenf sistemi ve antikorlar!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_biyo_1_4",
+        "title": "Dolaşım, Solunum ve Boşaltım Sistemleri Analizleri",
+        "description": "Büyük/küçük kan dolaşımı, hemoglobin eğrisi ve nefron tübüllerinde emilim!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_biyo_1_3",
+        "title": "İnsan Fizyolojisi AYT Deneme Testi",
+        "description": "Sinir, endokrin, dolaşım ve boşaltım sistemlerini kapsayan 7 soruluk sınav denemesi!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_biyoloji_2",
+    "unitNumber": 2,
+    "title": "Genden Proteine ve Canlılarda Enerji Dönüşümleri",
+    "subject": "AYT Biyoloji",
+    "colorHex": 4278556265,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_biyo_2_1",
+        "title": "Nükleik Asitler, DNA Replikasyonu ve Protein Sentezi",
+        "description": "DNA ve RNA yapısı, yarı korunumlu replikasyon enzimleri (Helikaz, Polimeraz, Ligaz) ve santral dogma!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_biyo_2_2",
+        "title": "Fotosentez, Kemosentez ve Hücresel Solunum",
+        "description": "Işığa bağımlı reaksiyonlar, Calvin döngüsü, Glikoliz, Krebs döngüsü ve ETS fosforilasyonu!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_biyo_2_4",
+        "title": "Fotosentez, Kemosentez & Oksijenli Solunum Karşılaştırması",
+        "description": "Işığa bağımlı/bağımsız reaksiyonlar, Calvin döngüsü, Krebs ve ETS mekanizmaları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_biyo_2_3",
+        "title": "Genetik ve Enerji Dönüşümleri AYT Deneme Testi",
+        "description": "Nükleik asitler, protein sentezi, fotosentez ve hücresel solunumdan oluşan 7 soruluk AYT denemesi!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_edebiyat_1",
+    "unitNumber": 1,
+    "title": "Şiir Bilgisi ve Edebi Sanatlar",
+    "subject": "AYT Edebiyat",
+    "colorHex": 4290321436,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_edb_1_1",
+        "title": "Nazım Birimi, Ölçü, Kafiye & Redif",
+        "description": "Hece, aruz ve serbest ölçü; yarım, tam, zengin, cinaslı kafiyeler ve redif tespiti!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_1_2",
+        "title": "Edebi Sanatlar (Söz Sanatları)",
+        "description": "Teşbih, istiare, teşhis, tezat, tenasüp, hüsnütalil, tecahülüarif ve kinaye!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_edeb_1_3",
+        "title": "Edebi Sanatlar & Nazım Şekilleri ÖSYM Püf Noktaları",
+        "description": "Teşbih, istiare, mecaz-ı mürsel, tevriye, hüsn-i talil ve gazel/kaside nazım biçimleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_1_exam",
+        "title": "Şiir Bilgisi & Edebi Sanatlar Kupa Sınavı",
+        "description": "Şiir tahlili ve söz sanatları konusunu zaferle tamamla!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_edebiyat_2",
+    "unitNumber": 2,
+    "title": "İslamiyet Öncesi ve Geçiş Dönemi",
+    "subject": "AYT Edebiyat",
+    "colorHex": 4290321436,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_edb_2_1",
+        "title": "İslamiyet Öncesi Türk Edebiyatı & Destanlar",
+        "description": "Sözlü dönem (Koşuk, Sagu, Sav) ve Türk destanları (Oğuz Kağan, Ergenekon, Türeyiş, Manas)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_2_2",
+        "title": "Geçiş Dönemi 4 Büyük Eseri (11. - 12. Yüzyıl)",
+        "description": "Kutadgu Bilig, Dîvânu Lugâti't-Türk, Atabetü'l-Hakayık ve Divan-ı Hikmet!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_edeb_2_3",
+        "title": "Geçiş Dönemi Eserleri & Dede Korkut Hikayeleri",
+        "description": "Kutadgu Bilig, Divanü Lügati't-Türk, Atabetü'l-Hakayık, Divan-ı Hikmet ve Dede Korkut!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_2_exam",
+        "title": "İslamiyet Öncesi & Geçiş Dönemi Kupa Sınavı",
+        "description": "İlk Türk eserleri ve destanlar sınavıyla kupanı kazan!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_edebiyat_3",
+    "unitNumber": 3,
+    "title": "Halk Edebiyatı",
+    "subject": "AYT Edebiyat",
+    "colorHex": 4290321436,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_edb_3_1",
+        "title": "Anonim & Âşık Edebiyatı (Koşma Türleri, Karacaoğlan, Köroğlu)",
+        "description": "Mani, türkü; koşma türleri (güzelleme, koçaklama, taşlama, ağıt) ve saz şairleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_3_2",
+        "title": "Tekke-Tasavvuf Edebiyatı (İlahi, Nefes, Şathiye & Yunus Emre)",
+        "description": "İlahi türleri, Pir Sultan Abdal, Hacı Bektaş, nefes, deme ve şathiye kavramları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_edeb_3_3",
+        "title": "Divan & Halk Şairleri Karşılaştırmalı Tablosu",
+        "description": "Fuzuli, Baki, Nedim, Şeyhi, Karacaoğlan, Köroğlu, Dadaloğlu ve Aşık Veysel!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_3_exam",
+        "title": "Halk Edebiyatı Kupa Sınavı",
+        "description": "Âşık ve Tekke edebiyatı sınavıyla halk edebiyatını fethet!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_edebiyat_4",
+    "unitNumber": 4,
+    "title": "Divan Edebiyatı",
+    "subject": "AYT Edebiyat",
+    "colorHex": 4290321436,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_edb_4_1",
+        "title": "Divan Şiiri Nazım Biçimleri (Gazel, Kaside, Mesnevi, Şarkı)",
+        "description": "Matla, makta, şah beyit; kasidenin bölümleri ve aruzla yazılan romanlar (mesnevi)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_4_2",
+        "title": "Büyük Divan Şairleri ve Yüzyılları",
+        "description": "Fuzuli (Aşk-Izdırap), Baki (Sultanü'ş-Şuara), Nedim (Zevk-Safa), Şeyh Galip (Sebk-i Hindi)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_edeb_4_3",
+        "title": "Tanzimat, Servet-i Fünun & Fecr-i Ati Roman ve Tiyatroları",
+        "description": "İlk yerli/çeviri romanlar, Mai ve Siyah, Aşk-ı Memnu ve Ahmet Haşim şiiri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_4_exam",
+        "title": "Divan Edebiyatı Büyük Kupa Sınavı",
+        "description": "Tüm Divan Edebiyatı nazım şekilleri ve şairleri kupa sınavı!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_edebiyat_5",
+    "unitNumber": 5,
+    "title": "Tanzimat, Servetifünun ve Fecr-i Âti",
+    "subject": "AYT Edebiyat",
+    "colorHex": 4290321436,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_edb_5_1",
+        "title": "Tanzimat 1. ve 2. Dönem Edebiyatı Karşılaştırması",
+        "description": "Sanat toplum için (Şinasi, Namık Kemal) vs Sanat sanat için (Recaizade, Abdülhak Hamit)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_5_2",
+        "title": "Servetifünun ve Fecr-i Âti Toplulukları",
+        "description": "Edebiyat-ı Cedide, Tevfik Fikret, Cenap Şahabettin, Halit Ziya ve Ahmet Haşim!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_edeb_5_3",
+        "title": "Milli Edebiyat & Cumhuriyet Dönemi Roman Zirveleri",
+        "description": "Genç Kalemler, Yeni Lisan, Yaban, Çalıkuşu, Sinekli Bakkal ve Kurtlar Sofrası!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_5_exam",
+        "title": "Tanzimat ve Servetifünun Kupa Sınavı",
+        "description": "Batılılaşma dönemi Türk edebiyatı sınavını başarıyla ver!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_edebiyat_6",
+    "unitNumber": 6,
+    "title": "Millî Edebiyat ve Cumhuriyet Dönemi",
+    "subject": "AYT Edebiyat",
+    "colorHex": 4290321436,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_edb_6_1",
+        "title": "Millî Edebiyat Dönemi & Genç Kalemler",
+        "description": "Yeni Lisan Hareketi, Ömer Seyfettin, Ziya Gökalp, Yakup Kadri ve Halide Edib!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_6_2",
+        "title": "Cumhuriyet Dönemi Şiir ve Roman Ekolleri",
+        "description": "Yedi Meşaleciler, Garipçiler (1. Yeni), İkinci Yeniciler, Toplumcu Gerçekçiler ve Bireyin İç Dünyası!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_edeb_6_3",
+        "title": "Cumhuriyet Şiir Akımları: Garip, İkinci Yeni & Toplumcular",
+        "description": "1. Yeni (Garipçiler), 2. Yeni (İmgeciler), Hisarcılar, Yedi Meşaleciler ve Mavi akımı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_edb_6_exam",
+        "title": "AYT Edebiyat Büyük Şampiyonluk Kupa Sınavı",
+        "description": "Tüm AYT Edebiyat müfredatını tamamlayarak büyük şampiyonluk kupasını kaldır!",
+        "xpReward": 100,
+        "gemReward": 50,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_fizik_1",
+    "unitNumber": 1,
+    "title": "Vektörler, Kuvvet ve Newton'ın Hareket Yasaları",
+    "subject": "AYT Fizik",
+    "colorHex": 4279080072,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_fiz_1_1",
+        "title": "Vektörler, Bağıl Hareket & Nehir Problemleri",
+        "description": "Vektörlerin bileşenlerine ayrılması, bağıl hız vektörü ve akıntılı nehirde yüzücü hareketleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_fiz_1_2",
+        "title": "Newton'ın Hareket Yasaları, Sürtünme & Dinamik",
+        "description": "F=m.a temel yasası, eğik düzlem dinamikleri, sürtünme katsayısı ve birbirine bağlı cisimlerin ivmesi!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_fiz_1_4",
+        "title": "İtme-Momentum & İki Boyutta Sabit İvmeli Hareket Taktikleri",
+        "description": "Atış hareketleri, esnek/esnek olmayan çarpışmalar ve momentum korunumu!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_fiz_1_3",
+        "title": "Mekanik ve Dinamik AYT Deneme Testi",
+        "description": "Vektör, bağıl hareket ve dinamik konularını tarayan 7 soruluk AYT sınav provası!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_fizik_2",
+    "unitNumber": 2,
+    "title": "Elektrik Alan, Manyetizma ve İndüksiyon",
+    "subject": "AYT Fizik",
+    "colorHex": 4278355143,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_fiz_2_1",
+        "title": "Noktasal Yükler, Elektriksel Alan & Potansiyel",
+        "description": "Coulomb kuvveti, elektrik alan çizgileri, elektriksel potansiyel enerji ve yapılan iş formülleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_fiz_2_2",
+        "title": "Manyetik Alan, Manyetik Kuvvet & İndüksiyon Akımı",
+        "description": "Sağ el kuralı, manyetik akı değişimi, Faraday ve Lenz kanunları ile alternatif akımın doğuşu!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_fiz_2_4",
+        "title": "Manyetik Alan, Manyetik Kuvvet & İndüksiyon Akımı",
+        "description": "Sağ el kuralı, F=B·I·L, tel çerçeve manyetik akısı ve Lenz Kanunu!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_fiz_2_3",
+        "title": "Elektromanyetizma AYT Deneme Testi",
+        "description": "Elektrostatik ve manyetizmayı harmanlayan 7 soruluk seçkin AYT denemesi!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_kimya_1",
+    "unitNumber": 1,
+    "title": "Modern Atom Teorisi ve Gaz Yasaları",
+    "subject": "AYT Kimya",
+    "colorHex": 4287837162,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_kim_1_1",
+        "title": "Kuantum Sayıları, Orbital Dağılımı ve Periyodik Özellikler",
+        "description": "n, l, ml, ms kuantum sayıları, Aufbau kuralı, Hund ilkesi, Pauli dışlama ilkesi ve uyarılmış atom!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_kim_1_2",
+        "title": "İdeal Gaz Yasası ve Kinetik Teori (P.V = n.R.T)",
+        "description": "Gaz yasaları (Boyle, Charles, Gay-Lussac, Avogadro), difüzyon hızı ve Dalton kısmi basınçlar kanunu!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_kim_1_4",
+        "title": "Gaz Yasaları, Kinetik Teori & Gerçek Gazlar",
+        "description": "P·V=n·R·T, Graham difüzyon yasası, kısmi basınçlar ve Joule-Thomson olayı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_kim_1_3",
+        "title": "Modern Atom ve Gazlar AYT Deneme Testi",
+        "description": "Kuantum mekaniği, periyodik sistem ve gaz dengelerini kapsayan 7 soruluk sınav formatı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_kimya_2",
+    "unitNumber": 2,
+    "title": "Kimyasal Tepkimelerde Denge ve Çözünürlük (Kç)",
+    "subject": "AYT Kimya",
+    "colorHex": 4292617766,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_kim_2_1",
+        "title": "Kimyasal Denge, Le Chatelier İlkesi ve Denge Sabiti (Kc, Kp)",
+        "description": "Dinamik denge bağıntısı, derişimler ve kısmi basınçlar türünden denge sabiti ve dengeye etki eden faktörler!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_kim_2_2",
+        "title": "Asit-Baz Dengesi, pH/pOH ve Çözünürlük Dengesi (Kçç)",
+        "description": "Suyun otoiyonizasyonu, zayıf asit-baz Ka/Kb hesapları, tampon çözelti ve Kçç ortak iyon etkisi!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_kim_2_4",
+        "title": "Kimyasal Denge & Le Chatelier İlkesi Püf Noktaları",
+        "description": "Kc, Kp, sıcaklık/basınç/hacim etkileri ve pH/pOH sulu çözelti dengeleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_kim_2_3",
+        "title": "Kimyasal Denge & Sulu Çözeltiler Deneme Testi",
+        "description": "Le Chatelier, Ka/Kb ve Kçç konularını pekiştiren 7 soruluk AYT denemesi!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_mat_1",
+    "unitNumber": 1,
+    "title": "Polinomlar ve İkinci Dereceden Denklemler",
+    "subject": "AYT Matematik",
+    "colorHex": 4280172719,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_mat_1_1",
+        "title": "Polinom Kavramı, Katsayılar & Bölme Kalanı",
+        "description": "P(x) polinom kuralları, sabit terim P(0), katsayılar toplamı P(1) ve (x-a) ile bölümünden kalan!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_1_2",
+        "title": "İkinci Dereceden Denklemler & Karmaşık Sayılar",
+        "description": "Diskriminant (Δ = b² - 4ac), kökler toplamı (-b/a), kökler çarpımı (c/a) ve i² = -1!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_1_3",
+        "title": "Polinomlarda Kalan Bulma & Kök-Katsayı Bağıntıları",
+        "description": "P(x)'in (ax+b) ve (x²-a) ile bölümünden kalanlar ve simetrik kök kuralları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_1_exam",
+        "title": "Polinomlar ve Denklemler Kupa Sınavı",
+        "description": "AYT Polinomlar ve 2. Dereceden Denklemler ustalık sınavı!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_mat_2",
+    "unitNumber": 2,
+    "title": "Parabol ve Eşitsizlik Sistemleri",
+    "subject": "AYT Matematik",
+    "colorHex": 4280172719,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_mat_2_1",
+        "title": "Parabolün Tepe Noktası T(r,k) & Simetri Ekseni",
+        "description": "f(x) = ax² + bx + c tepe noktası r = -b/(2a), k = f(r) ve parabolün kolları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_2_2",
+        "title": "İkinci Dereceden Eşitsizlikler ve Tablo Yöntemi",
+        "description": "İşaret tablosu, çift katlı kök kuralı ve eşitsizlik sistemlerinin ortak çözümü!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_2_3",
+        "title": "Parabolün Tepe Noktası & Eşitsizlik Tabloları",
+        "description": "T(r, k) koordinatları, simetri ekseni ve işaret tablosu kök çift kat incelikleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_2_exam",
+        "title": "Parabol ve Eşitsizlikler Kupa Sınavı",
+        "description": "Grafik ve işaret tablosu analiziyle kupayı kaldır!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_mat_3",
+    "unitNumber": 3,
+    "title": "Trigonometri",
+    "subject": "AYT Matematik",
+    "colorHex": 4280172719,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_mat_3_1",
+        "title": "Birim Çember, Esas Ölçü & Trigonometrik Özdeşlikler",
+        "description": "sin²x + cos²x = 1, tanx·cotx = 1, bölgeler ve işaret incelemeleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_3_2",
+        "title": "Toplam-Fark, Yarım Açı Formülleri & Trigonometrik Denklemler",
+        "description": "sin(a+b), cos(a+b), sin2x, cos2x yarım açı formülleri ve çözüm kümeleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_3_3",
+        "title": "Toplam-Fark, Yarım Açı ve Trigonometrik Denklemler",
+        "description": "sin(2x), cos(2x) açılımları, kosinüs teoremi ve kök bulma!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_3_exam",
+        "title": "Trigonometri Büyük Kupa Sınavı",
+        "description": "Tüm trigonometri konularını tamamla, AYT puanını katla!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_mat_4",
+    "unitNumber": 4,
+    "title": "Logaritma ve Diziler",
+    "subject": "AYT Matematik",
+    "colorHex": 4280172719,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_mat_4_1",
+        "title": "Logaritma Özellikleri & Taban Değiştirme",
+        "description": "log_a(x), taban değiştirme, doğal logaritma (ln) ve logaritmik denklemler!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_4_2",
+        "title": "Aritmetik ve Geometrik Diziler",
+        "description": "Genel terim formülleri (a_n), ortak fark d, ortak çarpan r ve ilk n terim toplamı S_n!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_4_3",
+        "title": "Aritmetik-Geometrik Diziler & Logaritma Özellikleri",
+        "description": "Sn toplam formülleri, logaritma taban değiştirme ve logaritmik denklemler!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_4_exam",
+        "title": "Logaritma ve Diziler Kupa Sınavı",
+        "description": "AYT Logaritma & Dizi sorularını çözerek kupayı kaldır!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_mat_5",
+    "unitNumber": 5,
+    "title": "Limit ve Süreklilik",
+    "subject": "AYT Matematik",
+    "colorHex": 4280172719,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_mat_5_1",
+        "title": "Limit Kavramı, Sağdan-Soldan Limit & 0/0 Belirsizliği",
+        "description": "Limit var olma şartı, çarpanlara ayırma ile belirsizlik giderme!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_5_2",
+        "title": "Süreklilik Kavramı ve Parçalı Fonksiyonlar",
+        "description": "Süreklilik şartı: Limit = Fonksiyon Değeri, kopma ve sıçrama noktaları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_5_3",
+        "title": "Limit Belirsizlikleri, L'Hopital & Türevin Geometrik Yorumu",
+        "description": "0/0 belirsizliği, teğet eğimi m = f'(x₀), artan/azalanlık ve ekstremum noktalar!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_5_exam",
+        "title": "Limit ve Süreklilik Kupa Sınavı",
+        "description": "Limit ve süreklilik final sınavı ile zirveye tırman!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_ayt_mat_6",
+    "unitNumber": 6,
+    "title": "Türev ve İntegral",
+    "subject": "AYT Matematik",
+    "colorHex": 4280172719,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_ayt_mat_6_1",
+        "title": "Türev Alma Kuralları, Teğet Eğimi & Ekstremum Noktalar",
+        "description": "(x^n)' = n·x^(n-1), çarpım-bölüm türevi, teğetin eğimi m = f'(x₀) ve max-min!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_6_2",
+        "title": "Belirsiz & Belirli İntegral ve Alan Hesabı",
+        "description": "Türevin tersi integral alma, ∫ x^n dx, Riemann toplamı ve eğri altında kalan alan!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_6_3",
+        "title": "İntegral Alma Kuralları, Değişken Değiştirme & Alan Hesabı",
+        "description": "u dönüşümü, belirli integral ile eğri altında kalan alan hesapları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_ayt_mat_6_exam",
+        "title": "AYT Matematik Büyük Şampiyonluk Kupa Sınavı",
+        "description": "Tüm AYT Matematik konularını taçlandır ve altın kupa ile zirveye otur!",
+        "xpReward": 100,
+        "gemReward": 50,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_biyoloji_1",
+    "unitNumber": 1,
+    "title": "Canlıların Ortak Özellikleri",
+    "subject": "TYT Biyoloji",
+    "colorHex": 4278556265,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_bio_1_1",
+        "title": "Hücresel Yapı, Beslenme & Solunum",
+        "description": "Tüm canlıların paylaştığı evrensel hücresel yapılar, beslenme ve ATP üretimini öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_1_2",
+        "title": "Metabolizma, Homeostazi & Adaptasyon",
+        "description": "Anabolizma-katabolizma dengesi, iç kararlılık (homeostazi) ve kalıtsal uyumları öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_1_3",
+        "title": "ÖSYM Analizi: Canlıların Ortak Özellikleri Tuzakları",
+        "description": "Tüm canlılarda ortak olan ve olmayan hücresel yapılar ve metabolik süreçler!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_bio_1",
+        "title": "Ünite 1 Kupa Sınavı 🏆",
+        "description": "Canlıların Ortak Özellikleri ünitesinin 8 soruluk altın final denemesi!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_biyoloji_2",
+    "unitNumber": 2,
+    "title": "Canlıların Temel Bileşenleri",
+    "subject": "TYT Biyoloji",
+    "colorHex": 4279080072,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_bio_2_1",
+        "title": "İnorganik Bileşikler, Karbonhidrat & Yağlar",
+        "description": "Su, mineraller, monosakkarit-polisakkarit çeşitleri ve lipitlerin özelliklerini kavra!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_2_2",
+        "title": "Proteinler, Enzimler & Vitaminler",
+        "description": "Protein yapısı, enzimlerin anahtar-kilit uyumu ve vitaminlerin görevlerini öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_2_3",
+        "title": "Karbonhidrat, Yağ, Protein & Enzim Karşılaştırmaları",
+        "description": "Monomer bağları, enerji sırası, enzim grafikleri ve vitamin ayrıntıları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_bio_2",
+        "title": "Ünite 2 Kupa Sınavı 🏆",
+        "description": "Canlıların Temel Bileşenleri ünitesinin 8 soruluk altın final denemesi!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_biyoloji_3",
+    "unitNumber": 3,
+    "title": "Hücre ve Organeller – Madde Geçişleri",
+    "subject": "TYT Biyoloji",
+    "colorHex": 4278355143,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_bio_3_1",
+        "title": "Hücre Zarı & Organeller",
+        "description": "Akıcı mozaik zar modeli, zarlı ve zarsız organellerin görevlerini detaylarıyla öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_3_2",
+        "title": "Hücre Zarından Madde Geçişleri",
+        "description": "Pasif taşıma (difüzyon, ozmoz), aktif taşıma ve büyük moleküllerin geçiş kurallarını öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_3_3",
+        "title": "Hücre Zarı & Madde Geçişleri (Ozmoz, Difüzyon, Aktif Taşıma)",
+        "description": "Turgor, plazmoliz, deplazmoliz ve endositoz/ekzositoz kuralları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_bio_3",
+        "title": "Ünite 3 Kupa Sınavı 🏆",
+        "description": "Hücre ve Organeller – Madde Geçişleri ünitesinin 8 soruluk altın final denemesi!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_biyoloji_4",
+    "unitNumber": 4,
+    "title": "Canlıların Sınıflandırılması",
+    "subject": "TYT Biyoloji",
+    "colorHex": 4283385573,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_bio_4_1",
+        "title": "Sınıflandırma İlkeleri, Bakteriler & Arkeler",
+        "description": "Filogenetik sınıflandırma kuralları, basamaklar ve prokaryot alemleri öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_4_2",
+        "title": "Protista, Mantarlar, Bitkiler & Hayvanlar",
+        "description": "4 ökaryot alemin (protista, mantar, bitki, hayvan) özelliklerini ve farklarını öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_4_3",
+        "title": "Omurgalılar & Canlılar Alemi Karşılaştırmalı Analizi",
+        "description": "Balıklar, kurbağalar, sürüngenler, kuşlar ve memelilerin kalpleri ve vücut ısıları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_bio_4",
+        "title": "Ünite 4 Kupa Sınavı 🏆",
+        "description": "Canlıların Sınıflandırılması ünitesinin 8 soruluk altın final denemesi!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_biyoloji_5",
+    "unitNumber": 5,
+    "title": "Hücrede Bölünme – Üreme",
+    "subject": "TYT Biyoloji",
+    "colorHex": 4286331629,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_bio_5_1",
+        "title": "Mitoz Bölünme & Eşeysiz Üreme",
+        "description": "Hücre döngüsü evreleri, kardeş kromatit ayrılması ve eşeysiz üreme çeşitlerini öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_5_2",
+        "title": "Mayoz Bölünme & Eşeyli Üreme",
+        "description": "Mayoz 1 ve Mayoz 2 farkları, krossing-over ve gamet çeşitliliğinin sırlarını öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_5_3",
+        "title": "Mitoz & Mayoz Hücre Bölünmeleri Karşılaştırması",
+        "description": "Krossing-over, homolog kromozom ayrılması, interfaz ve karyotip evreleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_bio_5",
+        "title": "Ünite 5 Kupa Sınavı 🏆",
+        "description": "Hücrede Bölünme – Üreme ünitesinin 8 soruluk altın final denemesi!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_biyoloji_6",
+    "unitNumber": 6,
+    "title": "Kalıtım",
+    "subject": "TYT Biyoloji",
+    "colorHex": 4292441862,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_bio_6_1",
+        "title": "Mendel Genetiği & Çaprazlamalar",
+        "description": "Alel gen, monohibrit ve dihibrit çaprazlama oranları ile kontrol çaprazlamasını kavra!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_6_2",
+        "title": "Kan Grupları & Eşeye Bağlı Kalıtım",
+        "description": "AB0 sistemi, Rh uyuşmazlığı, X'e bağlı renk körlüğü ve soyağaçlarını çöz!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_6_3",
+        "title": "Kalıtım Soru Tipleri: Soyağaçları & X-Y'ye Bağlı Kalıtım",
+        "description": "Hemofili, renk körlüğü, kan grupları ve soyağacı analiz taktikleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_bio_6",
+        "title": "Ünite 6 Kupa Sınavı 🏆",
+        "description": "Kalıtım ünitesinin 8 soruluk altın final denemesi!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_biyoloji_7",
+    "unitNumber": 7,
+    "title": "Bitki Biyolojisi",
+    "subject": "TYT Biyoloji",
+    "colorHex": 4279673674,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_bio_7_1",
+        "title": "Bitkisel Dokular & İletim Sistemi",
+        "description": "Meristem, parankima, örtü doku ve iletim demetlerinin (ksilem/floem) çalışma prensiplerini öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_7_2",
+        "title": "Bitkisel Hormonlar, Hareketler & Taşıma",
+        "description": "Oksin, giberellin, etilen, stoma açılma mekanizması ve yönelim hareketlerini kavra!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_7_3",
+        "title": "Bitkisel Dokular & Su/Mineral Taşınımı Mekanizmaları",
+        "description": "Ksilem-floem, kılcallık, kök basıncı, kohezyon-gerilim teorisi ve stoma hareketleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_bio_7",
+        "title": "Ünite 7 Kupa Sınavı 🏆",
+        "description": "Bitki Biyolojisi ünitesinin 8 soruluk altın final denemesi!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_biyoloji_8",
+    "unitNumber": 8,
+    "title": "Ekosistem",
+    "subject": "TYT Biyoloji",
+    "colorHex": 4278483031,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_bio_8_1",
+        "title": "Ekolojik Kavramlar & Besin Piramidi",
+        "description": "Popülasyon, komünite, ekoton, trofik düzeyler ve %10 enerji kuralını öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_8_2",
+        "title": "Azot Döngüsü & Güncel Çevre Sorunları",
+        "description": "Azot fiksasyonu, nitrifikasyon, denitrifikasyon, ötrofikasyon ve sera etkisini öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_bio_8_3",
+        "title": "Besin Piramidi, Biyolojik Birikim & Madde Döngüleri",
+        "description": "%10 kuralı, DDT biyolojik birikimi, azot döngüsü ve süksesyon basamakları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_bio_8",
+        "title": "Ünite 8 Kupa Sınavı 🏆",
+        "description": "Ekosistem ünitesinin 8 soruluk altın final denemesi!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_cografya_1",
+    "unitNumber": 1,
+    "title": "Harita Bilgisi, İklim & Afetler",
+    "subject": "TYT Coğrafya",
+    "colorHex": 4278236376,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_cog_1",
+        "title": "İzohipsler (Eş Yükselti Eğrileri)",
+        "description": "Eğim, vadi, sırt ve delta ovası tespit taktikleri",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_2",
+        "title": "Türkiye'de Doğal Afetler: Heyelan vs Erozyon",
+        "description": "ÖSYM'nin en çok düşürdüğü afet çeldiricisi",
+        "xpReward": 45,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_1_3",
+        "title": "İzohips Haritaları & Coğrafi Koordinat Sistemi Püf Noktaları",
+        "description": "Vadi, sırt, falez, tepe, boyun okuma ve yerel saat-boylam hesapları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_cog_1",
+        "title": "Ünite 1 Kupa Sınavı 🏆",
+        "description": "Coğrafya harita ve doğal afetler final kupa sınavı!",
+        "xpReward": 100,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_cografya_2",
+    "unitNumber": 2,
+    "title": "Dünya'nın Şekli, Hareketleri ve Coğrafi Konum",
+    "subject": "TYT Coğrafya",
+    "colorHex": 4279080072,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_cog_2_1",
+        "title": "Geoit Şekil & Günlük Hareket",
+        "description": "Kutuplardan basıklık, çizgisel hız ve meltem rüzgarları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_2_2",
+        "title": "Yıllık Hareket, Eksen Eğikliği & Ekinokslar",
+        "description": "21 Mart, 21 Haziran, 23 Eylül, 21 Aralık özel tarihleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_2_3",
+        "title": "Özel Tarihler (21 Haziran, 21 Aralık, Ekinokslar) Analizleri",
+        "description": "Güneş ışınlarının düşme açıları, gölge boyu ve gece-gündüz süre değişimleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_2_exam",
+        "title": "Dünya'nın Hareketleri Kupa Sınavı",
+        "description": "Coğrafi konum ve hareketler kupasını kazan!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_cografya_3",
+    "unitNumber": 3,
+    "title": "Atmosfer ve İklim Bilgisi",
+    "subject": "TYT Coğrafya",
+    "colorHex": 4278355143,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_cog_3_1",
+        "title": "Sıcaklık, Basınç & Rüzgarlar",
+        "description": "Troposfer, Föhn rüzgarları ve Alçak-Yüksek basınç alanları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_3_2",
+        "title": "Nem, Yağış Çeşitleri & Büyük İklim Tipleri",
+        "description": "Konveksiyonel, Orografik ve Cephesel yağışlar!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_3_3",
+        "title": "Büyük İklim Tipleri (Makroklima) ve Türkiye İklimi",
+        "description": "Akdeniz, Muson, Ekvatoral, Çöl iklimleri yağış grafikleri ve doğal bitki örtüleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_3_exam",
+        "title": "İklim Bilgisi Kupa Sınavı",
+        "description": "İklim tipleri ve yağış rejimleri kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_cografya_4",
+    "unitNumber": 4,
+    "title": "Yerin Şekillenmesi, İç ve Dış Kuvvetler",
+    "subject": "TYT Coğrafya",
+    "colorHex": 4279599165,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_cog_4_1",
+        "title": "İç Kuvvetler (Enerjisini Magmadan Alanlar)",
+        "description": "Orojenez (Dağ), Epirojenez (Kıta), Volkanizma ve Depremler!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_4_2",
+        "title": "Dış Kuvvetler (Enerjisini Güneşten Alanlar)",
+        "description": "Akarsu aşındırma-biriktirme, karstik şekiller, rüzgar ve dalgalar!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_4_3",
+        "title": "İç & Dış Kuvvetler: Karstik, Buzul, Rüzgar ve Dalga Şekilleri",
+        "description": "Laponya, traverten, barkan, falez, peri bacaları ve fiyort kıyı tipleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_4_exam",
+        "title": "Yer Şekilleri Kupa Sınavı",
+        "description": "İç ve dış kuvvetler kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_cografya_5",
+    "unitNumber": 5,
+    "title": "Türkiye'nin Coğrafi Özellikleri (Su, Toprak, Bitki)",
+    "subject": "TYT Coğrafya",
+    "colorHex": 4279673674,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_cog_5_1",
+        "title": "Türkiye'nin Gölleri, Akarsuları & Toprakları",
+        "description": "Tektonik, volkanik, karstik göller ve verimli Çernozyom!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_5_2",
+        "title": "Türkiye'de Bitki Örtüsü & Ormanlar",
+        "description": "Orman, maki, bozkır (step) ve dağ çayırları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_5_3",
+        "title": "Türkiye'nin Gölleri, Akarsu Havzaları & Toprak Tipleri",
+        "description": "Tektonik, karstik, volkanik, heyelan set gölleri ve zonal-azonal topraklar!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_5_exam",
+        "title": "Türkiye Coğrafyası Kupa Sınavı",
+        "description": "Türkiye'nin doğal zenginlikleri kupasını al!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_cografya_6",
+    "unitNumber": 6,
+    "title": "Nüfus, Yerleşme ve Göç",
+    "subject": "TYT Coğrafya",
+    "colorHex": 4292441862,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_cog_6_1",
+        "title": "Nüfus Piramitleri & Nüfus Dağılışı",
+        "description": "Gelişmiş vs gelişmemiş ülke piramitleri ve demografik yatırımlar!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_6_2",
+        "title": "Göç Türleri ve Göçün Mekânsal Etkileri",
+        "description": "Beyin göçü, mevsimlik göçler ve iç göçün sonuçları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_6_3",
+        "title": "Nüfus Piramitleri & Türkiye'de Göç Hareketleri",
+        "description": "Gelişmiş/gelişmekte olan ülke piramitleri, beyin göçü ve mevsimlik işçilik!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_6_exam",
+        "title": "Nüfus ve Yerleşme Kupa Sınavı",
+        "description": "Nüfus dinamikleri kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_cografya_7",
+    "unitNumber": 7,
+    "title": "Doğal Afetler ve Çevre",
+    "subject": "TYT Coğrafya",
+    "colorHex": 4293870660,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_cog_7_1",
+        "title": "Jeolojik & Klimatik Afetler",
+        "description": "Deprem, heyelan, çığ, sel, fırtına ve kuraklık!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_7_2",
+        "title": "Çevre Sorunları & Sürdürülebilirlik",
+        "description": "Sera etkisi, küresel ısınma, asit yağmurları ve çevre kirliliği!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_7_3",
+        "title": "Doğal Afetler & Çevre Sorunları Yönetimi",
+        "description": "Deprem, heyelan, erozyon, tsunami, orman yangınları ve sera etkisi çözümleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_cog_7_exam",
+        "title": "TYT Coğrafya Büyük Şampiyonluk Kupa Sınavı",
+        "description": "Tüm TYT Coğrafya müfredatını bitirerek büyük kupa ile zirveye yerleş!",
+        "xpReward": 100,
+        "gemReward": 50,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_din_1",
+    "unitNumber": 1,
+    "title": "Bilgi ve İnanç",
+    "subject": "TYT Din Kültürü",
+    "colorHex": 4278483031,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_din_1_1",
+        "title": "İslam'da Bilgi Kaynakları (Selim Akıl, Sadık Haber, Salim Duyular)",
+        "description": "Vahiy, peygamber haberi, akıl ve beş duyunun bilgi üretimindeki yeri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_1_2",
+        "title": "İman, İkrar, Tasdik & Allah'ın Sıfatları",
+        "description": "Zati ve subuti sıfatlar, tahkiki iman ve ihlas kavramı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_1_3",
+        "title": "İslam'da Bilgi Kaynakları & İman Esasları",
+        "description": "Selim akıl, sadık haber, salim duyular ve taklidi/tahkiki iman!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_1_exam",
+        "title": "Bilgi ve İnanç Ünite Sınavı",
+        "description": "İnanç esasları ve bilgi kaynakları testini başarıyla tamamla!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_din_2",
+    "unitNumber": 2,
+    "title": "İslam ve İbadet",
+    "subject": "TYT Din Kültürü",
+    "colorHex": 4278483031,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_din_2_1",
+        "title": "İbadetin Anlamı, Amacı & Hüküm Türleri (Farz, Vacip, Sünnet)",
+        "description": "Mükellefiyet, farz-ı ayn, farz-ı kifaye ve mekruh kavramları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_2_2",
+        "title": "Namaz, Oruç, Zekat & Hac İbadetlerinin Bireysel ve Toplumsal Faydaları",
+        "description": "İbadetlerin ahlaki eğitime, kardeşliğe ve sosyal adalete katkıları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_2_3",
+        "title": "Mükellefiyet Hükümleri & İbadetlerin Hikmetleri",
+        "description": "Farz-ı ayn, farz-ı kifaye, vacip, sünnet, mekruh ve ibadette niyet/ihlas!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_2_exam",
+        "title": "İslam ve İbadet Ünite Sınavı",
+        "description": "İbadetler ve dini hükümler alanındaki bilgini test et!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_din_3",
+    "unitNumber": 3,
+    "title": "Ahlak ve Değerler",
+    "subject": "TYT Din Kültürü",
+    "colorHex": 4278483031,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_din_3_1",
+        "title": "İslam Ahlakının Temel Kaynakları ve Faziletler",
+        "description": "Adalet, hikmet, iffet, şecaat ve kul hakkı bilinci!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_3_2",
+        "title": "Toplumsal Ahlak, Çevre Bilinci & Haklar",
+        "description": "Anne-baba hakkı, komşuluk hukuku, çevre emaneti ve hayvan hakları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_3_3",
+        "title": "Temel Ahlaki Değerler & İslam'ın Koruduğu 5 Esas",
+        "description": "Zarurat-ı Diniyye (Can, akıl, nesil, mal, din emniyeti), adalet ve kul hakkı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_3_exam",
+        "title": "Ahlak ve Değerler Ünite Sınavı",
+        "description": "İslam ahlakı ve faziletler sınavıyla ahlaki ilkeleri pekiştir!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_din_4",
+    "unitNumber": 4,
+    "title": "Tasavvufi Yorumlar ve Mezhepler",
+    "subject": "TYT Din Kültürü",
+    "colorHex": 4278483031,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_din_4_1",
+        "title": "İslam Düşüncesinde Yorum Farklılıklarının Sebepleri & İtikadi/Fıkhi Mezhepler",
+        "description": "Matüridilik, Eş'arilik, Hanefilik, Şafiilik ve mezheplerin zenginliği!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_4_2",
+        "title": "Tasavvuf Kültürü ve Önemli Tasavvufi Ekoller",
+        "description": "Yesevilik, Mevlevilik, Bektaşilik, Nakşibendilik ve Ahi ahlakı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_4_3",
+        "title": "İtikadi ve Fıkhi Mezhepler ile Tasavvufi Yorumlar",
+        "description": "Matüridilik, Eş'arilik, Hanefilik, Şafiilik ve tasavvufi kavramlar!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_4_exam",
+        "title": "Tasavvuf ve Mezhepler Ünite Sınavı",
+        "description": "İslam düşüncesi, mezhepler ve tasavvufi ekoller ünite kupa sınavı!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_din_5",
+    "unitNumber": 5,
+    "title": "Din, Kültür ve Medeniyet",
+    "subject": "TYT Din Kültürü",
+    "colorHex": 4278483031,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_din_5_1",
+        "title": "İslam Medeniyetinin Doğuşu ve Özellikleri",
+        "description": "Vahiy merkezli medeniyet, ilim havzaları ve hoşgörü kültürü!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_5_2",
+        "title": "Güncel Dini Meseleler & İnanç Problemleri (Sekülerizm, Nihilizm, Deizm)",
+        "description": "Modern çağda inanç sorgulamaları, bağımlılıklar ve İslam'ın çözümleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_5_3",
+        "title": "İslam Medeniyetinde Bilim, Mimari ve Sanat",
+        "description": "Beytü'l-Hikme, cami mimarisi (kubbe, minare, mihrap), hat, tezhip ve ebru sanatı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_din_5_exam",
+        "title": "TYT Din Kültürü Büyük Şampiyonluk Kupa Sınavı",
+        "description": "Tüm TYT Din Kültürü müfredatını bitirerek büyük kupa ile zirveye yerleş!",
+        "xpReward": 100,
+        "gemReward": 40,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_felsefe_1",
+    "unitNumber": 1,
+    "title": "Felsefeyi Tanıma ve Akıl Yürütme",
+    "subject": "TYT Felsefe",
+    "colorHex": 4284704497,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_fel_1_1",
+        "title": "Felsefenin Anlamı, Doğuşu & Özellikleri",
+        "description": "Bilgelik sevgisi (Philo-Sophia), refleksif düşünce ve kümülatif yığılma!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_1_2",
+        "title": "Akıl Yürütme Yolları (Tümdengelim, Tümevarım, Analoji)",
+        "description": "Genelden özele, özelden genele ve benzerlikten yola çıkma!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_1_3",
+        "title": "Akıl Yürütme Yolları & Felsefi Argümantasyon",
+        "description": "Tümdengelim, tümevarım, analoji, öncül ve safsata (fallacy) ayrımları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_1_exam",
+        "title": "Felsefeyi Tanıma & Akıl Yürütme Ünite Sınavı",
+        "description": "Felsefenin doğası ve mantık ilkeleri konusunu taçlandır!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_felsefe_2",
+    "unitNumber": 2,
+    "title": "Varlık ve Bilgi Felsefesi",
+    "subject": "TYT Felsefe",
+    "colorHex": 4284704497,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_fel_2_1",
+        "title": "Varlık Felsefesi (Ontoloji)",
+        "description": "Arkhe arayışı, Nihilizm, Realizm, İdealizm, Materyalizm ve Düalizm!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_2_2",
+        "title": "Bilgi Felsefesi (Epistemoloji)",
+        "description": "Rasyonalizm, Empirizm, Kritisizm, Pozitivizm, Pragmatizm ve Septisizm!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_2_3",
+        "title": "Epistemoloji & Ontoloji: Akımlar ve Temsilcileri",
+        "description": "Rasyonalizm, empirizm, kritisizm, pozitivizm, idealizm ve materyalizm!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_2_exam",
+        "title": "Ontoloji & Epistemoloji Ünite Sınavı",
+        "description": "Varlık ve bilgi felsefesi kavrayışını sına!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_felsefe_3",
+    "unitNumber": 3,
+    "title": "Ahlak ve Sanat Felsefesi",
+    "subject": "TYT Felsefe",
+    "colorHex": 4284704497,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_fel_3_1",
+        "title": "Ahlak Felsefesi (Etik)",
+        "description": "Özgürlük problemleri (Determinizm, İndeterminizm) ve Kant ödev ahlakı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_3_2",
+        "title": "Sanat Felsefesi (Estetik)",
+        "description": "Mimesis (taklit), yaratma ve oyun kuramları; güzel ve yüce kavramları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_3_3",
+        "title": "Ahlak & Sanat Felsefesi: Ödev Ahlakı & Estetik Kuramları",
+        "description": "Kant ödev ahlakı, hedonizm, egoizm, anarşizm ve sanat kuramları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_3_exam",
+        "title": "Etik & Estetik Ünite Sınavı",
+        "description": "Ahlak ve sanat felsefesiyle erdem ve estetiği birleştir!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_felsefe_4",
+    "unitNumber": 4,
+    "title": "Siyaset ve Din Felsefesi",
+    "subject": "TYT Felsefe",
+    "colorHex": 4284704497,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_fel_4_1",
+        "title": "Siyaset Felsefesi, Devlet & Ütopyalar",
+        "description": "Toplum sözleşmesi kuramları, egemenlik türleri ve istenen/korku ütopyaları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_4_2",
+        "title": "Din Felsefesi & Tanrı Görüşleri",
+        "description": "Teizm, Deizm, Panteizm, Panenteizm, Agnostisizm ve Ateizm!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_4_3",
+        "title": "Siyaset & Din Felsefesi: Devlet Kuramları ve Ütopyalar",
+        "description": "Doğal/Yapay devlet kuramları, Thomas More, Platon ütopyaları ve distopyalar!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fel_4_exam",
+        "title": "Siyaset & Din Felsefesi Büyük Kupa Sınavı",
+        "description": "Tüm TYT Felsefe ünitelerini tamamlayarak altın kupayı kaldır!",
+        "xpReward": 100,
+        "gemReward": 40,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_fizik_1",
+    "unitNumber": 1,
+    "title": "Fizik Bilimine Giriş ve Madde-Özkütle",
+    "subject": "TYT Fizik",
+    "colorHex": 4286331629,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_fiz_1_1",
+        "title": "Fiziğin Alt Dalları & Büyüklükler",
+        "description": "KAMYONET şifresi ile fiziğin 8 alt dalı ve KISA MUZ temel büyüklükleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_1_2",
+        "title": "Kütle, Hacim, Özkütle (d=m/V) & Dayanıklılık",
+        "description": "Özkütle grafikleri ve cisimlerin kendi ağırlığına karşı dayanıklılığı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_1_3",
+        "title": "ÖSYM Soru Kalıpları: Madde, Özkütle & Dayanıklılık",
+        "description": "Kütle-hacim grafikleri, karışımların özkütlesi ve boyut-dayanıklılık ilişkileri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_1_exam",
+        "title": "Fizik Bilimine Giriş Kupa Sınavı",
+        "description": "Madde ve özkütle kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_fizik_2",
+    "unitNumber": 2,
+    "title": "Sıvıların Özellikleri (Adezyon, Kohezyon, Yüzey Gerilimi)",
+    "subject": "TYT Fizik",
+    "colorHex": 4280640491,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_fiz_2_1",
+        "title": "Adezyon (Yapışma) vs Kohezyon (Tutunma)",
+        "description": "Farklı moleküller yapışır (Adezyon), aynı moleküller birbirini çeker (Kohezyon)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_2_2",
+        "title": "Yüzey Gerilimi & Kılcallık Olayı",
+        "description": "Böceklerin su üstünde yürümesi, peçetenin suyu emmesi ve ağaçların tepeye su taşıması!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_2_3",
+        "title": "Kılcallık, Yüzey Gerilimi & Sıvı Basınç Analizleri",
+        "description": "Kohezyon-adezyon farkı, cıva/su menisküsleri ve Pascal prensibi!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_2_exam",
+        "title": "Sıvıların Özellikleri Kupa Sınavı",
+        "description": "Yüzey gerilimi ve adezyon-kohezyon kupasını kaldır!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_fizik_3",
+    "unitNumber": 3,
+    "title": "Hareket ve Kuvvet",
+    "subject": "TYT Fizik",
+    "colorHex": 4293548044,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_fiz_3_1",
+        "title": "Konum, Alınan Yol, Yer Değiştirme, Hız & Sürat",
+        "description": "Skaler sürat vs Vektörel hız! Delta x ve t formülleri.",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_3_2",
+        "title": "Newton'ın Hareket Yasaları & Sürtünme Kuvveti",
+        "description": "Eylemsizlik, Temel Prensip (F = m · a) ve Etki-Tepki!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_3_3",
+        "title": "Grafik Dönüşümleri (x-t, v-t, a-t) & Sürtünmeli Sistemler",
+        "description": "Hız-zaman grafiğinin altındaki alan ve sürtünme katsayısı hesapları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_3_exam",
+        "title": "Hareket ve Kuvvet Kupa Sınavı",
+        "description": "Newton hareket yasaları kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_fizik_4",
+    "unitNumber": 4,
+    "title": "İş, Güç ve Mekanik Enerji",
+    "subject": "TYT Fizik",
+    "colorHex": 4279286145,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_fiz_4_1",
+        "title": "Fiziksel İş (W = F · Δx) ve Güç (P = W / t)",
+        "description": "Fiziksel anlamda ne zaman iş yapılır? Watt ve Joule birimleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_4_2",
+        "title": "Kinetik, Potansiyel Enerji & Mekanik Korunum",
+        "description": "Ek = 1/2 m v², Ep = m g h ve sürtünmesiz ortamda enerjinin korunumu!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_4_3",
+        "title": "Mekanik Enerjinin Korunumu ve Sürtünmeli Sistemler",
+        "description": "Kinetik enerji, yerçekimi/esneklik potansiyeli ve sürtünmeye harcanan iş!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_4_exam",
+        "title": "İş, Güç ve Enerji Kupa Sınavı",
+        "description": "Mekanik enerji korunumu kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_fizik_5",
+    "unitNumber": 5,
+    "title": "Isı, Sıcaklık ve Genleşme",
+    "subject": "TYT Fizik",
+    "colorHex": 4293870660,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_fiz_5_1",
+        "title": "Isı, Sıcaklık & İç Enerji",
+        "description": "Sıcaklık termometreyle ölçülür, ısı kalorimetre kabıyla! Q = m · c · ΔT formülü.",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_5_2",
+        "title": "Hal Değişimi & Genleşme",
+        "description": "Q = m · L erime/buharlaşma ısısı ve metal çiftleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_5_3",
+        "title": "Isıl Denge, Hal Değişim Grafikleri & Genleşme",
+        "description": "Q=mcΔT, Q=mL formülleri, metal çifti bükülmeleri ve suyun genleşme anomalisi!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_5_exam",
+        "title": "Isı ve Sıcaklık Kupa Sınavı",
+        "description": "Termodinamik şampiyonluk kupasını kazan!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_fizik_6",
+    "unitNumber": 6,
+    "title": "Elektrostatik ve Elektrik Devreleri",
+    "subject": "TYT Fizik",
+    "colorHex": 4293571336,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_fiz_6_1",
+        "title": "Elektriklenme Çeşitleri & Elektroskop",
+        "description": "Sürtünme, dokunma ve etki ile elektriklenme; elektroskop yaprakları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_6_2",
+        "title": "Elektrik Akımı, Direnç & Ohm Kanunu (V = I · R)",
+        "description": "Seri ve paralel bağlama, lambaların parlaklığı (Güç = V · I)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_6_3",
+        "title": "Elektroskop, Eşdeğer Direnç & Lamba Parlaklıkları",
+        "description": "Dokunma/etkiyle elektriklenme, Ohm kanunu (V=IR) ve seri-paralel bağlama!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_6_exam",
+        "title": "Elektrik ve Manyetizma Kupa Sınavı",
+        "description": "Devreler ve elektrostatik zafer kupasını kazan!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_fizik_7",
+    "unitNumber": 7,
+    "title": "Optik ve Dalgalar",
+    "subject": "TYT Fizik",
+    "colorHex": 4287323382,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_fiz_7_1",
+        "title": "Gölge, Düzlem Ayna & Işığın Kırılması",
+        "description": "Tam gölge, yarı gölge, Snell kanunu ve tam yansıma olayları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_7_2",
+        "title": "Dalgaların Genel Özellikleri (v = λ · f)",
+        "description": "Enine ve boyuna dalgalar, su, ses ve deprem dalgaları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_7_3",
+        "title": "Kırılma, Tam Yansıma, Prizmalar ve Renk Teorisi",
+        "description": "Snell kanunu, sınır açısı, serap olayı, fiber optik ve ışık renkleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_fiz_7_exam",
+        "title": "TYT Fizik Büyük Şampiyonluk Kupa Sınavı",
+        "description": "Tüm TYT Fizik müfredatını tamamlayarak büyük kupa ile zirveye yerleş!",
+        "xpReward": 100,
+        "gemReward": 50,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_kimya_1",
+    "unitNumber": 1,
+    "title": "Kimya Bilimi ve Güvenlik Uyarı İşaretleri",
+    "subject": "TYT Kimya",
+    "colorHex": 4293675161,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_kim_1_1",
+        "title": "Simyadan Kimyaya & Kimya Disiplinleri",
+        "description": "Deneme-yanılma (Simya) vs Bilimsel yöntem (Kimya) ve Aristo'nun 4 elementi!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_1_2",
+        "title": "Element, Bileşik & Güvenlik Piktogramları",
+        "description": "İlk 20 elementin sembolleri, yaygın bileşik adları (Tuz ruhu, zaç yağı, kireç) ve piktogramlar!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_1_3",
+        "title": "Laboratuvar Güvenlik Piktogramları & Simya Tarihi",
+        "description": "Güvenlik sembolleri, simyadan kimyaya aktarılan maddeler ve bileşik yaygın adları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_1_exam",
+        "title": "Kimya Bilimi Kupa Sınavı",
+        "description": "Kimya bilimine giriş kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_kimya_2",
+    "unitNumber": 2,
+    "title": "Atom Modelleri ve Periyodik Sistem",
+    "subject": "TYT Kimya",
+    "colorHex": 4287837162,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_kim_2_1",
+        "title": "Dalton, Thomson, Rutherford & Bohr Modelleri",
+        "description": "Üzümlü kek, altın yaprak deneyi ve yörüngeler!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_2_2",
+        "title": "Periyodik Sistem & Periyodik Özelliklerin Değişimi",
+        "description": "Çap (Kardan Adam), İyonlaşma Enerjisi, Elektronegatiflik ve Metalik-Ametalik aktiflik!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_2_3",
+        "title": "İzotop, İzobar, İzoelektronik Tanecikler & Periyodik Eğilimler",
+        "description": "Proton, nötron, kütle numarası ilişkileri ve iyonlaşma enerjisi 3 aşağı 5 yukarı kuralı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_2_exam",
+        "title": "Atom ve Periyodik Sistem Kupa Sınavı",
+        "description": "Periyodik tablo şampiyonluk kupasını kazan!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_kimya_3",
+    "unitNumber": 3,
+    "title": "Kimyasal Türler Arası Etkileşimler",
+    "subject": "TYT Kimya",
+    "colorHex": 4280640491,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_kim_3_1",
+        "title": "Güçlü Etkileşimler (İyonik, Kovalent & Metalik Bağ)",
+        "description": "Elektron alışverişi (İyonik), ortaklaşma (Kovalent polar/apolar) ve elektron denizi (Metalik)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_3_2",
+        "title": "Zayıf Etkileşimler (Hidrojen Bağı & Van der Waals)",
+        "description": "FON grubu hidrojen bağı, dipol-dipol ve London çekim kuvvetleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_3_3",
+        "title": "Zayıf Etkileşimler: Hidrojen Bağı & London Kuvvetleri",
+        "description": "Dipol-dipol, London dağılımı ve FON elementleri hidrojen bağı analizleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_3_exam",
+        "title": "Kimyasal Etkileşimler Kupa Sınavı",
+        "description": "Güçlü ve zayıf etkileşimler kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_kimya_4",
+    "unitNumber": 4,
+    "title": "Maddenin Halleri",
+    "subject": "TYT Kimya",
+    "colorHex": 4278630100,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_kim_4_1",
+        "title": "Katılar & Sıvılar (Viskozite ve Kaynama)",
+        "description": "Amorf vs Kristal katılar, akmaya karşı direnç (viskozite) ve buhar basıncı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_4_2",
+        "title": "Gazlar & Plazma Hali",
+        "description": "Gazların genel özellikleri, mutlak sıcaklık ve maddenin 4. hali: Plazma!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_4_3",
+        "title": "Buhar Basıncı, Kaynama Noktası & Viskozite",
+        "description": "Buhar basıncını etkileyen 3S faktörü, kaynama şartı ve akmaya karşı direnç!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_4_exam",
+        "title": "Maddenin Halleri Kupa Sınavı",
+        "description": "Maddenin halleri şampiyonluk kupasını kazan!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_kimya_5",
+    "unitNumber": 5,
+    "title": "Kimyanın Temel Kanunları ve Mol Kavramı",
+    "subject": "TYT Kimya",
+    "colorHex": 4279286145,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_kim_5_1",
+        "title": "Kimyanın 3 Temel Kanunu",
+        "description": "Kütlenin Korunumu (Lavoisier), Sabit Oranlar (Proust) ve Katlı Oranlar (Dalton)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_5_2",
+        "title": "Mol Kavramı (n = m / MA)",
+        "description": "Avogadro sayısı (6,02 · 10²³), NK'da 22,4 litre hacim ve mol hesapları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_5_3",
+        "title": "Mol Hesaplamaları & Kimyasal Tepkime Türleri",
+        "description": "n=m/MA, Avogadro sayısı, sınırlayıcı bileşen ve verim hesapları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_5_exam",
+        "title": "Mol Kavramı ve Kanunlar Kupa Sınavı",
+        "description": "Mol hesapları ve kimyasal kanunlar kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_kimya_6",
+    "unitNumber": 6,
+    "title": "Karışımlar ve Ayırma Yöntemleri",
+    "subject": "TYT Kimya",
+    "colorHex": 4294286859,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_kim_6_1",
+        "title": "Homojen vs Heterojen Karışımlar",
+        "description": "Süspansiyon (katı-sıvı), Emülsiyon (sıvı-sıvı), Kolloit ve Aerosol!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_6_2",
+        "title": "Karışımları Ayırma Yöntemleri",
+        "description": "Ayırma hunisi, süzme, mıknatıs, ayrımsal damıtma ve kristallendirme!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_6_3",
+        "title": "Koligatif Özellikler & Karışımları Ayırma Teknikleri",
+        "description": "Kaynama noktası yükselmesi, donma noktası alçalması ve ayrımsal damıtma!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_6_exam",
+        "title": "Karışımlar Kupa Sınavı",
+        "description": "Karışımlar ve ayırma teknikleri kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_kimya_7",
+    "unitNumber": 7,
+    "title": "Asitler, Bazlar, Tuzlar ve Kimya Her Yerde",
+    "subject": "TYT Kimya",
+    "colorHex": 4293870660,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_kim_7_1",
+        "title": "Asitler, Bazlar, pH & Nötralleşme",
+        "description": "Turnusol kağıdı, pH ölçeği ve Asit + Baz ➔ Tuz + Su!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_7_2",
+        "title": "Tuzlar, Temizlik Maddeleri & Polimerler",
+        "description": "Sabun vs Deterjan, polimerler, kozmetikler ve ilaç formları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_7_3",
+        "title": "Asit-Baz Tepkimeleri, pH Dengesi & Temizlik Maddeleri",
+        "description": "Tuz oluşumu, kuvvetli/zayıf asitler, sabun-deterjan yapısı ve polimerler!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_kim_7_exam",
+        "title": "TYT Kimya Büyük Şampiyonluk Kupa Sınavı",
+        "description": "Tüm TYT Kimya müfredatını bitirerek büyük kupa ile kimya dehası ol!",
+        "xpReward": 100,
+        "gemReward": 50,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_matematik_1",
+    "unitNumber": 1,
+    "title": "Temel Kavramlar & Sayılar",
+    "subject": "TYT Matematik",
+    "colorHex": 4288423856,
+    "lessonCount": 5,
+    "lessons": [
+      {
+        "id": "lesson_mat_1",
+        "title": "Tek ve Çift Sayılar",
+        "description": "ÖSYM'nin her yıl banko sorduğu tek-çift sayı taktikleri",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_2",
+        "title": "Mutlak Değer & Uzaklık Mantığı",
+        "description": "Uzaklık formülü ve mutlak değerli eşitsizlikler",
+        "xpReward": 45,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_3",
+        "title": "Yaş Problemleri Şifresi",
+        "description": "Yaş farkı sabittir taktiğiyle problem çözümü",
+        "xpReward": 50,
+        "gemReward": 20,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_1_4",
+        "title": "Sayı Basamakları ve Çözümleme Taktikleri",
+        "description": "İki ve üç basamaklı sayıların çözümlenmesi ve basamak farkı soruları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_mat_1",
+        "title": "Ünite 1 Kupa Sınavı 🏆",
+        "description": "Temel kavramlar ve matematik problemlerinde final meydan okuması!",
+        "xpReward": 100,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_matematik_2",
+    "unitNumber": 2,
+    "title": "Rasyonel Sayılar, Asal Sayılar & Eşitsizlikler",
+    "subject": "TYT Matematik",
+    "colorHex": 4280640491,
+    "lessonCount": 5,
+    "lessons": [
+      {
+        "id": "lesson_mat_asal",
+        "title": "Asal Sayılar & Asal Çarpanlar",
+        "description": "Asallık kuralları, aralarında asallık ve bölen sayıları",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_rasyonel",
+        "title": "Rasyonel Sayılarda İşlemler & Ondalık Kesirler",
+        "description": "Dört işlem, merdivenli kesirler ve devirli ondalık sayılar",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_bolunebilme",
+        "title": "Bölme & Bölünebilme Kuralları",
+        "description": "3, 4, 5, 8, 9, 11 ve aralarında asal çarpan kuralları",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_esitsizlik",
+        "title": "Basit Eşitsizlikler & Aralık Kavramı",
+        "description": "Eşitsizliklerde yön değiştirme, karesi kendisinden küçük sayılar",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_mat_2",
+        "title": "Ünite 2 Kupa Sınavı 🏆",
+        "description": "Rasyonel sayılar, asal sayılar ve eşitsizlikler karma final testi",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_matematik_3",
+    "unitNumber": 3,
+    "title": "Bölünebilme Kuralları ve EBOB - EKOK",
+    "subject": "TYT Matematik",
+    "colorHex": 4280640491,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_mat_3_1",
+        "title": "Bölünebilme Kuralları (2, 3, 4, 5, 8, 9, 11)",
+        "description": "Büyük sayıların kalanlarını saniyeler içinde zihinden bul!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_3_2",
+        "title": "EBOB - EKOK & Periyodik Problemler",
+        "description": "Parçadan bütüne mi gidiliyor, bütünden parçaya mı?",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_3_3",
+        "title": "ÖSYM Soru Kalıpları: Bölünebilme & EBOB-EKOK Problemleri",
+        "description": "Aralarında asal çarpanlar (6, 12, 15, 36) ve periyodik nöbet problemleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_3_exam",
+        "title": "Bölünebilme ve EBOB-EKOK Kupa Sınavı",
+        "description": "Kupa sınavı ile bölünebilme ustası ol!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_matematik_4",
+    "unitNumber": 4,
+    "title": "Basit Eşitsizlikler ve Mutlak Değer",
+    "subject": "TYT Matematik",
+    "colorHex": 4278355143,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_mat_4_1",
+        "title": "Basit Eşitsizlikler ve Yön Değiştirme",
+        "description": "Eşitsizlik ne zaman yön değiştirir? Taktikleri kap!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_4_2",
+        "title": "Mutlak Değer ve Özellikleri",
+        "description": "Uzaklık kavramı ve mutlak değerden çıkarma taktikleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_4_3",
+        "title": "Mutlak Değerli Eşitsizlikler & Kritik Nokta Taktikleri",
+        "description": "|x - a| < b açılımları ve sayı doğrusunda uzaklık kavramı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_4_exam",
+        "title": "Eşitsizlik ve Mutlak Değer Kupa Sınavı",
+        "description": "Sınavda çıkabilecek kritik soru tiplerini çöz!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_matematik_5",
+    "unitNumber": 5,
+    "title": "Üslü ve Köklü İfadeler",
+    "subject": "TYT Matematik",
+    "colorHex": 4283385573,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_mat_5_1",
+        "title": "Üslü Sayılar ve İşlem Özellikleri",
+        "description": "Tabanlar aynıysa üsler toplanır! Üslü sayıların incelikleri.",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_5_2",
+        "title": "Köklü Sayılar ve Eşlenik",
+        "description": "Paydada kök bırakma! Eşlenik ile çarpma ve kök dışına çıkarma.",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_5_3",
+        "title": "ÖSYM Çıkmış Kalıplar: Üslü ve Köklü Sayı Püf Noktaları",
+        "description": "Eşlenik çarpımı, iç içe kökler ve üslü denklemlerin çözüm teknikleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_5_exam",
+        "title": "Üslü ve Köklü Sayılar Kupa Sınavı",
+        "description": "Üs ve kök konusunu zafer kupası ile taçlandır!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_matematik_6",
+    "unitNumber": 6,
+    "title": "Çarpanlara Ayırma ve Oran - Orantı",
+    "subject": "TYT Matematik",
+    "colorHex": 4278556265,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_mat_6_1",
+        "title": "Çarpanlara Ayırma ve Özdeşlikler",
+        "description": "İki kare farkı ve tam kare özdeşliklerini zihnine kazı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_6_2",
+        "title": "Oran - Orantı ve Ortalamalar",
+        "description": "Doğru orantı, ters orantı ve problem çözme anahtarları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_6_3",
+        "title": "Özdeşlikler & Sadeleştirme ÖSYM Soru Tipleri",
+        "description": "Tam kare, iki kare farkı ve küpler toplamı ile sadeleştirme pratikleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_6_exam",
+        "title": "Çarpanlara Ayırma ve Orantı Kupa Sınavı",
+        "description": "Oran-orantı ve özdeşlik kupasını kaldır!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_matematik_7",
+    "unitNumber": 7,
+    "title": "Denklem Çözme ve TYT Problemleri",
+    "subject": "TYT Matematik",
+    "colorHex": 4293548044,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_mat_7_1",
+        "title": "Sayı, Kesir ve Yaş Problemleri",
+        "description": "Matematik diline çevirme: x belirle, denklemi kur ve çöz!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_7_2",
+        "title": "Yüzde, Kâr-Zarar & Hız Problemleri",
+        "description": "Alış fiyatına 100x de, hız formülünü (x = V · t) uygula!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_7_3",
+        "title": "Hız-Hareket, Karışım ve İşçi Problemleri Püf Noktaları",
+        "description": "Zıt yönlü/aynı yönlü hareket, ortalama hız ve saf madde yüzdesi hesaplama!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_7_exam",
+        "title": "TYT Problemler Şampiyonluk Kupa Sınavı",
+        "description": "Her yıl 12-14 soru gelen Problemler ünitesinin kupasını kazan!",
+        "xpReward": 80,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_matematik_8",
+    "unitNumber": 8,
+    "title": "Kümeler, Fonksiyonlar ve Olasılık",
+    "subject": "TYT Matematik",
+    "colorHex": 4286331629,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_mat_8_1",
+        "title": "Kümelerde İşlemler ve Alt Küme",
+        "description": "Kesişim, birleşim, fark ve alt küme formülü (2ⁿ)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_8_2",
+        "title": "Fonksiyonlar & Basit Olasılık",
+        "description": "Fonksiyonda değer bulma f(x) ve Olasılık = İstenen / Tüm Durumlar!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_8_3",
+        "title": "Fonksiyon Grafikleri & Bileşke Fonksiyon ÖSYM Analizleri",
+        "description": "(fog)(x), ters fonksiyon ve simetri/öteleme grafikleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_mat_8_exam",
+        "title": "TYT Matematik Büyük Şampiyonluk Kupa Sınavı",
+        "description": "Tüm TYT Matematik konularını zaferle tamamla!",
+        "xpReward": 100,
+        "gemReward": 50,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_tarih_1",
+    "unitNumber": 1,
+    "title": "İlk Türk Devletleri & Kurtuluş Savaşı",
+    "subject": "TYT Tarih",
+    "colorHex": 4280070390,
+    "lessonCount": 5,
+    "lessons": [
+      {
+        "id": "lesson_tar_1",
+        "title": "İlk Türk Devletleri Kavramları",
+        "description": "Orta Asya kavramlarını öğren ve anında test et!",
+        "xpReward": 35,
+        "gemReward": 12,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_2",
+        "title": "Kurtuluş Savaşı Kongreleri",
+        "description": "Genelge ve kongre şifrelerini çöz, soruları fethet!",
+        "xpReward": 45,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_3",
+        "title": "Sevr ve Lozan Karşılaştırması",
+        "description": "Milli Mücadele'nin diplomatik zaferleri",
+        "xpReward": 50,
+        "gemReward": 20,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_1_4",
+        "title": "Kavimler Göçü & İlk Türk Devletlerinde Kültür-Medeniyet",
+        "description": "Töre, kurultay, kut inancı, ikili teşkilat ve Kavimler Göçü'nün sonuçları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_tar_1",
+        "title": "Ünite 1 Kupa Sınavı 🏆",
+        "description": "Tarih kavramları ve Milli Mücadele zaferlerini taçlandır!",
+        "xpReward": 100,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_tarih_2",
+    "unitNumber": 2,
+    "title": "İslam Medeniyeti ve Türk-İslam Devletleri",
+    "subject": "TYT Tarih",
+    "colorHex": 4292441862,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tar_2_1",
+        "title": "Dört Halife, Emeviler & Abbasiler",
+        "description": "Cumhuriyet devri, Mevali politikası ve Beytülhikme!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_2_2",
+        "title": "Karahanlılar, Gazneliler & Büyük Selçuklu Devleti",
+        "description": "İlk Türk-İslam eserleri ve Anadolu'nun kapısını açan Malazgirt (1071)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_2_3",
+        "title": "Türk-İslam Devletleri Teşkilatı ve Bilim Dünyası",
+        "description": "İkta sistemi, gulam ordusu, Nizamiye medreseleri ve ilk Türk-İslam yazılı eserleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_2_exam",
+        "title": "Türk-İslam Devletleri Kupa Sınavı",
+        "description": "İlk Türk-İslam devletleri kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_tarih_3",
+    "unitNumber": 3,
+    "title": "Beylikten Devlete Osmanlı (Kuruluş ve Yükselme)",
+    "subject": "TYT Tarih",
+    "colorHex": 4292617766,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tar_3_1",
+        "title": "İskân, Tımar & Devşirme Sistemi",
+        "description": "Osmanlı'yı cihan devleti yapan 3 temel kurum!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_3_2",
+        "title": "İstanbul'un Fethi & Cihan Devleti",
+        "description": "Orta Çağ'ı kapatıp Yeni Çağ'ı açan fetih (1453)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_3_3",
+        "title": "Osmanlı Askeri ve İdari Teşkilatı: Divan & Eyalet",
+        "description": "Seyfiye, İlmiye, Kalemiye sınıfları ve Tımar-Kapıkulu ordusu ayrımları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_3_exam",
+        "title": "Osmanlı Kuruluş ve Yükselme Kupa Sınavı",
+        "description": "Cihan Devleti şampiyonluk kupasını kazan!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_tarih_4",
+    "unitNumber": 4,
+    "title": "Değişim Çağında Osmanlı ve Islahatlar",
+    "subject": "TYT Tarih",
+    "colorHex": 4290007817,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tar_4_1",
+        "title": "17. ve 18. Yüzyıl Islahatları & Lale Devri",
+        "description": "Avrupa'nın üstünlüğünün kabul edilmesi ve ilk geçici elçilikler!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_4_2",
+        "title": "Tanzimat, Islahat Fermanı & Meşrutiyet",
+        "description": "Kanun üstünlüğü, eşit vatandaşlık ve anayasal düzene geçiş (Kanun-i Esasi)!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_4_3",
+        "title": "Tanzimat, Islahat ve Meşrutiyet Dönemi Demokratikleşme Hareketleri",
+        "description": "Tanzimat Fermanı, Islahat Fermanı, Kanun-i Esasi ve 1. / 2. Meşrutiyet!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_4_exam",
+        "title": "Değişim ve Islahatlar Kupa Sınavı",
+        "description": "Islahat hareketleri kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_tarih_5",
+    "unitNumber": 5,
+    "title": "20. Yüzyıl Başlarında Osmanlı ve 1. Dünya Savaşı",
+    "subject": "TYT Tarih",
+    "colorHex": 4288224027,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tar_5_1",
+        "title": "Trablusgarp, Balkan Savaşları & Fikir Akımları",
+        "description": "Mustafa Kemal'in ilk askeri başarısı (Derne-Tobruk) ve Balkan faciası!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_5_2",
+        "title": "1. Dünya Savaşı Cepheleri & Mondros Ateşkesi",
+        "description": "Çanakkale Geçilmez! Kafkas ve Kanal cepheleri ile Mondros'un 7. maddesi.",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_5_3",
+        "title": "Trablusgarp, Balkan Savaşları & 1. Dünya Savaşı Cepheleri",
+        "description": "Uşi Antlaşması, Londra/Bükreş antlaşmaları, Çanakkale, Kafkas ve Kanal cepheleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_5_exam",
+        "title": "20. Yüzyıl ve 1. Dünya Savaşı Kupa Sınavı",
+        "description": "Çanakkale ve cepheler zafer kupasını kazan!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_tarih_6",
+    "unitNumber": 6,
+    "title": "Milli Mücadele ve Kurtuluş Savaşı",
+    "subject": "TYT Tarih",
+    "colorHex": 4278556265,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tar_6_1",
+        "title": "Genelgeler, Kongreler & Misak-ı Milli",
+        "description": "Amasya Genelgesi'nin ihtilal bildirisi ve Erzurum-Sivas kongreleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_6_2",
+        "title": "Kurtuluş Savaşı Cepheleri & Mudanya",
+        "description": "İnönü, Kütahya-Eskişehir, Sakarya Meydan Muharebesi ve Büyük Taarruz!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_6_3",
+        "title": "Milli Mücadele Dönemi Genelgeler, Kongreler & Cepheler",
+        "description": "Amasya Genelgesi, Erzurum/Sivas Kongreleri, Misak-ı Milli ve Mudanya Mütarekesi!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_6_exam",
+        "title": "Milli Mücadele Şampiyonluk Kupa Sınavı",
+        "description": "Milli Mücadele zafer kupasını kaldır!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_tarih_7",
+    "unitNumber": 7,
+    "title": "Atatürkçülük ve Türk İnkılabı",
+    "subject": "TYT Tarih",
+    "colorHex": 4280110808,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tar_7_1",
+        "title": "Atatürk İlkeleri & Anahtar Kelimeleri",
+        "description": "Cumhuriyetçilik, Milliyetçilik, Halkçılık, Devletçilik, Laiklik, İnkılapçılık!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_7_2",
+        "title": "Siyasi, Hukuki & Toplumsal İnkılaplar",
+        "description": "Saltanatın kaldırılması, Cumhuriyet'in ilanı, Medeni Kanun ve Harf İnkılabı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_7_3",
+        "title": "Atatürk İlkeleri & Çok Partili Hayata Geçiş Denemeleri",
+        "description": "6 temel ilke, Terakkiperver ve Serbest Cumhuriyet Fırkası, Şeyh Sait ve Menemen olayları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tar_7_exam",
+        "title": "TYT Tarih Büyük Şampiyonluk Kupa Sınavı",
+        "description": "Tüm TYT Tarih müfredatını bitirerek altın kupa ile zaferini ilan et!",
+        "xpReward": 100,
+        "gemReward": 50,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_turkce_1",
+    "unitNumber": 1,
+    "title": "Sözcük ve Cümlede Anlam",
+    "subject": "TYT Türkçe",
+    "colorHex": 4284009474,
+    "lessonCount": 5,
+    "lessons": [
+      {
+        "id": "lesson_tr_1",
+        "title": "Mecaz, Yan & Terim Anlam",
+        "description": "Önce kuralı öğren, hemen peşinden soruyu çöz!",
+        "xpReward": 35,
+        "gemReward": 12,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_2",
+        "title": "Deyimler & Kalıplaşmış Sözler",
+        "description": "Önce deyimin sırrını kavra, sonra eşleştirmeyi tamamla!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_3",
+        "title": "Cümlede Anlam İlişkileri",
+        "description": "Amaç, Neden ve Koşul cümlelerinin gizli şifreleri",
+        "xpReward": 45,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_4",
+        "title": "Paragrafta Ana Düşünce",
+        "description": "Taktiklerle ana fikir yakalama ve paragraf çözümü",
+        "xpReward": 50,
+        "gemReward": 20,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_tr_1",
+        "title": "Ünite 1 Kupa Sınavı 🏆",
+        "description": "Tüm üniteyi kapsayan karma A, B, C, D, eşleştirme ve boşluk doldurma final testi!",
+        "xpReward": 100,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_turkce_2",
+    "unitNumber": 2,
+    "title": "Ses Bilgisi & Yazım Kuralları",
+    "subject": "TYT Türkçe",
+    "colorHex": 4294940160,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tr_ses_1",
+        "title": "Banko Ses Olayları",
+        "description": "Her yıl 1-2 soru çıkan ses olaylarının şifreleri",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_yazim_2",
+        "title": "Yazım Kuralları & SOMBAHÇEMİ",
+        "description": "de, ki bağlaçları ve birleşik sözcüklerin yazımı",
+        "xpReward": 45,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_2_3",
+        "title": "Yazım Kuralları ÖSYM Tuzakları & İstisnalar",
+        "description": "Bitişik/ayrı yazılan birleşik kelimeler ve kurum-kuruluş ekleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "exam_unit_tr_2",
+        "title": "Ünite 2 Kupa Sınavı 🏆",
+        "description": "Ses olayları ve yazım kurallarında ustalığını kanıtla!",
+        "xpReward": 100,
+        "gemReward": 30,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_turkce_3",
+    "unitNumber": 3,
+    "title": "Paragrafta Anlam ve Anlatım Teknikleri",
+    "subject": "TYT Türkçe",
+    "colorHex": 4292441862,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tr_3_1",
+        "title": "Ana Fikir, Yardımcı Fikir & Paragrafın Yapısı",
+        "description": "Paragrafta yazarın asıl vermek istediği mesajı bul ve ikiye bölme sorularını fethet!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_3_2",
+        "title": "Anlatım Biçimleri & Düşünceyi Geliştirme Yolları",
+        "description": "Öyküleme, betimleme, açıklama, tartışma ve tanımlama taktikleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_3_3",
+        "title": "Paragrafta Yapı & Akışı Bozan Cümleler",
+        "description": "Giriş, gelişme, sonuç bağlantıları ve düşünce akışını bozan cümleleri yakalama!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_3_exam",
+        "title": "Paragraf Şampiyonluk Kupa Sınavı",
+        "description": "Paragrafta anlam ve anlatım tekniklerini taçlandır!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_turkce_4",
+    "unitNumber": 4,
+    "title": "Noktalama İşaretleri",
+    "subject": "TYT Türkçe",
+    "colorHex": 4293548044,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tr_4_1",
+        "title": "Nokta, Virgül & Noktalı Virgül",
+        "description": "ÖSYM'nin en çok sorduğu virgül ve noktalı virgül ayrımlarını öğren!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_4_2",
+        "title": "İki Nokta, Kesme & Tırnak İşareti",
+        "description": "İki noktadan sonra ne zaman büyük harfle başlanır?",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_4_3",
+        "title": "Virgül ve Noktalı Virgülün Karıştırılan Kullanımları",
+        "description": "ÖSYM'nin en çok sorduğu virgül ve noktalı virgül ayrımları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_4_exam",
+        "title": "Noktalama İşaretleri Kupa Sınavı",
+        "description": "Noktalama kuralları şampiyonluk kupasını kazan!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_turkce_5",
+    "unitNumber": 5,
+    "title": "Sözcükte Yapı ve Ekler",
+    "subject": "TYT Türkçe",
+    "colorHex": 4290648157,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tr_5_1",
+        "title": "Kökler & Yapım Ekleri",
+        "description": "İsim kökü, fiil kökü ve sözcüğün anlamını değiştiren yapım ekleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_5_2",
+        "title": "Çekim Ekleri & Sözcük Yapısı",
+        "description": "İyelik, hal, çokluk ekleri ve basit-türemiş-birleşik sözcükler!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_5_3",
+        "title": "Yapım ve Çekim Ekleri Çeldirici Analizleri",
+        "description": "İsimden fiil, fiilden isim yapım ekleri ve iyelik-belirtme eki ayrımı!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_5_exam",
+        "title": "Sözcükte Yapı Kupa Sınavı",
+        "description": "Yapı konusunun inceliklerini fethet!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_turkce_6",
+    "unitNumber": 6,
+    "title": "Sözcük Türleri (İsim, Sıfat, Zamir, Zarf, Edat-Bağlaç)",
+    "subject": "TYT Türkçe",
+    "colorHex": 4279080072,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tr_6_1",
+        "title": "İsim, Sıfat & Zamir",
+        "description": "Varlıkları niteleyen sıfatlar ve ismin yerine geçen zamirler!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_6_2",
+        "title": "Zarf, Edat, Bağlaç & Ünlem",
+        "description": "Fiilleri belirten zarflar ve sözcükler arası köprü kuran edat-bağlaçlar!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_6_3",
+        "title": "Edat, Bağlaç, Ünlem ve Ortak Sözcük Türleri",
+        "description": "İle, yalnız, ancak gibi kelimelerin edat mı bağlaç mı olduğunu saniyeler içinde anla!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_6_exam",
+        "title": "Sözcük Türleri Kupa Sınavı",
+        "description": "Tüm sözcük türlerini ustalara yaraşır şekilde tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_turkce_7",
+    "unitNumber": 7,
+    "title": "Fiiller, Ek Fiil ve Fiilimsiler",
+    "subject": "TYT Türkçe",
+    "colorHex": 4287837162,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tr_7_1",
+        "title": "Fiilimsiler (Eylemsiler)",
+        "description": "İsim-fiil (Mayışmak), Sıfat-fiil (Anası mezar dikecekmiş) ve Zarf-fiiller!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_7_2",
+        "title": "Ek Fiil & Anlam Kayması",
+        "description": "İsimleri yüklem yapan ve basit zamanlı fiilleri birleşik zamanlı yapan ek fiil!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_7_3",
+        "title": "Fiilde Çatı (Öznesine ve Nesnesine Göre Fiiller)",
+        "description": "Etken, edilgen, geçişli, geçişsiz fiilleri ayırt etme ve çatı taktikleri!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_7_exam",
+        "title": "Fiil ve Fiilimsiler Kupa Sınavı",
+        "description": "Fiil yapıları kupa sınavını tamamla!",
+        "xpReward": 60,
+        "gemReward": 25,
+        "isUnitExam": true
+      }
+    ]
+  },
+  {
+    "id": "unit_turkce_8",
+    "unitNumber": 8,
+    "title": "Cümlenin Ögeleri ve Cümle Türleri",
+    "subject": "TYT Türkçe",
+    "colorHex": 4280640491,
+    "lessonCount": 4,
+    "lessons": [
+      {
+        "id": "lesson_tr_8_1",
+        "title": "Cümlenin Temel ve Yardımcı Ögeleri",
+        "description": "Yüklem, özne, nesne, yer tamlayıcısı ve zarf tümlecini tek hamlede bul!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_8_2",
+        "title": "Cümle Türleri (Basit, Birleşik, Sıralı, Bağlı)",
+        "description": "İçinde fiilimsi olan girişik birleşik cümleler ve sıralı cümle ayrımları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_8_3",
+        "title": "Ara Sözler, Vurgu ve Cümle Türleri İncelemeleri",
+        "description": "Cümlenin ögelerinde vurgu, ara sözler ve yapısına göre cümle ayrımları!",
+        "xpReward": 40,
+        "gemReward": 15,
+        "isUnitExam": false
+      },
+      {
+        "id": "lesson_tr_8_exam",
+        "title": "TYT Türkçe Büyük Şampiyonluk Kupa Sınavı",
+        "description": "Tüm TYT Türkçe konularını tamamlayarak ustalık kupanı al!",
+        "xpReward": 100,
+        "gemReward": 40,
+        "isUnitExam": true
+      }
+    ]
+  }
+]
