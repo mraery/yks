@@ -26,8 +26,10 @@ export 'ayt_matematik_units.dart';
 export 'ayt_edebiyat_units.dart';
 export 'ayt_fen_units.dart';
 
+import 'yks_question_bank_builder.dart';
+
 /// Tüm TYT ve AYT Branşlarının MEB & ÖSYM Müfredatına Uygun 79 Ünitesi
-final List<LearningUnit> yksUnits = [
+final List<LearningUnit> rawYksUnits = [
   ...turkceUnits,
   ...matematikUnits,
   ...fizikUnits,
@@ -41,6 +43,9 @@ final List<LearningUnit> yksUnits = [
   ...aytEdebiyatUnits,
   ...aytFenUnits,
 ];
+
+/// 79 Ünite, her biri en az 7 dersten oluşan toplam 553 ders ve 33.000+ soruluk YKS verisi
+final List<LearningUnit> yksUnits = expandYksUnits(rawYksUnits);
 
 /// Geriye dönük uyumluluk için standart liste
 final List<LearningUnit> mockUnits = yksUnits;

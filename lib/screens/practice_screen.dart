@@ -6,6 +6,7 @@ import '../providers/game_provider.dart';
 import '../widgets/duo_button.dart';
 import '../widgets/out_of_hearts_dialog.dart';
 import 'flashcards_screen.dart';
+import 'fast_reflex_screen.dart';
 import 'quiz_screen.dart';
 
 class PracticeScreen extends ConsumerWidget {
@@ -75,6 +76,26 @@ class PracticeScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: 24),
+
+            // GÖRÜNCE YAPIŞTIR! ⚡ (Hızlı Refleks & Şifre Oyunu)
+            _buildActionCard(
+              context: context,
+              title: 'Görünce Yapıştır! ⚡',
+              subtitle: 'Kuralı gör, cevabı anında yapıştır! Kombo yap, rekor kır ve sınav formüllerini ezberle.',
+              icon: Icons.bolt_rounded,
+              iconColor: const Color(0xFFF59E0B),
+              buttonText: 'REFLEKS OYNA ⚡',
+              buttonColor: DuoButtonColor.green,
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const FastReflexScreen(),
+                  ),
+                );
+              },
+            ),
+
+            const SizedBox(height: 16),
 
             // Hızlı Pratik Modu Kartı
             _buildActionCard(

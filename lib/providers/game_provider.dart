@@ -137,6 +137,13 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
     _saveToPrefs();
   }
 
+  void addXp(int amount) {
+    if (amount > 0) {
+      state = state.copyWith(xp: state.xp + amount);
+      _saveToPrefs();
+    }
+  }
+
   void addGems(int amount) {
     if (amount > 0) {
       state = state.copyWith(gems: state.gems + amount);

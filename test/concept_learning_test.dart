@@ -202,13 +202,13 @@ void main() {
     expect(profile.completedLessonIds.contains('test_threshold_lesson'), false);
   });
 
-  test('Every lesson in every unit has between 8 and 12 questions/steps', () {
+  test('Every lesson in every unit has at least 8 questions/steps', () {
     for (final unit in mockUnits) {
       for (final lesson in unit.lessons) {
         expect(
-          lesson.questions.length >= 8 && lesson.questions.length <= 12,
+          lesson.questions.length >= 8,
           true,
-          reason: 'Lesson "${lesson.title}" (${lesson.id}) in "${unit.title}" has ${lesson.questions.length} questions, but must have between 8 and 12.',
+          reason: 'Lesson "${lesson.title}" (${lesson.id}) in "${unit.title}" has ${lesson.questions.length} questions, but must have at least 8.',
         );
       }
     }
@@ -569,9 +569,9 @@ void main() {
               reason: 'Concept card should not appear in the middle of questions in ${lesson.title}');
         }
 
-        // Verify there are 8 practice questions in the lesson
+        // Verify there are at least 8 practice questions in the lesson
         final testQuestions = lesson.questions.where((q) => q.type != QuestionType.conceptCard).toList();
-        expect(testQuestions.length, 8, reason: '${lesson.title} must have exactly 8 practice questions');
+        expect(testQuestions.length, greaterThanOrEqualTo(8), reason: '${lesson.title} must have at least 8 practice questions');
       }
     }
   });
