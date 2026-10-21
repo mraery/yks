@@ -177,7 +177,24 @@ class QuizScreen extends ConsumerWidget {
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          // Soru Sayacı (örn: 3 / 10)
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF1F5F9),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: const Color(0xFFE2E8F0)),
+            ),
+            child: Text(
+              '${state.currentIndex + 1} / ${state.lesson.questions.length}',
+              style: const TextStyle(
+                color: Color(0xFF475569),
+                fontWeight: FontWeight.w800,
+                fontSize: 12.5,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
 
           // Can Göstergesi
           Row(
@@ -185,7 +202,7 @@ class QuizScreen extends ConsumerWidget {
               const Icon(Icons.favorite_rounded, color: Color(0xFFFF4B4B), size: 24),
               const SizedBox(width: 4),
               Text(
-                isPremium ? '♾️' : '$hearts',
+                 isPremium ? '♾️' : '$hearts',
                 style: const TextStyle(
                   color: Color(0xFFFF4B4B),
                   fontWeight: FontWeight.w900,
@@ -352,11 +369,44 @@ class QuizScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
             ],
-            DuoButton(
-              text: 'KONTROL ET',
-              color: DuoButtonColor.green,
-              height: 52,
-              onPressed: state.canCheckAnswer ? notifier.checkAnswer : null,
+            Row(
+              children: [
+                // GEÇ / ATLA Butonu (Kullanıcı cevabı bilmiyorsa veya yapıştır-geç yapmak istiyorsa)
+                Expanded(
+                  flex: 2,
+                  child: SizedBox(
+                    height: 52,
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: const Color(0xFF64748B),
+                        side: const BorderSide(color: Color(0xFFCBD5E1), width: 2),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      onPressed: notifier.skipQuestion,
+                      child: const Text(
+                        'GEÇ ⏭️',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                // KONTROL ET Butonu
+                Expanded(
+                  flex: 4,
+                  child: DuoButton(
+                    text: 'KONTROL ET',
+                    color: DuoButtonColor.green,
+                    height: 52,
+                    onPressed: state.canCheckAnswer ? notifier.checkAnswer : null,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

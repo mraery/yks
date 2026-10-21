@@ -251,9 +251,9 @@ class UserProfileNotifier extends StateNotifier<UserProfile> {
       );
     }
 
-    // 🚀 KULLANICININ ÖZEL HİLE & PREMİUM KODU: kagan123
+    // 🚀 KULLANICININ ÖZEL HİLE & PREMİUM KODU: kagan
     // Tekrar yazınca hile modu ve Premium kapanır, canlı moda döner!
-    if (code == 'kagan123') {
+    if (code == 'kagan' || code == 'kagan123') {
       if (state.isCheatUnlocked || state.isPremium) {
         state = state.copyWith(
           isCheatUnlocked: false,

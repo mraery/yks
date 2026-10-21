@@ -329,6 +329,39 @@ class QuizNotifier extends StateNotifier<QuizState> {
     }
   }
 
+  /// Soruyu atla / geç (Yanlış sayılır, can düşer ve bir sonraki soruya aktarır)
+  void skipQuestion() {
+    if (state.isQuizComplete) return;
+
+    if (state.currentQuestion.type == QuestionType.conceptCard) {
+      advanceConceptCard();
+      return;
+    }
+
+    _ref.read(userProfileProvider.notifier).loseHeart();
+    HapticFeedback.lightImpact();
+
+    if (state.currentIndex + 1 >= state.lesson.questions.length) {
+      final accuracy = state.accuracy;
+      _ref.read(userProfileProvider.notifier).recordLessonAttempt(state.lesson, accuracy);
+      state = state.copyWith(isQuizComplete: true);
+    } else {
+      state = state.copyWith(
+        currentIndex: state.currentIndex + 1,
+        selectedOptionIndex: () => null,
+        selectedBool: () => null,
+        selectedBlankAnswer: () => null,
+        matchedPairs: {},
+        selectedLeft: () => null,
+        selectedRight: () => null,
+        mismatchedLeft: () => null,
+        mismatchedRight: () => null,
+        isAnswerChecked: false,
+        isAnswerCorrect: false,
+      );
+    }
+  }
+
   /// ⚡ HİLE FONKSİYONU: kagan123 kodu ile açılır.
   /// Kullanıcı hiçbir seçeneğe dokunmasa bile mevcut soruyu %100 doğru işaretler ve onaylar.
   /// Eğer soru zaten doğru onaylanmışsa, sonraki soruya geçer!
