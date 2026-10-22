@@ -139,7 +139,7 @@ class _SplashMascotScreenState extends State<SplashMascotScreen>
                     ),
                     child: Image.asset(
                       'assets/images/mascot.png',
-                      errorBuilder: (_, __, _err) => const Center(
+                      errorBuilder: (context, error, stackTrace) => const Center(
                         child: Text('🦜', style: TextStyle(fontSize: 100)),
                       ),
                     ),
