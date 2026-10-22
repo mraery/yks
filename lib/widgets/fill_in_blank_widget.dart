@@ -26,7 +26,7 @@ class FillInBlankWidget extends StatelessWidget {
     final parts = _splitSentence(prompt);
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, 56),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
