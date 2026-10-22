@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../services/play_store_billing_service.dart';
-import 'google_play_payment_sheet.dart';
+import 'promo_code_dialog.dart';
 
 class PremiumPurchaseSheet extends StatefulWidget {
   final WidgetRef ref;
@@ -23,27 +23,34 @@ class PremiumPurchaseSheet extends StatefulWidget {
 
 class _PremiumPurchaseSheetState extends State<PremiumPurchaseSheet> {
   String _selectedPlan = 'yearly'; // 'monthly' | 'yearly'
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     final isMonthly = _selectedPlan == 'monthly';
+    final billing = PlayStoreBillingService.instance;
+
+    final monthlyProduct = billing.getProduct(PlayStoreBillingService.monthlySubscriptionId);
+    final yearlyProduct = billing.getProduct(PlayStoreBillingService.yearlySubscriptionId);
+
+    final monthlyPrice = monthlyProduct?.price ?? '59,99 ₺';
+    final yearlyPrice = yearlyProduct?.price ?? '499,99 ₺';
 
     return SafeArea(
       top: false,
       child: Container(
         constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * 0.90,
+          maxHeight: MediaQuery.of(context).size.height * 0.92,
         ),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
         ),
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(24, 16, 24, 32),
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 28),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Handle bar
               Container(
                 width: 44,
                 height: 5,
@@ -52,14 +59,13 @@ class _PremiumPurchaseSheetState extends State<PremiumPurchaseSheet> {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: 16),
 
-              // Header Icon & Title
               Container(
                 padding: const EdgeInsets.all(14),
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Color(0xFFF59E0B), Color(0xFFD97706)],
+                    colors: [Color(0xFF6366F1), Color(0xFF4F46E5)],
                   ),
                   shape: BoxShape.circle,
                 ),
@@ -67,10 +73,10 @@ class _PremiumPurchaseSheetState extends State<PremiumPurchaseSheet> {
               ),
               const SizedBox(height: 12),
               const Text(
-                'YKS Lingo Super Premium 👑',
+                'YKS Quest Super VIP 👑',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 21,
                   fontWeight: FontWeight.w900,
                   color: Color(0xFF1E293B),
                 ),
@@ -79,99 +85,86 @@ class _PremiumPurchaseSheetState extends State<PremiumPurchaseSheet> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFEF3C7),
+                  color: const Color(0xFFEEF2FF),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: const Color(0xFFFDE68A)),
+                  border: Border.all(color: const Color(0xFFC7D2FE)),
                 ),
                 child: const Text(
                   'SINIRSIZ CAN & SIFIR REKLAM',
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF92400E),
+                    color: Color(0xFF4338CA),
                     letterSpacing: 0.5,
                   ),
                 ),
               ),
               const SizedBox(height: 18),
 
-              // Perks List
               _buildPerkRow(
                 icon: Icons.all_inclusive_rounded,
                 iconColor: const Color(0xFFE11D48),
-                title: 'Sınırsız Can',
-                desc: 'Yanlış cevap versen de canın asla azalmaz, dersten atılmazsın.',
+                title: 'Sınırsız Can (Hearts)',
+                desc: 'TYT - AYT soru çözerken canın bitmeden aralıksız pratik yap.',
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 12),
               _buildPerkRow(
                 icon: Icons.block_rounded,
-                iconColor: const Color(0xFF7C3AED),
-                title: 'Sıfır Reklam',
-                desc: 'Soru aralarında veya ders sonlarında hiçbir reklam görmezsin.',
+                iconColor: const Color(0xFF6366F1),
+                title: '%100 Reklamsız Çalışma',
+                desc: 'Hiçbir reklam araya girmeden yüksek konsantrasyonla soru çöz.',
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 12),
               _buildPerkRow(
-                icon: Icons.menu_book_rounded,
-                iconColor: const Color(0xFF0284C7),
-                title: 'Tüm Konular & Kupa Sınavları',
-                desc: '79 ünite ve 243 dersin tamamına sınırsız tam erişim.',
+                icon: Icons.bolt_rounded,
+                iconColor: const Color(0xFFF59E0B),
+                title: '2x Hızlı İlerleme & Seviye Atlama',
+                desc: 'Liderlik tablosunda YKS rakiplerinin önüne kolayca geç.',
               ),
-              const SizedBox(height: 22),
-
-              // Plan Seçenekleri (Aylık 58 TL veya Yıllık 480 TL)
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Bir Plan Seç:',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900,
-                    color: Color(0xFF334155),
-                  ),
-                ),
+              const SizedBox(height: 12),
+              _buildPerkRow(
+                icon: Icons.lock_open_rounded,
+                iconColor: const Color(0xFF10B981),
+                title: 'Tüm TYT-AYT Konu Modülleri',
+                desc: 'Türkçe, Matematik, Tarih, Coğrafya ve Felsefe ünitelerine anında erişim.',
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
 
-              // 1. AYLIK SEÇENEK (58 TL)
               _buildPlanCard(
-                title: 'Aylık Plan',
-                price: '58 ₺',
-                period: '/ ay',
-                subtitle: 'Her ay yenilenir • Dilediğin an iptal et',
-                isSelected: isMonthly,
-                onTap: () => setState(() => _selectedPlan = 'monthly'),
-              ),
-              const SizedBox(height: 10),
-
-              // 2. YILLIK SEÇENEK (480 TL)
-              _buildPlanCard(
-                title: 'Yıllık Plan',
-                price: '480 ₺',
+                title: 'Yıllık VIP Plan',
+                price: yearlyPrice,
                 period: '/ yıl',
-                subtitle: 'Aylık sadece 40 ₺ • Tek ödeme',
+                subtitle: 'Aylık sadece ${(499.99 / 12).toStringAsFixed(1)} ₺ • Tek çekim',
                 badgeText: '%31 TASARRUF • EN POPÜLER 🌟',
                 isSelected: !isMonthly,
                 onTap: () => setState(() => _selectedPlan = 'yearly'),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 10),
+              _buildPlanCard(
+                title: 'Aylık VIP Plan',
+                price: monthlyPrice,
+                period: '/ ay',
+                subtitle: 'İstediğin zaman mağazadan iptal edebilirsin',
+                badgeText: null,
+                isSelected: isMonthly,
+                onTap: () => setState(() => _selectedPlan = 'monthly'),
+              ),
+              const SizedBox(height: 18),
 
-              const SizedBox(height: 20),
-
-              // Google Play Güvenli Ödeme Rozeti
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF1F5F9),
+                  color: const Color(0xFFF8FAFC),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: const Color(0xFFE2E8F0)),
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.shop_rounded, color: Color(0xFF01875F), size: 18),
+                    Icon(Icons.verified_rounded, color: Color(0xFF01875F), size: 18),
                     SizedBox(width: 8),
                     Text(
-                      'Google Play Güvenli Faturalandırma Altyapısı',
+                      'Google Play & Apple Güvenli Faturalandırma',
                       style: TextStyle(
                         fontSize: 11.5,
                         fontWeight: FontWeight.w700,
@@ -181,27 +174,34 @@ class _PremiumPurchaseSheetState extends State<PremiumPurchaseSheet> {
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 14),
 
-              // Google Play ile Satın Alma / Başlat Butonu
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF01875F), // Google Play Yeşil
+                    backgroundColor: const Color(0xFF6366F1),
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-                    elevation: 4,
-                    shadowColor: const Color(0xFF01875F).withOpacity(0.4),
+                    elevation: 3,
+                    shadowColor: const Color(0xFF6366F1).withOpacity(0.4),
                   ),
-                  icon: const Icon(Icons.shop_rounded, color: Colors.white, size: 22),
+                  icon: _isLoading
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                        )
+                      : const Icon(Icons.workspace_premium_rounded, color: Colors.white, size: 22),
                   label: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      isMonthly
-                          ? 'Google Play ile Abone Ol (58 ₺ / ay)'
-                          : 'Google Play ile Abone Ol (480 ₺ / yıl)',
+                      _isLoading
+                          ? 'İşlem Başlatılıyor...'
+                          : isMonthly
+                              ? 'Abone Ol ($monthlyPrice / ay)'
+                              : 'Abone Ol ($yearlyPrice / yıl)',
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w900,
@@ -209,35 +209,43 @@ class _PremiumPurchaseSheetState extends State<PremiumPurchaseSheet> {
                       ),
                     ),
                   ),
-                  onPressed: () async {
-                    final paid = await GooglePlayPaymentSheet.show(
-                      context: context,
-                      ref: widget.ref,
-                      planName: isMonthly ? 'Aylık Plan' : 'Yıllık Plan',
-                      priceText: isMonthly ? '58 ₺ / ay' : '480 ₺ / yıl',
-                      amount: isMonthly ? 58.0 : 480.0,
-                      isMonthly: isMonthly,
-                    );
-                    if (paid == true && context.mounted) {
-                      Navigator.of(context).pop(true);
-                    }
-                  },
+                  onPressed: _isLoading
+                      ? null
+                      : () async {
+                          setState(() => _isLoading = true);
+                          final productId = isMonthly
+                              ? PlayStoreBillingService.monthlySubscriptionId
+                              : PlayStoreBillingService.yearlySubscriptionId;
+
+                          final nav = Navigator.of(context);
+                          final success = await billing.startPurchase(
+                            context: context,
+                            ref: widget.ref,
+                            productId: productId,
+                          );
+
+                          if (mounted) {
+                            setState(() => _isLoading = false);
+                            if (success) {
+                              nav.pop(true);
+                            }
+                          }
+                        },
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 12),
 
-              // Satın Almaları Geri Yükle & Vazgeç
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton.icon(
                     icon: const Icon(Icons.restore_rounded, size: 16, color: Color(0xFF64748B)),
                     label: const Text(
-                      'Aboneliği Geri Yükle',
+                      'Satın Alımları Geri Yükle',
                       style: TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                     onPressed: () {
-                      PlayStoreBillingService.instance.restorePurchases(
+                      billing.restorePurchases(
                         context: context,
                         ref: widget.ref,
                       );
@@ -245,23 +253,71 @@ class _PremiumPurchaseSheetState extends State<PremiumPurchaseSheet> {
                   ),
                   const Text(' • ', style: TextStyle(color: Color(0xFFCBD5E1))),
                   TextButton(
-                    onPressed: () => Navigator.of(context).pop(false),
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                      PromoCodeDialog.show(context);
+                    },
                     child: const Text(
-                      'Vazgeç',
-                      style: TextStyle(color: Color(0xFF94A3B8), fontWeight: FontWeight.bold, fontSize: 12),
+                      'Kod Kullan',
+                      style: TextStyle(color: Color(0xFF6366F1), fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 8),
+
               const Text(
-                'Dilediğiniz an Google Play Store > Abonelikler menüsünden iptal edebilirsiniz.',
+                'Abonelikler, cari dönemin bitiminden en az 24 saat önce iptal edilmediği sürece otomatik olarak yenilenir. '
+                'Satın alma sonrasında Google Play / Apple ID hesap ayarlarınızdan aboneliğinizi dilediğiniz an yönetebilir veya iptal edebilirsiniz.',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 10.5, color: Color(0xFF94A3B8)),
+                style: TextStyle(
+                  fontSize: 10,
+                  color: Color(0xFF94A3B8),
+                  height: 1.35,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildLegalLink('Gizlilik Politikası', () => _showLegalDialog('Gizlilik Politikası', 'YKS Quest kullanıcı gizliliğine tam saygı duyar. Kişisel ödeme bilgileriniz Google Play ve Apple StoreKit güvenli altyapısı üzerinden işlenir.')),
+                  const Text(' • ', style: TextStyle(color: Color(0xFFCBD5E1), fontSize: 11)),
+                  _buildLegalLink('Kullanım Koşulları', () => _showLegalDialog('Kullanım Koşulları', 'YKS Quest VIP üyeliği YKS hazırlık içeriklerine sınırsız can ve reklamsız erişim sağlar. Standart Apple EULA ve Google Play Hizmet Koşulları geçerlidir.')),
+                ],
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildLegalLink(String text, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 10.5,
+          color: Color(0xFF64748B),
+          decoration: TextDecoration.underline,
+        ),
+      ),
+    );
+  }
+
+  void _showLegalDialog(String title, String content) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        content: Text(content, style: const TextStyle(fontSize: 13, height: 1.4, color: Color(0xFF334155))),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Kapat'),
+          ),
+        ],
       ),
     );
   }
@@ -271,32 +327,22 @@ class _PremiumPurchaseSheetState extends State<PremiumPurchaseSheet> {
     required String price,
     required String period,
     required String subtitle,
-    String? badgeText,
+    required String? badgeText,
     required bool isSelected,
     required VoidCallback onTap,
   }) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(18),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(14),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFFF5F3FF) : Colors.white,
+          color: isSelected ? const Color(0xFFEEF2FF) : const Color(0xFFFAFAFA),
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
-            color: isSelected ? const Color(0xFF7C3AED) : const Color(0xFFE2E8F0),
-            width: isSelected ? 2.2 : 1.2,
+            color: isSelected ? const Color(0xFF6366F1) : const Color(0xFFE2E8F0),
+            width: isSelected ? 2 : 1,
           ),
-          boxShadow: isSelected
-              ? [
-                  BoxShadow(
-                    color: const Color(0xFF7C3AED).withOpacity(0.15),
-                    blurRadius: 8,
-                    offset: const Offset(0, 3),
-                  ),
-                ]
-              : null,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -326,7 +372,7 @@ class _PremiumPurchaseSheetState extends State<PremiumPurchaseSheet> {
               children: [
                 Icon(
                   isSelected ? Icons.radio_button_checked_rounded : Icons.radio_button_off_rounded,
-                  color: isSelected ? const Color(0xFF7C3AED) : const Color(0xFF94A3B8),
+                  color: isSelected ? const Color(0xFF6366F1) : const Color(0xFF94A3B8),
                   size: 22,
                 ),
                 const SizedBox(width: 12),
@@ -339,7 +385,7 @@ class _PremiumPurchaseSheetState extends State<PremiumPurchaseSheet> {
                         style: TextStyle(
                           fontSize: 14.5,
                           fontWeight: FontWeight.w900,
-                          color: isSelected ? const Color(0xFF4C1D95) : const Color(0xFF1E293B),
+                          color: isSelected ? const Color(0xFF4338CA) : const Color(0xFF1E293B),
                         ),
                       ),
                       const SizedBox(height: 2),
@@ -363,7 +409,7 @@ class _PremiumPurchaseSheetState extends State<PremiumPurchaseSheet> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w900,
-                        color: isSelected ? const Color(0xFF7C3AED) : const Color(0xFF1E293B),
+                        color: isSelected ? const Color(0xFF6366F1) : const Color(0xFF1E293B),
                       ),
                     ),
                     Text(
